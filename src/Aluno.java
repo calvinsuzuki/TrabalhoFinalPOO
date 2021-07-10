@@ -5,8 +5,7 @@ public class Aluno extends Pessoa {
 	String[] ocorr;
 	Double[] notas;
 	
-	Aluno(long _register, String _nome, float _freq,
-			String _turma, String[] _ocorrencias, Double[] _notas) {
+	Aluno(long _register, String _nome, float _freq, String _turma, String[] _ocorrencias, Double[] _notas) {
 		super(_register, _nome, _freq);
 		turma = _turma;
 		ocorr = _ocorrencias;

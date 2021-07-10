@@ -6,7 +6,7 @@
  * @author Pedro Henrique Raymundi				11795634
  */
 
-public class main {
+public class Main {
 
 	public static void main(String[] args) {
 		// Testing
