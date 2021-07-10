@@ -10,7 +10,9 @@ public class main {
 
 	public static void main(String[] args) {
 		// Testing
-		Pessoa calvin = new Pessoa(11232420, "Calvin Suzuki de Camargo", (float) 54/100);
+		String[] ocorrencias = { "Chato", "Feio", "Esquisito" };
+		Double[] notas = { 8.0, 5.0, 5.0, 5.2, 5.6, 7.2};
+		Pessoa calvin = new Aluno(11232420, "Calvin Suzuki de Camargo", 54/100, "019", ocorrencias, notas );
 		
 		System.out.println(calvin.toString());	
 

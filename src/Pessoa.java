@@ -1,9 +1,9 @@
 
 public class Pessoa {
 	
-	private long register;
-	private String nome;
-	private float freq;
+	protected long register;
+	protected String nome;
+	protected double freq;
 	
 	/**
 	 * Construtor da classe pessoa
@@ -22,7 +22,13 @@ public class Pessoa {
 	 */
 	@Override
 	public String toString() {
-		return "Nome: " + nome + "\nNº de Registro: " + register + "\nFrequência: " + freq;
+		String str;
+		
+		str = "Nome: " + nome;
+		str += "\nNº de Registro: " + register;
+		str += "\nFrequência: " + freq;
+		
+		return str;
 	}
 	
 	
@@ -34,7 +40,7 @@ public class Pessoa {
 		return nome;
 	}
 	
-	public float getFreq() {
+	public double getFreq() {
 		return freq;
 	}
 	
