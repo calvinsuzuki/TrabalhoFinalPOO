@@ -1,15 +1,15 @@
 
 public class Aluno extends Pessoa {
 	
-	String turma;
-	String[] ocorr;
-	Double[] notas;
+	protected String turma;
+	protected String[] ocorr;
+	protected Double[] notas;
 	
-	Aluno(long _register, String _nome, float _freq, String _turma, String[] _ocorrencias, Double[] _notas) {
-		super(_register, _nome, _freq);
-		turma = _turma;
-		ocorr = _ocorrencias;
-		notas = _notas;
+	Aluno(long register, String nome, float freq, String turma, String[] ocorrencias, Double[] notas) {
+		super(register, nome, freq);
+		this.turma = turma;
+		this.ocorr = ocorrencias;
+		this.notas = notas;
 	}
 	
 	@Override
@@ -42,16 +42,16 @@ public class Aluno extends Pessoa {
 		return notas;
 	}
 	
-	void setTurma(String _turma) {
-		turma = _turma;
+	void setTurma(String turma) {
+		this.turma = turma;
 	}
 	
-	void setOcorr(String[] _ocorr) {
-		ocorr = _ocorr;
+	void setOcorr(String[] ocorr) {
+		this.ocorr = ocorr;
 	}
 	
-	void setNotas(Double[] _notas) {
-		notas = _notas;
+	void setNotas(Double[] notas) {
+		this.notas = notas;
 	}
 	
 
