@@ -21,8 +21,6 @@ import java.awt.event.ActionEvent;
 
 public class LoginUI extends JFrame {
 	
-	private static final long serialVersionUID = 1L;
-	
 	private JPanel contentPane;
 	private JLabel lblRegistro;
 	private JLabel lblSenha;
@@ -37,10 +35,26 @@ public class LoginUI extends JFrame {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		String[] ocorrencias = { "Chato", "Feio", "Esquisito" };
+		String[] horarios = { "1h", "3h", "5h" };
+		Double[] notas = { 8.0, 5.0, 5.0, 5.2, 5.6, 7.2};
+		Escola escolaX = new Escola();
+		Diretor diretorY = new Diretor(9999, "Y", (float) 90/100, 5000.00, horarios, ocorrencias);
+		Aluno alunoZ = new Aluno(123, "Z", (float) 54/100, "019", ocorrencias, notas );
+		GerenciadorDados ga = new GerenciadorDados();
+		
+		//leitura do banco de dados FAZER ISSO NA INICIALIZAÇÃO DO PROGRAMA
+		ga.leAdicionaPessoasArquivos(escolaX, "src/baseDados.csv");
+		
+		//uso de adicionaPessoa, primeiramente sem permissão, depois com
+		escolaX.adicionaPessoa(alunoZ, alunoZ);
+		escolaX.adicionaPessoa(diretorY, alunoZ);
+		escolaX.adicionaPessoa(diretorY, diretorY);
+		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					LoginUI frame = new LoginUI();
+					LoginUI frame = new LoginUI(escolaX);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -52,7 +66,7 @@ public class LoginUI extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public LoginUI(/*Escola sistema*/) {
+	public LoginUI(Escola sistema) {
 		setBackground(Color.WHITE);
 		setResizable(false);
 		setType(Type.UTILITY);
@@ -81,7 +95,7 @@ public class LoginUI extends JFrame {
 		txtRegistro.addKeyListener(new KeyAdapter() {
 	        public void keyTyped(KeyEvent evt) {
 	        	char c = evt.getKeyChar();
-	            if (!(((c >= '0') && (c <= '9')) || (c == java.awt.event.KeyEvent.VK_BACK_SPACE) || (c == java.awt.event.KeyEvent.VK_DELETE))) {
+	            if(!(((c >= '0') && (c <= '9')) || (c == java.awt.event.KeyEvent.VK_BACK_SPACE) || (c == java.awt.event.KeyEvent.VK_DELETE))) {
 	              getToolkit().beep();
 	              evt.consume();
 	            }
@@ -127,7 +141,17 @@ public class LoginUI extends JFrame {
 			public void actionPerformed(ActionEvent evt) {
 				try {
 					/*contaLogada = sistema.checkLogin(txtRegistro.getText(), new String(txtSenha.getPassword()));*/
-					throw new Exception();
+					dispose();
+					EventQueue.invokeLater(new Runnable() {
+						public void run() {
+							try {
+								PagPrincipalUI frame = new PagPrincipalUI(sistema, contaLogada);
+								frame.setVisible(true);
+							} catch (Exception e) {
+								e.printStackTrace();
+							}
+						}
+					});
 				} catch (Exception e) {
 					JOptionPane.showMessageDialog(null, "Registro ou Senha INVÁLIDO!", "ERRO no Login", JOptionPane.ERROR_MESSAGE);
 				}

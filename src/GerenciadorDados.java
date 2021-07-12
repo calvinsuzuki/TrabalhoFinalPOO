@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -88,20 +89,21 @@ public class GerenciadorDados {
 	}
 	
 	public void escrevePessoasArquivo(Escola escola, String nomeArquivo) {
+		ArrayList<Pessoa> pessoas = escola.getPessoas();
 		try {
 			FileWriter escritorcsv = new FileWriter(nomeArquivo);
-			for (int i = 0; i < escola.nPessoas; i++) {
-				if(escola.pessoas.get(i).getClass().equals(Aluno.class)) {
-					escreveAlunosArquivo((Aluno) escola.pessoas.get(i), escritorcsv);
+			for (int i = 0; i < escola.getNPessoas(); i++) {
+				if(pessoas.get(i).getClass().equals(Aluno.class)) {
+					escreveAlunosArquivo((Aluno) pessoas.get(i), escritorcsv);
 					
-				} else if (escola.pessoas.get(i) instanceof Funcionario) {
+				} else if (pessoas.get(i) instanceof Funcionario) {
 					escritorcsv.append("FUNCIONARIO"+ ',');
-					if(escola.pessoas.get(i).getClass().equals(Professor.class)) {
-						escreveProfessoresArquivo((Professor) escola.pessoas.get(i), escritorcsv);
-					} else if(escola.pessoas.get(i).getClass().equals(Zelador.class)) {
-						escreveZeladoresArquivo((Zelador) escola.pessoas.get(i), escritorcsv);
-					} else if(escola.pessoas.get(i).getClass().equals(Diretor.class)) {
-						escreveDiretoresArquivo((Diretor) escola.pessoas.get(i), escritorcsv);
+					if(pessoas.get(i).getClass().equals(Professor.class)) {
+						escreveProfessoresArquivo((Professor) pessoas.get(i), escritorcsv);
+					} else if(pessoas.get(i).getClass().equals(Zelador.class)) {
+						escreveZeladoresArquivo((Zelador) pessoas.get(i), escritorcsv);
+					} else if(pessoas.get(i).getClass().equals(Diretor.class)) {
+						escreveDiretoresArquivo((Diretor) pessoas.get(i), escritorcsv);
 					}
 				}
 			}

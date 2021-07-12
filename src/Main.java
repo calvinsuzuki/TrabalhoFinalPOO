@@ -28,8 +28,8 @@ public class Main {
 		escolaX.adicionaPessoa(diretorY, diretorY);
 		
 		//uso de printPessoas
-		String[] printPessoas = escolaX.imprimePessoas(alunoZ);
-		for(int i = 0; i < escolaX.nPessoas; i++) {
+		String[] printPessoas = escolaX.imprimePessoas();
+		for(int i = 0; i < escolaX.getNPessoas(); i++) {
 			System.out.println(printPessoas[i]);
 		}
 		

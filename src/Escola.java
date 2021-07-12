@@ -1,15 +1,15 @@
 import java.util.ArrayList;
-
 import exceptions.RegistroUsadoException;
 import exceptions.UsuarioLogadoInvalidoException;
 
 public class Escola {
-	public int nPessoas = 0;
-	ArrayList<Pessoa> pessoas = new ArrayList<Pessoa>();
+	
+	private int nPessoas = 0;
+	private ArrayList<Pessoa> pessoas = new ArrayList<Pessoa>();
 	
 	/*
 	 * @param pessoaLogada - Para poder adicionar alguém, pessoaLogada deve ser Diretor
-	 * @param novaPessoa - pode ser de qualquer dubclasse, vai adicionar para o sistema da escola
+	 * @param novaPessoa - pode ser de qualquer subclasse, vai adicionar para o sistema da escola
 	 * */
 	public void adicionaPessoa(Pessoa pessoaLogada, Pessoa novaPessoa) {
 		try {
@@ -41,7 +41,7 @@ public class Escola {
 	
 	/**
 	 * */
-	public String[] imprimePessoas(Pessoa pessoaLogada) {
+	public String[] imprimePessoas() {
 		String[] impressoes = new String[nPessoas];
 		for(int i = 0; i < nPessoas; i++) {
 			impressoes[i] = "Nome: " + pessoas.get(i).nome + "\nNº de Registro: " + 
@@ -86,5 +86,13 @@ public class Escola {
 					pessoaRequerida.register + "\nFrequência: " + pessoaRequerida.freq;
 		}
 		return r;
+	}
+	
+	public int getNPessoas() {
+		return nPessoas;
+	}
+	
+	public ArrayList<Pessoa> getPessoas() {
+		return pessoas;
 	}
 }
