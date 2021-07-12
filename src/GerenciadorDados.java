@@ -1,23 +1,33 @@
-import java.util.ArrayList;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 
 public class GerenciadorDados {
-	String row = new String();
-	Diretor classeParaPermissoes = new Diretor(-1, "GA", 0, null, null, null);
+	private String row = new String();
+	private Diretor classeParaPermissoes = new Diretor(-1, "GA", 0, null, null, null);
 	
-	public void processaLinhaAluno(Escola escola, String[] dados) {
+	/**
+	 * Esse método cria um novo aluno dado um array de strings correlacionado à uma linha do csv
+	 * @param escola - escola onde o novo aluno vai ser adicionado
+	 * @param dados - os dados de uma linha (que é de um aluno) no csv
+	 * */
+	private void processaLinhaAluno(Escola escola, String[] dados) {
 		String[] ocorrencias = { "Chato", "Feio", "Esquisito" };
 		Double[] notas = { 8.0, 5.0, 5.0, 5.2, 5.6, 7.2};
 		Aluno novoAluno = new Aluno(Long.parseLong(dados[1]), dados[2], Float.parseFloat(dados[3]), dados[4], ocorrencias, notas);
 		escola.adicionaPessoa(classeParaPermissoes, novoAluno);
 	}
 	
-	public void processaLinhaFuncionario(Escola escola, String[] dados) {
+	/**
+	 * Esse método cria um novo funcionário dado um array de strings correlacionado à uma linha do csv
+	 * @param escola - escola onde o novo aluno vai ser adicionado
+	 * @param dados - os dados de uma linha (que é de um funcionário) no csv
+	 * */
+	private void processaLinhaFuncionario(Escola escola, String[] dados) {
 		Pessoa novaPessoa = null;
 		String[] reclamacoes = { "Chato", "Feio", "Esquisito" };
 		String[] horarios = { "1h", "3h", "5h" };
@@ -44,7 +54,6 @@ public class GerenciadorDados {
 			    	leitorcsv.close();
 			    	return;
 			    }
-			    
 			    if( dados[0].equals("ALUNO")) {
 			    	processaLinhaAluno(escola, dados);
 			    } else if(dados[0].equals("FUNCIONARIO")) {
@@ -59,7 +68,11 @@ public class GerenciadorDados {
 		}
 	}
 	
-	
+	/**
+	 * Esse método escreve os dados de um aluno em um csv com a formatação correta
+	 * @param aluno - aluno que será escrito
+	 * @param escritorcsv - o fileWriter que está apontando para o arquivo csv
+	 * */
 	private void escreveAlunosArquivo(Aluno aluno, FileWriter escritorcsv) throws IOException {
 		DecimalFormat df = new DecimalFormat();
 		df.setMaximumFractionDigits(2);
@@ -67,6 +80,11 @@ public class GerenciadorDados {
 		escritorcsv.append(String.valueOf(df.format(aluno.freq)) + ',' + aluno.turma + '\n');
 	}
 	
+	/**
+	 * Esse método escreve os dados de um professor em um csv com a formatação correta
+	 * @param professor - professor que será escrito
+	 * @param escritorcsv - o fileWriter que está apontando para o arquivo csv
+	 * */
 	private void escreveProfessoresArquivo(Professor professor, FileWriter escritorcsv) throws IOException {
 		DecimalFormat df = new DecimalFormat();
 		df.setMaximumFractionDigits(2);
@@ -74,6 +92,11 @@ public class GerenciadorDados {
 		escritorcsv.append(String.valueOf(df.format(professor.freq)) + ',' + professor.salario + '\n');
 	}
 	
+	/**
+	 * Esse método escreve os dados de um zelador em um csv com a formatação correta
+	 * @param zelador - zelador que será escrito
+	 * @param escritorcsv - o fileWriter que está apontando para o arquivo csv
+	 * */
 	private void escreveZeladoresArquivo(Zelador zelador, FileWriter escritorcsv) throws IOException {
 		DecimalFormat df = new DecimalFormat();
 		df.setMaximumFractionDigits(2);
@@ -81,6 +104,11 @@ public class GerenciadorDados {
 		escritorcsv.append(String.valueOf(df.format(zelador.freq)) + ',' + zelador.salario + '\n');
 	}
 	
+	/**
+	 * Esse método escreve os dados de um diretor em um csv com a formatação correta
+	 * @param diretor - diretor que será escrito
+	 * @param escritorcsv - o fileWriter que está apontando para o arquivo csv
+	 * */
 	private void escreveDiretoresArquivo(Diretor diretor, FileWriter escritorcsv) throws IOException {
 		DecimalFormat df = new DecimalFormat();
 		df.setMaximumFractionDigits(2);
@@ -88,6 +116,11 @@ public class GerenciadorDados {
 		escritorcsv.append(String.valueOf(df.format(diretor.freq)) + ',' + diretor.salario + '\n');
 	}
 	
+	/**
+	 * Esse método escreve os dados de uma escola em um arquivo csv
+	 * @param escola - escola de onde os dados que serão escritos são retirados
+	 * @param nomeArquivo - nome do arquivo onde tudo isso será salvo
+	 * */
 	public void escrevePessoasArquivo(Escola escola, String nomeArquivo) {
 		ArrayList<Pessoa> pessoas = escola.getPessoas();
 		try {

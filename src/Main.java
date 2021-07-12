@@ -29,7 +29,7 @@ public class Main {
 		
 		//uso de printPessoas
 		String[] printPessoas = escolaX.imprimePessoas();
-		for(int i = 0; i < escolaX.getNPessoas(); i++) {
+		for(int i = 0; i < escolaX.nPessoas; i++) {
 			System.out.println(printPessoas[i]);
 		}
 		
@@ -39,7 +39,9 @@ public class Main {
 		//uso de infoPessoa, tanto com permissão total, quanto sem permissão total
 		System.out.println(escolaX.infoPessoa(alunoZ, diretorY) + '\n');
 		System.out.println(escolaX.infoPessoa(diretorY, diretorY));
-		/*
+		
+		
+		
 		//uso de buscaPessoa pelo registro (com um reg inválido) e com o nome (com um nome válido)
 		ArrayList<Pessoa> pessoasPesquisadas = new ArrayList<Pessoa>();
 		
@@ -51,13 +53,15 @@ public class Main {
 			System.out.println(escolaX.infoPessoa(pessoasPesquisadas.get(0), diretorY));
 		}
 		pessoasPesquisadas = escolaX.buscaPessoa("Y");
-		if(pessoasPesquisadas.get(0) == null) {
+		if(pessoasPesquisadas.size() == 0) {
 			System.out.println("Não existe nenhum usuário com esse registro");
 		} else {
 			//sem um for porque o registro é único por usuário
 			System.out.println(escolaX.infoPessoa(pessoasPesquisadas.get(0), diretorY));
 		}
-		*/
+		
+		//remoção de uma pessoa
+		escolaX.removePessoa(diretorY, 123);
 		
 		//escrita do banco de dados FAZER ISSO NO FINAL DO PROGRAMA
 		ga.escrevePessoasArquivo(escolaX, "src/baseDados.csv");
