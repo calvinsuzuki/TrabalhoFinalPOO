@@ -7,12 +7,29 @@ import java.text.DecimalFormat;
 
 public class GerenciadorDados {
 	String row = new String();
+	Diretor classeParaPermissoes = new Diretor(-1, "GA", 0, null, null, null);
 	
 	public void processaLinhaAluno(Escola escola, String[] dados) {
 		String[] ocorrencias = { "Chato", "Feio", "Esquisito" };
 		Double[] notas = { 8.0, 5.0, 5.0, 5.2, 5.6, 7.2};
 		Aluno novoAluno = new Aluno(Long.parseLong(dados[1]), dados[2], Float.parseFloat(dados[3]), dados[4], ocorrencias, notas);
-		escola.adicionaPessoa(novoAluno);
+		escola.adicionaPessoa(classeParaPermissoes, novoAluno);
+	}
+	
+	public void processaLinhaFuncionario(Escola escola, String[] dados) {
+		Pessoa novaPessoa = null;
+		String[] reclamacoes = { "Chato", "Feio", "Esquisito" };
+		String[] horarios = { "1h", "3h", "5h" };
+		String[] turmas = {"turma 1", "turma 2"};
+		
+		if(dados[1].equals("PROFESSOR")) {
+			novaPessoa = new Professor(Long.parseLong(dados[2]), dados[3], Float.parseFloat(dados[4]), Double.parseDouble(dados[5]), horarios, reclamacoes, turmas);
+		} else if(dados[1].equals("ZELADOR")) {
+			novaPessoa = new Zelador(Long.parseLong(dados[2]), dados[3], Float.parseFloat(dados[4]), Double.parseDouble(dados[5]), horarios, reclamacoes, "mudar aqui");
+		} else if(dados[1].equals("DIRETOR")) {
+			novaPessoa = new Diretor(Long.parseLong(dados[2]), dados[3], Float.parseFloat(dados[4]), Double.parseDouble(dados[5]), horarios, reclamacoes);
+		}
+		escola.adicionaPessoa(classeParaPermissoes, novaPessoa);
 	}
 	
 	public void leAdicionaPessoasArquivos(Escola escola, String nomeArquivo) {
@@ -28,8 +45,9 @@ public class GerenciadorDados {
 			    }
 			    
 			    if( dados[0].equals("ALUNO")) {
-			    	
 			    	processaLinhaAluno(escola, dados);
+			    } else if(dados[0].equals("FUNCIONARIO")) {
+			    	processaLinhaFuncionario(escola, dados);
 			    }
 			}
 			
@@ -48,12 +66,43 @@ public class GerenciadorDados {
 		escritorcsv.append(String.valueOf(df.format(aluno.freq)) + ',' + aluno.turma + '\n');
 	}
 	
+	private void escreveProfessoresArquivo(Professor professor, FileWriter escritorcsv) throws IOException {
+		DecimalFormat df = new DecimalFormat();
+		df.setMaximumFractionDigits(2);
+		escritorcsv.append("PROFESSOR"+ ',' +String.valueOf(professor.register) + ',' + professor.nome + ',');
+		escritorcsv.append(String.valueOf(df.format(professor.freq)) + ',' + professor.salario + '\n');
+	}
+	
+	private void escreveZeladoresArquivo(Zelador zelador, FileWriter escritorcsv) throws IOException {
+		DecimalFormat df = new DecimalFormat();
+		df.setMaximumFractionDigits(2);
+		escritorcsv.append("ZELADOR"+ ',' +String.valueOf(zelador.register) + ',' + zelador.nome + ',');
+		escritorcsv.append(String.valueOf(df.format(zelador.freq)) + ',' + zelador.salario + '\n');
+	}
+	
+	private void escreveDiretoresArquivo(Diretor diretor, FileWriter escritorcsv) throws IOException {
+		DecimalFormat df = new DecimalFormat();
+		df.setMaximumFractionDigits(2);
+		escritorcsv.append("DIRETOR"+ ',' +String.valueOf(diretor.register) + ',' + diretor.nome + ',');
+		escritorcsv.append(String.valueOf(df.format(diretor.freq)) + ',' + diretor.salario + '\n');
+	}
+	
 	public void escrevePessoasArquivo(Escola escola, String nomeArquivo) {
 		try {
 			FileWriter escritorcsv = new FileWriter(nomeArquivo);
 			for (int i = 0; i < escola.nPessoas; i++) {
 				if(escola.pessoas.get(i).getClass().equals(Aluno.class)) {
 					escreveAlunosArquivo((Aluno) escola.pessoas.get(i), escritorcsv);
+					
+				} else if (escola.pessoas.get(i) instanceof Funcionario) {
+					escritorcsv.append("FUNCIONARIO"+ ',');
+					if(escola.pessoas.get(i).getClass().equals(Professor.class)) {
+						escreveProfessoresArquivo((Professor) escola.pessoas.get(i), escritorcsv);
+					} else if(escola.pessoas.get(i).getClass().equals(Zelador.class)) {
+						escreveZeladoresArquivo((Zelador) escola.pessoas.get(i), escritorcsv);
+					} else if(escola.pessoas.get(i).getClass().equals(Diretor.class)) {
+						escreveDiretoresArquivo((Diretor) escola.pessoas.get(i), escritorcsv);
+					}
 				}
 			}
 			escritorcsv.close();
