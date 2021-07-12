@@ -9,12 +9,15 @@
 public class Main {
 
 	public static void main(String[] args) {
-		// Testing
 		String[] ocorrencias = { "Chato", "Feio", "Esquisito" };
 		Double[] notas = { 8.0, 5.0, 5.0, 5.2, 5.6, 7.2};
-		Pessoa calvin = new Aluno(11232420, "Calvin Suzuki de Camargo", 54/100, "019", ocorrencias, notas);
+		Escola escolaX = new Escola();
+		GerenciadorDados ga = new GerenciadorDados();
 		
-		System.out.println(calvin.toString());	
+		ga.leAdicionaPessoasArquivos(escolaX, "src/baseDados.csv");
+		escolaX.adicionaPessoa(new Aluno(123, "Z", 54/100, "019", ocorrencias, notas ));
+		escolaX.imprimePessoas(new Aluno(10000, "ALUNO USUARIO", 54/100, "019", ocorrencias, notas ));
+		ga.escrevePessoasArquivo(escolaX, "src/baseDados.csv");
 
 	}
 
