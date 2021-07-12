@@ -1,15 +1,5 @@
-import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -18,6 +8,16 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.ImageIcon;
 import java.awt.Image;
+import java.awt.Color;
+import java.awt.Font;
+import javax.swing.border.MatteBorder;
+import java.awt.EventQueue;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class LoginUI extends JFrame {
 	
@@ -53,15 +53,17 @@ public class LoginUI extends JFrame {
 	 * Create the frame.
 	 */
 	public LoginUI(/*Escola sistema*/) {
-		
+		setBackground(Color.WHITE);
+		setResizable(false);
 		setType(Type.UTILITY);
-		setTitle("Login Page\r\n");
+		setTitle("Login Page");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 770, 500);
+		
 		contentPane = new JPanel();
 		contentPane.setForeground(new Color(0, 0, 0));
 		contentPane.setBackground(new Color(240, 230, 140));
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(218, 165, 32)));
 		contentPane.setLayout(null);
 		setContentPane(contentPane);
 		
@@ -156,5 +158,9 @@ public class LoginUI extends JFrame {
 		contentPane.add(txtSenha);
 		contentPane.add(btnLogin);
 		contentPane.add(chckbxVerSenha);
+	}
+	
+	public Pessoa getContaLogada() {
+		return contaLogada;
 	}
 }
