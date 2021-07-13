@@ -29,7 +29,7 @@ public class Main {
 		
 		//uso de printPessoas
 		String[] printPessoas = escolaX.imprimePessoas();
-		for(int i = 0; i < escolaX.nPessoas; i++) {
+		for(int i = 0; i < escolaX.getNPessoas(); i++) {
 			System.out.println(printPessoas[i]);
 		}
 		

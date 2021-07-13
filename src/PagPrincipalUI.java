@@ -1,7 +1,9 @@
+import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.SwingConstants;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -18,6 +20,8 @@ import javax.swing.border.MatteBorder;
 import java.awt.EventQueue;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -28,9 +32,11 @@ public class PagPrincipalUI extends JFrame {
 	private JPanel cardsPane;
 	private JPanel[] listPanes;
 	private JScrollPane[] scrollPanes;
+	private JLabel lblAddPessoa;
+	private JTextField txtBusca;
+	private JButton btnBusca;
 	private JButton[] btnsPessoa;
-	
-	
+	private JButton btnAddPessoa;
 
 	/**
 	 * Launch the application.
@@ -90,25 +96,76 @@ public class PagPrincipalUI extends JFrame {
 		titlePane.setBounds(0, 0, 1327, 120);
 		titlePane.setLayout(null);
 		
+		txtBusca = new JTextField();
+		txtBusca.setForeground(new Color(105, 105, 105));
+		txtBusca.setBackground(new Color(211, 211, 211));
+		txtBusca.setFont(new Font("Papyrus", Font.BOLD, 20));
+		txtBusca.setText("Procurar...");
+		txtBusca.setBounds(880, 32, 330, 54);
+		txtBusca.addMouseListener(new MouseAdapter() {
+	        public void mouseClicked(MouseEvent evt) {
+	            if(txtBusca.getText().equals("Procurar...")) {
+	            	txtBusca.setText("");
+	                txtBusca.repaint();
+	                txtBusca.revalidate();
+	            }           
+	        }
+	    });
+		txtBusca.addFocusListener(new FocusAdapter() {
+			public void focusLost(FocusEvent evt) {
+				if(txtBusca.getText().equals("")) {
+					txtBusca.setText("Procurar...");
+					txtBusca.repaint();
+	                txtBusca.revalidate();
+				}
+			}
+		});
+		
+		btnBusca = new JButton();
+		btnBusca.setIcon(new ImageIcon(new ImageIcon(".\\UI Icons\\lupa.png").getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT)));
+		btnBusca.setBounds(1220, 32, 72, 54);
+		btnBusca.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				ArrayList<Pessoa> pessoasEncontradas = null;
+				try {
+					int registro = Integer.parseInt(txtBusca.getText());
+					Pessoa pessoaEncontrada = sistema.buscaPessoa(registro);
+					pessoasEncontradas = new ArrayList<Pessoa>();
+					if(pessoaEncontrada != null) {
+						pessoasEncontradas.add(pessoaEncontrada);
+					}
+				} catch (Exception e) {
+					pessoasEncontradas = sistema.buscaPessoa(txtBusca.getText());
+				} finally {
+					refreshListPessoas(pessoasEncontradas, contaLogada);
+				}
+			}
+		});
+		
 		cardsPane = new JPanel();
 		cardsPane.setForeground(new Color(0, 0, 0));
 		cardsPane.setBackground(new Color(240, 230, 140));
 		cardsPane.setBorder(new EmptyBorder(0, 0, 0, 0));
-		cardsPane.setBounds(-1, 118, 1328, 628);
+		cardsPane.setBounds(-1, 118, 1330, 628);
 		cardsPane.setLayout(new CardLayout());
 		refreshListPessoas(sistema, contaLogada);
 		
+		titlePane.add(txtBusca);
+		titlePane.add(btnBusca);
 		contentPane.add(titlePane);
 		contentPane.add(cardsPane);
 	}
 	
 	private void refreshListPessoas(Escola sistema, Pessoa contaLogada) {
-		/*String[] dadosPessoas = sistema.imprimePessoas();*/
-		String[] dadosPessoas = new String[] {"Nome salsasdasd", "Nome asdasdasd", "nome asdasdascaceec"};
-		/*int numPessoas = sistema.getNPessoas();*/
-		int numPessoas = 3;
+		cardsPane.removeAll();
+		cardsPane.repaint();
+		cardsPane.revalidate();
+		
+		int numPessoas = sistema.getNPessoas();
 		int numPaginas = numPessoas/27 + 1;
 		int numPessoasUltimaPagina = numPessoas - (numPaginas-1)*27;
+		ArrayList<Pessoa> pessoas = sistema.getPessoas();
+		String[] dadosPessoas = sistema.imprimePessoas();
 		
 		listPanes = new JPanel[numPaginas];
 		btnsPessoa = new JButton[numPessoas];
@@ -120,7 +177,7 @@ public class PagPrincipalUI extends JFrame {
 			listPanes[i].setBackground(new Color(240, 230, 140));
 			listPanes[i].setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(218, 165, 32)));
 			listPanes[i].setPreferredSize(new Dimension(1310, 1500));
-			listPanes[i].setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+			listPanes[i].setLayout(new FlowLayout(FlowLayout.LEFT, 26, 26));
 			listPanes[i].setAutoscrolls(true);
 			
 			int numPessoasNessaPagina;
@@ -131,28 +188,187 @@ public class PagPrincipalUI extends JFrame {
 			}
 			
 			for(int j=0 ; j<numPessoasNessaPagina ; j++) {
-				btnsPessoa[27*i + j] = new JButton(dadosPessoas[27*i + j]);
-				/*btnsPessoa[27*i + j].setBounds(261, 368, 216, 48);*/
-				btnsPessoa[27*i + j].setFont(new Font("Papyrus", Font.BOLD, 18));
-				btnsPessoa[27*i + j].addActionListener(new ActionListener() {
+				int pessoaIndex = 27*i + j;
+				String infoFormatada = "<html>" + dadosPessoas[pessoaIndex].replaceAll("\\n", "<br/>") + "</html>";
+				btnsPessoa[pessoaIndex] = new JButton(infoFormatada);
+				btnsPessoa[pessoaIndex].setHorizontalAlignment(SwingConstants.LEFT);
+				btnsPessoa[pessoaIndex].setFont(new Font("Papyrus", Font.BOLD, 18));
+				btnsPessoa[pessoaIndex].setPreferredSize(new Dimension(400, 100));
+				/*btnsPessoa[pessoaIndex].addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent evt) {
-						try {
-							
-							throw new Exception();
-						} catch (Exception e) {
-							JOptionPane.showMessageDialog(null, "Registro ou Senha INVÁLIDO!", "ERRO no Login", JOptionPane.ERROR_MESSAGE);
+						if(checkPermission(contaLogada, pessoas.get(pessoaIndex))) {
+							EventQueue.invokeLater(new Runnable() {
+								public void run() {
+									try {
+										InfoPessoaUI frame = new InfoPessoaUI(pessoas.get(pessoaIndex), contaLogada);
+										frame.setVisible(true);
+									} catch (Exception e) {
+										e.printStackTrace();
+									}
+								}
+							});
+						} else {
+							JOptionPane.showMessageDialog(null, "Você não tem permissão para ver essas informações!", "ACESSO NEGADO", JOptionPane.ERROR_MESSAGE);
 						}
 					}
-				});
+				});*/
 				listPanes[i].add(btnsPessoa[27*i + j]);
+			}
+			
+			if(i == numPaginas-1 && contaLogada instanceof Diretor) {
+				btnAddPessoa = new JButton();
+				btnAddPessoa.setIcon(new ImageIcon(new ImageIcon(".\\UI Icons\\plus.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT)));
+				btnAddPessoa.setPreferredSize(new Dimension(60, 60));
+				btnAddPessoa.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent evt) {
+						EventQueue.invokeLater(new Runnable() {
+							public void run() {
+								try {
+									AddPessoaUI frame = new AddPessoaUI();
+									frame.setVisible(true);
+								} catch (Exception e) {
+									e.printStackTrace();
+								}
+							}
+						});
+					}
+				});
+				
+				lblAddPessoa = new JLabel("<html>Adicionar<br/>nova Pessoa</html>");
+				lblAddPessoa.setForeground(new Color(140, 140, 140));
+				lblAddPessoa.setFont(new Font("Papyrus", Font.BOLD | Font.ITALIC, 30));
+				lblAddPessoa.setPreferredSize(new Dimension(240, 100));
+				
+				listPanes[i].add(btnAddPessoa);
+				listPanes[i].add(lblAddPessoa);
 			}
 			
 			scrollPanes[i] = new JScrollPane(listPanes[i]);
 			scrollPanes[i].setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
 			scrollPanes[i].setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-			scrollPanes[i].setBounds(-1, 118, 1328, 628);
+			scrollPanes[i].setPreferredSize(new Dimension(1330, 628));
 			
 			cardsPane.add(scrollPanes[i]);
 		}
+	}
+	
+	private void refreshListPessoas(ArrayList<Pessoa> pessoasParaMostrar, Pessoa contaLogada) {
+		cardsPane.removeAll();
+		cardsPane.repaint();
+		cardsPane.revalidate();
+		
+		int numPessoas = pessoasParaMostrar.size();
+		System.out.println(numPessoas);
+		int numPaginas = numPessoas/27 + 1;
+		int numPessoasUltimaPagina = numPessoas - (numPaginas-1)*27;
+		String[] dadosPessoas = new String[numPessoas];
+		for(int i=0 ; i<numPessoas ; i++) {
+			dadosPessoas[i] = pessoasParaMostrar.get(i).getClass().toString() + "\nNome: " + pessoasParaMostrar.get(i).getNome() + "\nNº de Registro: " + pessoasParaMostrar.get(i).getRegister();
+		}
+		
+		listPanes = new JPanel[numPaginas];
+		btnsPessoa = new JButton[numPessoas];
+		scrollPanes = new JScrollPane[numPaginas];
+		
+		for(int i=0 ; i<numPaginas ; i++) {
+			listPanes[i] = new JPanel();
+			listPanes[i].setForeground(new Color(0, 0, 0));
+			listPanes[i].setBackground(new Color(240, 230, 140));
+			listPanes[i].setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(218, 165, 32)));
+			listPanes[i].setPreferredSize(new Dimension(1310, 1500));
+			listPanes[i].setLayout(new FlowLayout(FlowLayout.LEFT, 26, 26));
+			listPanes[i].setAutoscrolls(true);
+			
+			int numPessoasNessaPagina;
+			if(i == numPaginas-1) {
+				numPessoasNessaPagina = numPessoasUltimaPagina;
+			} else {
+				numPessoasNessaPagina = 27;
+			}
+			
+			for(int j=0 ; j<numPessoasNessaPagina ; j++) {
+				int pessoaIndex = 27*i + j;
+				String infoFormatada = "<html>" + dadosPessoas[pessoaIndex].replaceAll("\\n", "<br/>") + "</html>";
+				btnsPessoa[pessoaIndex] = new JButton(infoFormatada);
+				btnsPessoa[pessoaIndex].setHorizontalAlignment(SwingConstants.LEFT);
+				btnsPessoa[pessoaIndex].setFont(new Font("Papyrus", Font.BOLD, 18));
+				btnsPessoa[pessoaIndex].setPreferredSize(new Dimension(400, 100));
+				/*btnsPessoa[pessoaIndex].addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent evt) {
+						if(checkPermission(contaLogada, pessoasParaMostrar.get(pessoaIndex))) {
+							EventQueue.invokeLater(new Runnable() {
+								public void run() {
+									try {
+										InfoPessoaUI frame = new InfoPessoaUI(pessoasParaMostrar.get(pessoaIndex), contaLogada);
+										frame.setVisible(true);
+									} catch (Exception e) {
+										e.printStackTrace();
+									}
+								}
+							});
+						} else {
+							JOptionPane.showMessageDialog(null, "Você não tem permissão para ver essas informações!", "ACESSO NEGADO", JOptionPane.ERROR_MESSAGE);
+						}
+					}
+				});*/
+				listPanes[i].add(btnsPessoa[27*i + j]);
+			}
+			
+			if(i == numPaginas-1 && contaLogada instanceof Diretor) {
+				btnAddPessoa = new JButton();
+				btnAddPessoa.setIcon(new ImageIcon(new ImageIcon(".\\UI Icons\\plus.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT)));
+				btnAddPessoa.setPreferredSize(new Dimension(60, 60));
+				btnAddPessoa.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent evt) {
+						EventQueue.invokeLater(new Runnable() {
+							public void run() {
+								try {
+									AddPessoaUI frame = new AddPessoaUI();
+									frame.setVisible(true);
+								} catch (Exception e) {
+									e.printStackTrace();
+								}
+							}
+						});
+					}
+				});
+				
+				lblAddPessoa = new JLabel("<html>Adicionar<br/>nova Pessoa</html>");
+				lblAddPessoa.setForeground(new Color(140, 140, 140));
+				lblAddPessoa.setFont(new Font("Papyrus", Font.BOLD | Font.ITALIC, 30));
+				lblAddPessoa.setPreferredSize(new Dimension(240, 100));
+				
+				listPanes[i].add(btnAddPessoa);
+				listPanes[i].add(lblAddPessoa);
+			}
+			
+			scrollPanes[i] = new JScrollPane(listPanes[i]);
+			scrollPanes[i].setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
+			scrollPanes[i].setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+			scrollPanes[i].setPreferredSize(new Dimension(1330, 628));
+			
+			cardsPane.add(scrollPanes[i]);
+		}
+	}
+	
+	private boolean checkPermission(Pessoa contaLogada, Pessoa aSerVista) {
+		if(contaLogada.toString().equals(aSerVista.toString())) {
+			return true;
+		}
+		if(contaLogada instanceof Diretor) {
+			return true;
+		}
+		if(contaLogada instanceof Professor) {
+			if(aSerVista instanceof Aluno) {
+				String[] turmasProf = ((Professor) contaLogada).getTurmas();
+				String turmaAluno = ((Aluno) aSerVista).getTurma();
+				for(int i=0 ; i<turmasProf.length ; i++) {
+					if(turmasProf[i].equals(turmaAluno)) {
+						return true;
+					}
+				}
+			}
+		}
+		return false;
 	}
 }

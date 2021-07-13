@@ -130,7 +130,7 @@ public class Escola {
 		ArrayList<Pessoa> pessoasPesquisadas = new ArrayList<Pessoa>();
 		
 		for(int i = 0; i < nPessoas; i++) {
-			if(pessoas.get(i).nome.equals(nome)) {
+			if(pessoas.get(i).nome.equalsIgnoreCase(nome)) {
 				pessoasPesquisadas.add(pessoas.get(i));
 				break;
 			}

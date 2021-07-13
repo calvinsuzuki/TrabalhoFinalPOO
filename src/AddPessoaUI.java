@@ -24,7 +24,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-
 public class AddPessoaUI extends JFrame {
     
     private static final long serialVersionUID = 1L;
