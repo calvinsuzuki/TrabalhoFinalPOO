@@ -7,11 +7,17 @@ import javax.swing.SwingConstants;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import javax.swing.JMenuBar;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
+import javax.swing.JCheckBoxMenuItem;
+import javax.swing.JSeparator;
 import javax.swing.ImageIcon;
 import java.awt.Image;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Dimension;
+import java.awt.ComponentOrientation;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.BorderLayout;
@@ -25,6 +31,7 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JRadioButtonMenuItem;
 
 public class PagPrincipalUI extends JFrame {
 	
@@ -43,7 +50,21 @@ public class PagPrincipalUI extends JFrame {
 	private JButton[] btnsNext;
 	private JButton[] btnsFirst;
 	private JButton[] btnsLast;
+	private JMenuBar mnbrFiltros;
+	private JMenu mnFiltros;
+	private JMenu mnMostrar;
+	private JMenu mnOrdenar;
+	private JMenuItem mntmReset;
+	private JCheckBoxMenuItem chckbxmntmMostrarAlunos;
+	private JCheckBoxMenuItem chckbxmntmMostrarProfessores;
+	private JCheckBoxMenuItem chckbxmntmMostrarZeladores;
+	private JCheckBoxMenuItem chckbxmntmMostrarDiretores;
+	private JRadioButtonMenuItem rdbtnmntmOrdenarAlfabetico;
+	private JRadioButtonMenuItem rdbtnmntmOrdenarRegistro;
+	
 
+	private boolean[] quaisMostrar;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -119,7 +140,7 @@ public class PagPrincipalUI extends JFrame {
 	    });
 		txtBusca.addFocusListener(new FocusAdapter() {
 			public void focusLost(FocusEvent evt) {
-				if(txtBusca.getText().equals("")) {
+				if(txtBusca.getText().isBlank()) {
 					txtBusca.setText("Procurar...");
 					txtBusca.repaint();
 	                txtBusca.revalidate();
@@ -132,6 +153,10 @@ public class PagPrincipalUI extends JFrame {
 		btnBusca.setBounds(1220, 32, 72, 54);
 		btnBusca.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
+				if(txtBusca.getText().isBlank() || txtBusca.getText().equals("Procurar...")) {
+					refreshListPessoas(sistema, contaLogada);
+					return;
+				}
 				ArrayList<Pessoa> pessoasEncontradas = null;
 				try {
 					int registro = Integer.parseInt(txtBusca.getText());
@@ -142,11 +167,70 @@ public class PagPrincipalUI extends JFrame {
 					}
 				} catch (Exception e) {
 					pessoasEncontradas = sistema.buscaPessoa(txtBusca.getText());
-				} finally {
-					refreshListPessoas(pessoasEncontradas, contaLogada);
 				}
+				refreshListPessoas(pessoasEncontradas, contaLogada);
 			}
 		});
+		
+		mnbrFiltros = new JMenuBar();
+		mnbrFiltros.setBounds(780, 35, 54, 48);
+		mnbrFiltros.setLayout(new FlowLayout(FlowLayout.CENTER, 6, 8));
+		
+		mnFiltros = new JMenu();
+		mnFiltros.setIcon(new ImageIcon(new ImageIcon(".\\UI Icons\\filter.png").getImage().getScaledInstance(30, 30, Image.SCALE_DEFAULT)));
+		mnFiltros.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+		
+		mntmReset = new JMenuItem("Resetar  Filtros");
+		mntmReset.setFont(new Font("Papyrus", Font.BOLD, 14));
+		mntmReset.setHorizontalAlignment(SwingConstants.RIGHT);
+		
+		mnMostrar = new JMenu("Mostrar:");
+		mnMostrar.setFont(new Font("Papyrus", Font.BOLD, 14));
+		mnMostrar.setHorizontalAlignment(SwingConstants.RIGHT);
+		mnMostrar.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+		
+		chckbxmntmMostrarAlunos = new JCheckBoxMenuItem("Alunos");
+		chckbxmntmMostrarAlunos.setFont(new Font("Papyrus", Font.BOLD, 14));
+		
+		chckbxmntmMostrarProfessores = new JCheckBoxMenuItem("Professores");
+		chckbxmntmMostrarProfessores.setFont(new Font("Papyrus", Font.BOLD, 14));
+		
+		chckbxmntmMostrarZeladores = new JCheckBoxMenuItem("Zeladores");
+		chckbxmntmMostrarZeladores.setFont(new Font("Papyrus", Font.BOLD, 14));
+		
+		chckbxmntmMostrarDiretores = new JCheckBoxMenuItem("Diretores");
+		chckbxmntmMostrarDiretores.setFont(new Font("Papyrus", Font.BOLD, 14));
+		
+		mnMostrar.add(chckbxmntmMostrarAlunos);
+		mnMostrar.add(chckbxmntmMostrarProfessores);
+		mnMostrar.add(chckbxmntmMostrarZeladores);
+		mnMostrar.add(chckbxmntmMostrarDiretores);
+		
+		mnOrdenar = new JMenu("Ordenar  por:");
+		mnOrdenar.setFont(new Font("Papyrus", Font.BOLD, 14));
+		mnOrdenar.setHorizontalAlignment(SwingConstants.RIGHT);
+		mnOrdenar.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+		
+		rdbtnmntmOrdenarAlfabetico = new JRadioButtonMenuItem("Nome");
+		rdbtnmntmOrdenarAlfabetico.setFont(new Font("Papyrus", Font.BOLD, 14));
+		
+		rdbtnmntmOrdenarRegistro = new JRadioButtonMenuItem("Registro");
+		rdbtnmntmOrdenarRegistro.setFont(new Font("Papyrus", Font.BOLD, 14));
+		
+		mnOrdenar.add(rdbtnmntmOrdenarAlfabetico);
+		mnOrdenar.add(rdbtnmntmOrdenarRegistro);
+		
+		mnFiltros.add(mntmReset);
+		mnFiltros.add(new JSeparator());
+		mnFiltros.add(mnMostrar);
+		mnFiltros.add(new JSeparator());
+		mnFiltros.add(mnOrdenar);
+		
+		mnbrFiltros.add(mnFiltros);
+		
+		titlePane.add(txtBusca);
+		titlePane.add(btnBusca);
+		titlePane.add(mnbrFiltros);
 		
 		cardsPane = new JPanel();
 		cardsPane.setForeground(new Color(0, 0, 0));
@@ -156,8 +240,6 @@ public class PagPrincipalUI extends JFrame {
 		cardsPane.setLayout(new CardLayout());
 		refreshListPessoas(sistema, contaLogada);
 		
-		titlePane.add(txtBusca);
-		titlePane.add(btnBusca);
 		contentPane.add(titlePane);
 		contentPane.add(cardsPane);
 	}
