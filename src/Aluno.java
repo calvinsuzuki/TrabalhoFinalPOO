@@ -1,11 +1,11 @@
 
 public class Aluno extends Pessoa {
 	
-	protected String turma;
-	protected String[] ocorr;
-	protected Double[] notas;
+	private String turma;
+	private int ocorr;
+	private Double[] notas;
 	
-	Aluno(long register, String nome, float freq, String turma, String[] ocorrencias, Double[] notas) {
+	Aluno(long register, String nome, float freq, String turma, int ocorrencias, Double[] notas) {
 		super(register, nome, freq);
 		this.turma = turma;
 		this.ocorr = ocorrencias;
@@ -16,16 +16,14 @@ public class Aluno extends Pessoa {
 	public String toString() {
 		String str;
 		
-		str = "Nome: " + nome;
-		str += "\nNº de Registro: " + register;
-		str += "\nFrequência: " + freq;
-		str += "\nTurma: " + turma;		
-		str += "\nOcorrencias: ";		
-		for (int i=0; i<ocorr.length; i++)
-			str += "\n " + ocorr[i];		
+		str = "Nome: " + getNome();
+		str += "\nNº de Registro: " + getRegister();
+		str += "\nFrequência: " + getFreq();
+		str += "\nTurma: " + turma;			
 		str += "\nNotas: ";		
 		for (int i=0; i<notas.length; i++)
 			str += "\n " + notas[i];
+		str += "\nOcorrencias: " + ocorr;
 		
 		return str;
 	}
@@ -34,7 +32,7 @@ public class Aluno extends Pessoa {
 		return turma;
 	}
 	
-	public String[] getOcorr() {
+	public int getOcorr() {
 		return ocorr;
 	}
 	
@@ -46,7 +44,7 @@ public class Aluno extends Pessoa {
 		this.turma = turma;
 	}
 	
-	void setOcorr(String[] ocorr) {
+	void setOcorr(int ocorr) {
 		this.ocorr = ocorr;
 	}
 	

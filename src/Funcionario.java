@@ -1,11 +1,11 @@
 
 public class Funcionario extends Pessoa {
 	
-	protected Double salario;
-	protected String[] horarios;
-	protected String[] reclamacoes;
+	private Double salario;
+	private String[] horarios;
+	private int reclamacoes;
 	
-	Funcionario(long register, String nome, float freq, Double salario, String[] horarios, String[] reclamacoes) {
+	Funcionario(long register, String nome, float freq, Double salario, String[] horarios, int reclamacoes) {
 		super(register, nome, freq);
 		this.salario = salario;
 		this.horarios = horarios;
@@ -16,16 +16,14 @@ public class Funcionario extends Pessoa {
 	public String toString() {
 		String str;
 		
-		str = "Nome: " + nome;
-		str += "\nNº de Registro: " + register;
-		str += "\nFrequência: " + freq;
+		str = "Nome: " + getNome();
+		str += "\nNº de Registro: " + getRegister();
+		str += "\nFrequência: " + getFreq();
 		str += "\nSalario: " + salario;		
 		str += "\nHorarios: ";		
 		for (int i=0; i<horarios.length; i++)
 			str += "\n " + horarios[i];		
-		str += "\nReclamacoes: ";		
-		for (int i=0; i<reclamacoes.length; i++)
-			str += "\n " + reclamacoes[i];
+		str += "\nReclamacoes: " + reclamacoes;
 		
 		return str;
 	}
@@ -38,7 +36,7 @@ public class Funcionario extends Pessoa {
 		return horarios;
 	}
 	
-	public String[] getReclam() {
+	public int getReclam() {
 		return reclamacoes;
 	}
 	
@@ -50,7 +48,7 @@ public class Funcionario extends Pessoa {
 		this.horarios = horarios;
 	}
 	
-	void setReclam(String[] reclamacoes) {
+	void setReclam(int reclamacoes) {
 		this.reclamacoes = reclamacoes;
 	}
 

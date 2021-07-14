@@ -1,9 +1,9 @@
 
 public class Pessoa {
 	
-	protected long register;
-	protected String nome;
-	protected double freq;
+	private long register;
+	private String nome;
+	private double freq;
 	
 	/**
 	 * Construtor da classe pessoa

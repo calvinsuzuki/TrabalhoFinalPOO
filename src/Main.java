@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class Main {
 
 	public static void main(String[] args) {
-		String[] ocorrencias = { "Chato", "Feio", "Esquisito" };
+		int ocorrencias = 1;
 		String[] horarios = { "1h", "3h", "5h" };
 		Double[] notas = { 8.0, 5.0, 5.0, 5.2, 5.6, 7.2};
 		Escola escolaX = new Escola();

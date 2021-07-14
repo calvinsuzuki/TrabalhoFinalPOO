@@ -3,7 +3,7 @@ public class Zelador extends Funcionario {
 	
 	private String funcao;
 	
-	Zelador(long register, String nome, float freq, Double salario, String[] horarios, String[] reclamacoes, String funcao) {
+	Zelador(long register, String nome, float freq, Double salario, String[] horarios, int reclamacoes, String funcao) {
 		super(register, nome, freq, salario, horarios, reclamacoes);
 		this.funcao = funcao;
 	}
@@ -12,18 +12,15 @@ public class Zelador extends Funcionario {
 	public String toString() {
 		String str;
 		
-		str = "Nome: " + nome;
-		str += "\nNº de Registro: " + register;
-		str += "\nFrequencia: " + freq;
-		str += "\nSalario: " + salario;	
-		for (int i=0; i<horarios.length; i++)
-			str += "\n " + horarios[i];	
+		str = "Nome: " + getNome();
+		str += "\nNº de Registro: " + getRegister();
+		str += "\nFrequencia: " + getFreq();
+		str += "\nSalario: " + getSalario();
+		str += "\nFunção: " + funcao;
 		str += "\nHorarios: ";		
-		for (int i=0; i<horarios.length; i++)
-			str += "\n " + horarios[i];		
-		str += "\nReclamacoes: ";		
-		for (int i=0; i<reclamacoes.length; i++)
-			str += "\n " + reclamacoes[i];
+		for (int i=0; i<getHorario().length; i++)
+			str += "\n " + getHorario()[i];		
+		str += "\nReclamacoes: " + getReclam();
 		
 		return str;
 	}
