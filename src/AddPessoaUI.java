@@ -1,26 +1,19 @@
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.ScrollPaneConstants;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
+import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.JButton;
-import javax.swing.ImageIcon;
-import java.awt.Image;
 import java.awt.Color;
-import java.awt.ComponentOrientation;
 import java.awt.Font;
-import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.Container;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.MatteBorder;
 import java.awt.EventQueue;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
@@ -36,8 +29,35 @@ public class AddPessoaUI extends JFrame {
     private JTextField txtRegister;
     private JTextField txtName;
     private JTextField txtFreq;
-    private JPanel listPane;
-	private JScrollPane scrollPane;
+	private JLabel lblFunc, lblFunc2;
+	private JRadioButton aluno;
+	private JRadioButton professor;
+	private JRadioButton zelador;
+	private JRadioButton diretor;
+
+	private JLabel turmaAluno;
+	private JLabel ano;
+	private JLabel notas;
+	private JLabel ocorrencias;
+	private JTextField txtTurmaAluno;
+	private JTextField txtAno;
+	private JTextField txtNotas;
+	private JTextField txtOcorrencias;
+
+	private JLabel lblSalario;
+	private JLabel lblHorario;
+	private JLabel lblReclamacoes;
+	private JTextField txtSalario;
+	private JTextField txtHorario;
+	private JTextField txtReclamacoes;
+
+	private JLabel lblFuncao;
+	private JTextField txtFuncao;
+
+	private JLabel lblTurmaProf;
+	private JTextField txtTurmaProf;
+
+	private JButton addButton;
 
 
 
@@ -73,7 +93,7 @@ public class AddPessoaUI extends JFrame {
 		contentPane.setForeground(new Color(0, 0, 0));
 		contentPane.setBackground(new Color(240, 230, 140));
 		contentPane.setBorder(new EmptyBorder(0, 0, 0, 0));
-		contentPane.setLayout(new GridLayout(10, 2));
+		contentPane.setLayout(new GridLayout(11, 2));
 		setContentPane(contentPane);
 
         titlePane = new JPanel();
@@ -82,24 +102,11 @@ public class AddPessoaUI extends JFrame {
 		titlePane.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(218, 165, 32)));
 		titlePane.setBounds(0, 0, 1327, 120);
 		titlePane.setLayout(null);
-		
-
-        listPane = new JPanel();
-		listPane.setForeground(new Color(0, 0, 0));
-		listPane.setBackground(new Color(240, 230, 140));
-		listPane.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(218, 165, 32)));
-		listPane.setPreferredSize(new Dimension(1310, 1500));
-		listPane.setAutoscrolls(true);
-		
-		scrollPane = new JScrollPane(listPane);
-		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
-		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-		scrollPane.setBounds(-1, 118, 1328, 628);
+	
 
         lblRegister = new JLabel("N. do Registro:");
 		lblRegister.setBounds(61, 236, 262, 48);
 		lblRegister.setForeground(new Color(0, 0, 0));
-		lblRegister.setFont(new Font("Papyrus", Font.BOLD | Font.ITALIC, 35));
 
         txtRegister = new JTextField();
 		txtRegister.setBounds(333, 239, 340, 38);
@@ -130,7 +137,6 @@ public class AddPessoaUI extends JFrame {
         lblName = new JLabel("Nome:");
 		lblName.setBounds(61, 236, 262, 48);
 		lblName.setForeground(new Color(0, 0, 0));
-		lblName.setFont(new Font("Papyrus", Font.BOLD | Font.ITALIC, 35));
 
         txtName = new JTextField();
 		txtName.setBounds(333, 239, 340, 38);
@@ -153,7 +159,6 @@ public class AddPessoaUI extends JFrame {
         lblFreq = new JLabel("Frequência:");
 		lblFreq.setBounds(61, 236, 262, 48);
 		lblFreq.setForeground(new Color(0, 0, 0));
-		lblFreq.setFont(new Font("Papyrus", Font.BOLD | Font.ITALIC, 35));
 
         txtFreq = new JTextField();
 		txtFreq.setBounds(333, 239, 340, 38);
@@ -172,7 +177,231 @@ public class AddPessoaUI extends JFrame {
 	    });
 
 
-        contentPane.add(lblRegister);
+		turmaAluno = new JLabel("Turma do Aluno:");
+		turmaAluno.setBounds(61, 236, 262, 48);
+		turmaAluno.setForeground(new Color(0, 0, 0));
+
+		txtTurmaAluno = new JTextField();
+		txtTurmaAluno.setBounds(333, 239, 340, 38);
+		txtTurmaAluno.setFont(new Font("Papyrus", Font.BOLD, 20));
+		txtTurmaAluno.setBackground(new Color(211, 211, 211));
+		txtTurmaAluno.setForeground(new Color(105, 105, 105));
+		txtTurmaAluno.setText("Insira a turma");
+		txtTurmaAluno.addMouseListener(new MouseAdapter() {
+		public void mouseClicked(MouseEvent evt) {
+			if(txtTurmaAluno.getText().equals("Insira a turma")) {
+				txtTurmaAluno.setText("");
+				repaint();
+				revalidate();
+				}           
+			}
+		});
+
+
+		ano = new JLabel("Ano do Aluno:");
+		ano.setBounds(61, 236, 262, 48);
+		ano.setForeground(new Color(0, 0, 0));
+
+		txtAno = new JTextField();
+		txtAno.setBounds(333, 239, 340, 38);
+		txtAno.setFont(new Font("Papyrus", Font.BOLD, 20));
+		txtAno.setBackground(new Color(211, 211, 211));
+		txtAno.setForeground(new Color(105, 105, 105));
+		txtAno.setText("Insira o ano");
+		txtAno.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent evt) {
+				if(txtAno.getText().equals("Insira o ano")) {
+					txtAno.setText("");
+					repaint();
+					revalidate();
+				}           
+			}
+		});
+
+
+		notas = new JLabel("Notas do Aluno:");
+		notas.setBounds(61, 236, 262, 48);
+		notas.setForeground(new Color(0, 0, 0));
+
+		txtNotas = new JTextField();
+		txtNotas.setBounds(333, 239, 340, 38);
+		txtNotas.setFont(new Font("Papyrus", Font.BOLD, 20));
+		txtNotas.setBackground(new Color(211, 211, 211));
+		txtNotas.setForeground(new Color(105, 105, 105));
+		txtNotas.setText("Insira a nota");
+		txtNotas.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent evt) {
+				if(txtNotas.getText().equals("Insira a nota")) {
+					txtNotas.setText("");
+					repaint();
+					revalidate();
+				}           
+			}
+		});
+
+
+		ocorrencias = new JLabel("Ocorrências:");
+		ocorrencias.setBounds(61, 236, 262, 48);
+		ocorrencias.setForeground(new Color(0, 0, 0));
+
+		txtOcorrencias = new JTextField();
+		txtOcorrencias.setBounds(333, 239, 340, 38);
+		txtOcorrencias.setFont(new Font("Papyrus", Font.BOLD, 20));
+		txtOcorrencias.setBackground(new Color(211, 211, 211));
+		txtOcorrencias.setForeground(new Color(105, 105, 105));
+		txtOcorrencias.setText("Insira as ocorrências");
+		txtOcorrencias.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent evt) {
+				if(txtOcorrencias.getText().equals("Insira as ocorrências")) {
+					txtOcorrencias.setText("");
+					repaint();
+					revalidate();
+				}           
+			}
+		});
+
+
+		lblSalario = new JLabel("Salário:");
+		lblSalario.setBounds(61, 236, 262, 48);
+		lblSalario.setForeground(new Color(0, 0, 0));
+
+		txtSalario = new JTextField();
+		txtSalario.setBounds(333, 239, 340, 38);
+		txtSalario.setFont(new Font("Papyrus", Font.BOLD, 20));
+		txtSalario.setBackground(new Color(211, 211, 211));
+		txtSalario.setForeground(new Color(105, 105, 105));
+		txtSalario.setText("Insira o salário (R$)");
+		txtSalario.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent evt) {
+				if(txtSalario.getText().equals("Insira o salário (R$)")) {
+						txtSalario.setText("");
+						repaint();
+						revalidate();
+				}           
+			}
+		});
+
+
+		lblHorario = new JLabel("Horário:");
+		lblHorario.setBounds(61, 236, 262, 48);
+		lblHorario.setForeground(new Color(0, 0, 0));
+
+		txtHorario = new JTextField();
+		txtHorario.setBounds(333, 239, 340, 38);
+		txtHorario.setFont(new Font("Papyrus", Font.BOLD, 20));
+		txtHorario.setBackground(new Color(211, 211, 211));
+		txtHorario.setForeground(new Color(105, 105, 105));
+		txtHorario.setText("Insira o horário");
+		txtHorario.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent evt) {
+				if(txtHorario.getText().equals("Insira o horário")) {
+					txtHorario.setText("");
+					repaint();
+					revalidate();
+				}           
+			}
+		});
+
+
+		lblReclamacoes = new JLabel("Reclamações:");
+		lblReclamacoes.setBounds(61, 236, 262, 48);
+		lblReclamacoes.setForeground(new Color(0, 0, 0));
+
+		txtReclamacoes = new JTextField();
+		txtReclamacoes.setBounds(333, 239, 340, 38);
+		txtReclamacoes.setFont(new Font("Papyrus", Font.BOLD, 20));
+		txtReclamacoes.setBackground(new Color(211, 211, 211));
+		txtReclamacoes.setForeground(new Color(105, 105, 105));
+		txtReclamacoes.setText("Insira as Reclamações");
+		txtReclamacoes.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent evt) {
+				if(txtReclamacoes.getText().equals("Insira as Reclamações")) {
+					txtReclamacoes.setText("");
+					repaint();
+					revalidate();
+				}           
+			}
+		});
+
+		lblTurmaProf = new JLabel("Turmas:");
+		lblTurmaProf.setBounds(61, 236, 262, 48);
+		lblTurmaProf.setForeground(new Color(0, 0, 0));
+
+		txtTurmaProf = new JTextField();
+		txtTurmaProf.setBounds(333, 239, 340, 38);
+		txtTurmaProf.setFont(new Font("Papyrus", Font.BOLD, 20));
+		txtTurmaProf.setBackground(new Color(211, 211, 211));
+		txtTurmaProf.setForeground(new Color(105, 105, 105));
+		txtTurmaProf.setText("Insira as turmas");
+		txtTurmaProf.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent evt) {
+				if(txtTurmaProf.getText().equals("Insira as turmas")) {
+					txtTurmaProf.setText("");
+					repaint();
+					revalidate();
+				}           
+			}
+		});
+
+
+		lblFuncao = new JLabel("Função:");
+		lblFuncao.setBounds(61, 236, 262, 48);
+		lblFuncao.setForeground(new Color(0, 0, 0));
+
+		txtFuncao = new JTextField();
+		txtFuncao.setBounds(333, 239, 340, 38);
+		txtFuncao.setFont(new Font("Papyrus", Font.BOLD, 20));
+		txtFuncao.setBackground(new Color(211, 211, 211));
+		txtFuncao.setForeground(new Color(105, 105, 105));
+		txtFuncao.setText("Insira a função");
+		txtFuncao.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent evt) {
+				if(txtFuncao.getText().equals("Insira a função")) {
+					txtFuncao.setText("");
+					repaint();
+					revalidate();
+				}           
+			}
+		});
+
+		addButton = new JButton("Adicionar");
+		addButton.setFont(new Font("Papyrus", Font.BOLD, 22));
+		addButton.setBounds(261, 368, 216, 48);
+
+
+
+		lblFunc = new JLabel("Função:");
+		lblFunc.setBounds(61, 236, 262, 48);
+		lblFunc.setForeground(new Color(0, 0, 0));
+		lblFunc2 = new JLabel("");
+		lblFunc2.setBounds(61, 236, 262, 48);
+		lblFunc2.setForeground(new Color(0, 0, 0));
+
+		aluno = new JRadioButton("Aluno", false);
+		aluno.setBackground(new Color(240, 230, 140));
+		professor = new JRadioButton("Professor", false);
+		professor.setBackground(new Color(240, 230, 140));
+		zelador = new JRadioButton("Zelador", false);
+		zelador.setBackground(new Color(240, 230, 140));
+		diretor = new JRadioButton("Diretor", false);
+		diretor.setBackground(new Color(240, 230, 140));
+
+
+		contentPane.add(lblFunc);
+		contentPane.add(lblFunc2);
+		contentPane.add(aluno);
+		contentPane.add(professor);
+		contentPane.add(zelador);
+		contentPane.add(diretor);
+
+
+		aluno.addItemListener(new RadioButtonHandler());
+		professor.addItemListener(new RadioButtonHandler());
+		zelador.addItemListener(new RadioButtonHandler());
+		diretor.addItemListener(new RadioButtonHandler());
+
+
+		contentPane.add(lblRegister);
 		contentPane.add(txtRegister);
         contentPane.add(lblName);
 		contentPane.add(txtName);
@@ -181,6 +410,70 @@ public class AddPessoaUI extends JFrame {
 
 
     }
+
+	private class RadioButtonHandler implements ItemListener{
+
+		@Override
+		public void itemStateChanged(ItemEvent event) {
+		
+			
+			if (aluno.isSelected()){
+				
+				
+				contentPane.add(turmaAluno);
+				contentPane.add(txtTurmaAluno);
+				contentPane.add(ano);
+				contentPane.add(txtAno);
+				contentPane.add(notas);
+				contentPane.add(txtNotas);
+				contentPane.add(ocorrencias);
+				contentPane.add(txtOcorrencias);
+				contentPane.add(addButton);
+
+			}
+			if (professor.isSelected()){
+
+				
+				contentPane.add(lblSalario);
+				contentPane.add(txtSalario);
+				contentPane.add(lblHorario);
+				contentPane.add(txtHorario);
+				contentPane.add(lblReclamacoes);
+				contentPane.add(txtReclamacoes);
+				contentPane.add(lblTurmaProf);
+				contentPane.add(txtTurmaProf);
+				contentPane.add(addButton);
+
+			}
+			if (zelador.isSelected()){
+
+				
+				contentPane.add(lblSalario);
+				contentPane.add(txtSalario);
+				contentPane.add(lblHorario);
+				contentPane.add(txtHorario);
+				contentPane.add(lblReclamacoes);
+				contentPane.add(txtReclamacoes);
+				contentPane.add(lblFuncao);
+				contentPane.add(txtFuncao);
+				contentPane.add(addButton);
+
+			}
+			if (diretor.isSelected()){
+
+			
+				contentPane.add(lblSalario);
+				contentPane.add(txtSalario);
+				contentPane.add(lblHorario);
+				contentPane.add(txtHorario);
+				contentPane.add(lblReclamacoes);
+				contentPane.add(txtReclamacoes);
+				contentPane.add(addButton);
+
+			}
+		}
+	}
+
 
 
 }

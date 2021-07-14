@@ -56,10 +56,10 @@ public class PagPrincipalUI extends JFrame {
 		Aluno alunoZ = new Aluno(123, "Z", (float) 54/100, "019", ocorrencias, notas );
 		GerenciadorDados ga = new GerenciadorDados();
 		
-		//leitura do banco de dados FAZER ISSO NA INICIALIZAÇÃO DO PROGRAMA
+		//leitura do banco de dados FAZER ISSO NA INICIALIZAï¿½ï¿½O DO PROGRAMA
 		ga.leAdicionaPessoasArquivos(escolaX, "src/baseDados.csv");
 		
-		//uso de adicionaPessoa, primeiramente sem permissão, depois com
+		//uso de adicionaPessoa, primeiramente sem permissï¿½o, depois com
 		escolaX.adicionaPessoa(alunoZ, alunoZ);
 		escolaX.adicionaPessoa(diretorY, alunoZ);
 		escolaX.adicionaPessoa(diretorY, diretorY);
@@ -178,7 +178,7 @@ public class PagPrincipalUI extends JFrame {
 		int numPessoasUltimaPagina = numPessoas - (numPaginas-1)*27;
 		String[] dadosPessoas = new String[numPessoas];
 		for(int i=0 ; i<numPessoas ; i++) {
-			dadosPessoas[i] = pessoasParaMostrar.get(i).getClass().toString() + "\nNome: " + pessoasParaMostrar.get(i).getNome() + "\nNº de Registro: " + pessoasParaMostrar.get(i).getRegister();
+			dadosPessoas[i] = pessoasParaMostrar.get(i).getClass().toString() + "\nNome: " + pessoasParaMostrar.get(i).getNome() + "\nNï¿½ de Registro: " + pessoasParaMostrar.get(i).getRegister();
 		}
 		
 		refreshListPessoas(numPessoas, numPaginas, numPessoasUltimaPagina, dadosPessoas, pessoasParaMostrar, contaLogada);
@@ -250,7 +250,7 @@ public class PagPrincipalUI extends JFrame {
 								}
 							});
 						} else {
-							JOptionPane.showMessageDialog(null, "Você não tem permissão para ver essas informações!", "ACESSO NEGADO", JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(null, "Vocï¿½ nï¿½o tem permissï¿½o para ver essas informaï¿½ï¿½es!", "ACESSO NEGADO", JOptionPane.ERROR_MESSAGE);
 						}
 					}
 				});*/
@@ -317,7 +317,7 @@ public class PagPrincipalUI extends JFrame {
 			previousNextPanes[i].add(new JPanel());
 			return;
 		}
-		btnsPrevious[i] = new JButton("Página Anterior");
+		btnsPrevious[i] = new JButton("Pï¿½gina Anterior");
 		btnsPrevious[i].setFont(new Font("Papyrus", Font.BOLD | Font.ITALIC, 21));
 		btnsPrevious[i].setIcon(new ImageIcon(new ImageIcon(".\\UI Icons\\previousArrow.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT)));
 		btnsPrevious[i].addActionListener(new ActionListener() {
@@ -334,7 +334,7 @@ public class PagPrincipalUI extends JFrame {
 			previousNextPanes[i].add(new JPanel());
 			return;
 		}
-		btnsNext[i] = new JButton("Próxima Página");
+		btnsNext[i] = new JButton("Prï¿½xima Pï¿½gina");
 		btnsNext[i].setFont(new Font("Papyrus", Font.BOLD | Font.ITALIC, 21));
 		btnsNext[i].setIcon(new ImageIcon(new ImageIcon(".\\UI Icons\\nextArrow.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT)));
 		btnsNext[i].addActionListener(new ActionListener() {
@@ -351,7 +351,7 @@ public class PagPrincipalUI extends JFrame {
 			previousNextPanes[i].add(new JPanel());
 			return;
 		}
-		btnsFirst[i] = new JButton("Primeira Página");
+		btnsFirst[i] = new JButton("Primeira Pï¿½gina");
 		btnsFirst[i].setFont(new Font("Papyrus", Font.BOLD | Font.ITALIC, 21));
 		btnsFirst[i].setIcon(new ImageIcon(new ImageIcon(".\\UI Icons\\firstArrow.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT)));
 		btnsFirst[i].addActionListener(new ActionListener() {
@@ -368,7 +368,7 @@ public class PagPrincipalUI extends JFrame {
 			previousNextPanes[i].add(new JPanel());
 			return;
 		}
-		btnsLast[i] = new JButton("Última Página");
+		btnsLast[i] = new JButton("ï¿½ltima Pï¿½gina");
 		btnsLast[i].setFont(new Font("Papyrus", Font.BOLD | Font.ITALIC, 21));
 		btnsLast[i].setIcon(new ImageIcon(new ImageIcon(".\\UI Icons\\lastArrow.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT)));
 		btnsLast[i].addActionListener(new ActionListener() {
