@@ -110,7 +110,7 @@ public class Escola {
 	 * @return Retorna um array de strings com os dados básicos de todos os usuários
 	 * */
 	public String[] imprimePessoas(boolean[] classesRetorno) {
-		String[] impressoes = new String[nPessoas];
+		ArrayList<Pessoa> pessoasRetorno = new ArrayList<Pessoa>();
 		Pessoa[] classesDesejadas = new Pessoa[4];
 		
 		if(classesRetorno[0]) {classesDesejadas[0] = new Aluno(0, null, 0, null, 0, null);} else {classesDesejadas[0] = new Pessoa(0, null, 0);}
@@ -118,13 +118,18 @@ public class Escola {
 		if(classesRetorno[2]) {classesDesejadas[2] = new Zelador(0, null, 0, null, 0, null);} else {classesDesejadas[2] = new Pessoa(0, null, 0);}
 		if(classesRetorno[3]) {classesDesejadas[3] = new Diretor(0, null, 0, null, 0);} else {classesDesejadas[3] = new Pessoa(0, null, 0);}
 		
-		
 		for(int i = 0; i < nPessoas; i++) {
 			for(int j = 0; j < 4; j++) {
 				if(pessoas.get(i).getClass().equals(classesDesejadas[j].getClass())) {
-					impressoes[i] = pessoas.get(i).getClass().toString() + "\nNome: " + pessoas.get(i).getNome() + "\nNº de Registro: " + pessoas.get(i).getRegister();
+					pessoasRetorno.add(pessoas.get(i));
 				}
 			}
+		}
+		
+		String[] impressoes = new String[pessoasRetorno.size()];
+		
+		for(int i = 0; i < pessoasRetorno.size(); i++) {
+			impressoes[i] = pessoasRetorno.get(i).getClass().toString() + "\nNome: " + pessoasRetorno.get(i).getNome() + "\nNº de Registro: " + pessoasRetorno.get(i).getRegister();
 		}
 		return impressoes;
 	}
@@ -162,7 +167,6 @@ public class Escola {
 		for(int i = 0; i < nPessoas; i++) {
 			if(pessoas.get(i).getNome().equalsIgnoreCase(nome)) {
 				pessoasPesquisadas.add(pessoas.get(i));
-				break;
 			}
 		}
 		
