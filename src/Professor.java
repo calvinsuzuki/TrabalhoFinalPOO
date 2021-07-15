@@ -3,8 +3,8 @@ public class Professor extends Funcionario {
 
 	private String[] turmas;
 	
-	Professor(long register, String nome, float freq, Double salario, String[] horarios, int reclamacoes, String[] turmas) {
-		super(register, nome, freq, salario, horarios, reclamacoes);
+	Professor(long register, String nome, float freq, Double salario, int reclamacoes, String[] turmas) {
+		super(register, nome, freq, salario, reclamacoes);
 		this.turmas = turmas;
 	}
 	
@@ -18,10 +18,7 @@ public class Professor extends Funcionario {
 		str += "\nSalario: " + getSalario();
 		str += "\nTurmas: ";
 		for (int i=0; i<turmas.length; i++)
-			str += "\n " + turmas[i];
-		str += "\nHorarios: ";
-		for (int i=0; i<getHorario().length; i++)
-			str += "\n " + getHorario()[i];		
+			str += "\n " + turmas[i];	
 		str += "\nReclamacoes: " + getReclam();
 		
 		return str;

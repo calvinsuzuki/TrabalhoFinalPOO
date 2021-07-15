@@ -12,10 +12,9 @@ public class Main {
 
 	public static void main(String[] args) {
 		int ocorrencias = 1;
-		String[] horarios = { "1h", "3h", "5h" };
 		Double[] notas = { 8.0, 5.0, 5.0, 5.2, 5.6, 7.2};
 		Escola escolaX = new Escola();
-		Diretor diretorY = new Diretor(9999, "Y", (float) 90/100, 5000.00, horarios, ocorrencias);
+		Diretor diretorY = new Diretor(9999, "Y", (float) 90/100, 5000.00, ocorrencias);
 		Aluno alunoZ = new Aluno(123, "Z", (float) 54/100, "019", ocorrencias, notas );
 		GerenciadorDados ga = new GerenciadorDados();
 		
