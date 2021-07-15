@@ -369,10 +369,10 @@ public class PagPrincipalUI extends JFrame {
 		int numPaginas = numPessoas/27 + 1;
 		int numPessoasUltimaPagina = numPessoas - (numPaginas-1)*27;
 		
-		refreshListPessoas(numPessoas, numPaginas, numPessoasUltimaPagina, dadosPessoas, pessoas, contaLogada);
+		refreshListPessoas(numPessoas, numPaginas, numPessoasUltimaPagina, dadosPessoas, pessoas, contaLogada, sistema);
 	}
 	
-	private void refreshListPessoas(ArrayList<Pessoa> pessoasParaMostrar, Pessoa contaLogada, boolean[] quais) {
+	private void refreshListPessoas(ArrayList<Pessoa> pessoasParaMostrar, Pessoa contaLogada, boolean[] quais, Escola sistema) {
 		ArrayList<Pessoa> pessoas = new ArrayList<Pessoa>();
 		for(int i=0 ; i<pessoasParaMostrar.size() ; i++) {
 			if(pessoasParaMostrar.get(i) instanceof Aluno) {
@@ -402,16 +402,16 @@ public class PagPrincipalUI extends JFrame {
 		}
 		String[] dadosPessoas = new String[pessoas.size()];
 		for(int i=0 ; i<pessoas.size() ; i++) {
-			dadosPessoas[i] = pessoas.get(i).getClass().toString() + "\nNome: " + pessoas.get(i).getNome() + "\nNº de Registro: " + pessoas.get(i).getRegister();
+			dadosPessoas[i] = pessoas.get(i).getClass().toString() + "\nNome: " + pessoas.get(i).getNome() + "\nNï¿½ de Registro: " + pessoas.get(i).getRegister();
 		}
 		int numPessoas = pessoas.size();
 		int numPaginas = numPessoas/27 + 1;
 		int numPessoasUltimaPagina = numPessoas - (numPaginas-1)*27;
 		
-		refreshListPessoas(numPessoas, numPaginas, numPessoasUltimaPagina, dadosPessoas, pessoas, contaLogada);
+		refreshListPessoas(numPessoas, numPaginas, numPessoasUltimaPagina, dadosPessoas, pessoas, contaLogada, sistema);
 	}
 	
-	private void refreshListPessoas(int numPessoas, int numPaginas, int numPessoasUltimaPagina, String[] dadosPessoas, ArrayList<Pessoa> pessoas, Pessoa contaLogada) {
+	private void refreshListPessoas(int numPessoas, int numPaginas, int numPessoasUltimaPagina, String[] dadosPessoas, ArrayList<Pessoa> pessoas, Pessoa contaLogada, Escola sistema) {
 		cardsPane.removeAll();
 		cardsPane.repaint();
 		cardsPane.revalidate();
@@ -494,7 +494,7 @@ public class PagPrincipalUI extends JFrame {
 						EventQueue.invokeLater(new Runnable() {
 							public void run() {
 								try {
-									AddPessoaUI frame = new AddPessoaUI();
+									AddPessoaUI frame = new AddPessoaUI(sistema, contaLogada);
 									frame.setVisible(true);
 								} catch (Exception e) {
 									e.printStackTrace();
@@ -544,7 +544,7 @@ public class PagPrincipalUI extends JFrame {
 			previousNextPanes[i].add(new JPanel());
 			return;
 		}
-		btnsPrevious[i] = new JButton("Página Anterior");
+		btnsPrevious[i] = new JButton("Pï¿½gina Anterior");
 		btnsPrevious[i].setFont(new Font("Papyrus", Font.BOLD | Font.ITALIC, 21));
 		btnsPrevious[i].setIcon(new ImageIcon(new ImageIcon(".\\UI Icons\\previousArrow.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT)));
 		btnsPrevious[i].addActionListener(new ActionListener() {
@@ -561,7 +561,7 @@ public class PagPrincipalUI extends JFrame {
 			previousNextPanes[i].add(new JPanel());
 			return;
 		}
-		btnsNext[i] = new JButton("Próxima Página");
+		btnsNext[i] = new JButton("Prï¿½xima Pï¿½gina");
 		btnsNext[i].setFont(new Font("Papyrus", Font.BOLD | Font.ITALIC, 21));
 		btnsNext[i].setIcon(new ImageIcon(new ImageIcon(".\\UI Icons\\nextArrow.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT)));
 		btnsNext[i].addActionListener(new ActionListener() {
@@ -578,7 +578,7 @@ public class PagPrincipalUI extends JFrame {
 			previousNextPanes[i].add(new JPanel());
 			return;
 		}
-		btnsFirst[i] = new JButton("Primeira Página");
+		btnsFirst[i] = new JButton("Primeira Pï¿½gina");
 		btnsFirst[i].setFont(new Font("Papyrus", Font.BOLD | Font.ITALIC, 21));
 		btnsFirst[i].setIcon(new ImageIcon(new ImageIcon(".\\UI Icons\\firstArrow.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT)));
 		btnsFirst[i].addActionListener(new ActionListener() {
@@ -595,7 +595,7 @@ public class PagPrincipalUI extends JFrame {
 			previousNextPanes[i].add(new JPanel());
 			return;
 		}
-		btnsLast[i] = new JButton("Última Página");
+		btnsLast[i] = new JButton("ï¿½ltima Pï¿½gina");
 		btnsLast[i].setFont(new Font("Papyrus", Font.BOLD | Font.ITALIC, 21));
 		btnsLast[i].setIcon(new ImageIcon(new ImageIcon(".\\UI Icons\\lastArrow.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT)));
 		btnsLast[i].addActionListener(new ActionListener() {

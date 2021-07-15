@@ -16,6 +16,8 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class AddPessoaUI extends JFrame {
     
@@ -36,19 +38,15 @@ public class AddPessoaUI extends JFrame {
 	private JRadioButton diretor;
 
 	private JLabel turmaAluno;
-	private JLabel ano;
 	private JLabel notas;
 	private JLabel ocorrencias;
 	private JTextField txtTurmaAluno;
-	private JTextField txtAno;
 	private JTextField txtNotas;
 	private JTextField txtOcorrencias;
 
 	private JLabel lblSalario;
-	private JLabel lblHorario;
 	private JLabel lblReclamacoes;
 	private JTextField txtSalario;
-	private JTextField txtHorario;
 	private JTextField txtReclamacoes;
 
 	private JLabel lblFuncao;
@@ -81,7 +79,7 @@ public class AddPessoaUI extends JFrame {
     /**
 	 * Create the frame.
 	 */
-    public AddPessoaUI(){
+    public AddPessoaUI(Escola escola, Pessoa contaLogada){
         setBackground(Color.WHITE);
         setResizable(false);
         setType(Type.UTILITY);
@@ -93,7 +91,7 @@ public class AddPessoaUI extends JFrame {
 		contentPane.setForeground(new Color(0, 0, 0));
 		contentPane.setBackground(new Color(240, 230, 140));
 		contentPane.setBorder(new EmptyBorder(0, 0, 0, 0));
-		contentPane.setLayout(new GridLayout(11, 2));
+		contentPane.setLayout(new GridLayout(10, 2));
 		setContentPane(contentPane);
 
         titlePane = new JPanel();
@@ -198,27 +196,6 @@ public class AddPessoaUI extends JFrame {
 		});
 
 
-		ano = new JLabel("Ano do Aluno:");
-		ano.setBounds(61, 236, 262, 48);
-		ano.setForeground(new Color(0, 0, 0));
-
-		txtAno = new JTextField();
-		txtAno.setBounds(333, 239, 340, 38);
-		txtAno.setFont(new Font("Papyrus", Font.BOLD, 20));
-		txtAno.setBackground(new Color(211, 211, 211));
-		txtAno.setForeground(new Color(105, 105, 105));
-		txtAno.setText("Insira o ano");
-		txtAno.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent evt) {
-				if(txtAno.getText().equals("Insira o ano")) {
-					txtAno.setText("");
-					repaint();
-					revalidate();
-				}           
-			}
-		});
-
-
 		notas = new JLabel("Notas do Aluno:");
 		notas.setBounds(61, 236, 262, 48);
 		notas.setForeground(new Color(0, 0, 0));
@@ -228,10 +205,10 @@ public class AddPessoaUI extends JFrame {
 		txtNotas.setFont(new Font("Papyrus", Font.BOLD, 20));
 		txtNotas.setBackground(new Color(211, 211, 211));
 		txtNotas.setForeground(new Color(105, 105, 105));
-		txtNotas.setText("Insira a nota");
+		txtNotas.setText("Insira as notas (x.xx,y.yy,z.zz)");
 		txtNotas.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent evt) {
-				if(txtNotas.getText().equals("Insira a nota")) {
+				if(txtNotas.getText().equals("Insira as notas (x.xx,y.yy,z.zz)")) {
 					txtNotas.setText("");
 					repaint();
 					revalidate();
@@ -240,7 +217,7 @@ public class AddPessoaUI extends JFrame {
 		});
 
 
-		ocorrencias = new JLabel("Ocorrências:");
+		ocorrencias = new JLabel("N. Ocorrências:");
 		ocorrencias.setBounds(61, 236, 262, 48);
 		ocorrencias.setForeground(new Color(0, 0, 0));
 
@@ -249,10 +226,10 @@ public class AddPessoaUI extends JFrame {
 		txtOcorrencias.setFont(new Font("Papyrus", Font.BOLD, 20));
 		txtOcorrencias.setBackground(new Color(211, 211, 211));
 		txtOcorrencias.setForeground(new Color(105, 105, 105));
-		txtOcorrencias.setText("Insira as ocorrências");
+		txtOcorrencias.setText("Número de ocorrências");
 		txtOcorrencias.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent evt) {
-				if(txtOcorrencias.getText().equals("Insira as ocorrências")) {
+				if(txtOcorrencias.getText().equals("Número de ocorrências")) {
 					txtOcorrencias.setText("");
 					repaint();
 					revalidate();
@@ -282,28 +259,7 @@ public class AddPessoaUI extends JFrame {
 		});
 
 
-		lblHorario = new JLabel("Horário:");
-		lblHorario.setBounds(61, 236, 262, 48);
-		lblHorario.setForeground(new Color(0, 0, 0));
-
-		txtHorario = new JTextField();
-		txtHorario.setBounds(333, 239, 340, 38);
-		txtHorario.setFont(new Font("Papyrus", Font.BOLD, 20));
-		txtHorario.setBackground(new Color(211, 211, 211));
-		txtHorario.setForeground(new Color(105, 105, 105));
-		txtHorario.setText("Insira o horário");
-		txtHorario.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent evt) {
-				if(txtHorario.getText().equals("Insira o horário")) {
-					txtHorario.setText("");
-					repaint();
-					revalidate();
-				}           
-			}
-		});
-
-
-		lblReclamacoes = new JLabel("Reclamações:");
+		lblReclamacoes = new JLabel("N. Reclamações:");
 		lblReclamacoes.setBounds(61, 236, 262, 48);
 		lblReclamacoes.setForeground(new Color(0, 0, 0));
 
@@ -312,10 +268,10 @@ public class AddPessoaUI extends JFrame {
 		txtReclamacoes.setFont(new Font("Papyrus", Font.BOLD, 20));
 		txtReclamacoes.setBackground(new Color(211, 211, 211));
 		txtReclamacoes.setForeground(new Color(105, 105, 105));
-		txtReclamacoes.setText("Insira as Reclamações");
+		txtReclamacoes.setText("Número de Reclamações");
 		txtReclamacoes.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent evt) {
-				if(txtReclamacoes.getText().equals("Insira as Reclamações")) {
+				if(txtReclamacoes.getText().equals("Número de Reclamações")) {
 					txtReclamacoes.setText("");
 					repaint();
 					revalidate();
@@ -332,10 +288,10 @@ public class AddPessoaUI extends JFrame {
 		txtTurmaProf.setFont(new Font("Papyrus", Font.BOLD, 20));
 		txtTurmaProf.setBackground(new Color(211, 211, 211));
 		txtTurmaProf.setForeground(new Color(105, 105, 105));
-		txtTurmaProf.setText("Insira as turmas");
+		txtTurmaProf.setText("Insira as turmas (xx,yy,zz)");
 		txtTurmaProf.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent evt) {
-				if(txtTurmaProf.getText().equals("Insira as turmas")) {
+				if(txtTurmaProf.getText().equals("Insira as turmas (xx,yy,zz)")) {
 					txtTurmaProf.setText("");
 					repaint();
 					revalidate();
@@ -367,6 +323,38 @@ public class AddPessoaUI extends JFrame {
 		addButton = new JButton("Adicionar");
 		addButton.setFont(new Font("Papyrus", Font.BOLD, 22));
 		addButton.setBounds(261, 368, 216, 48);
+		addButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				
+				if (aluno.isSelected()){
+					String[] split = txtNotas.getText().split(",");
+					Double[] notas = new Double[3];
+					notas[0] = Double.parseDouble(split[0]);
+					notas[1] = Double.parseDouble(split[1]);
+					notas[2] = Double.parseDouble(split[2]);
+					Pessoa alunx = new Aluno(Long.parseLong(txtRegister.getText()), txtName.getText(), Float.parseFloat(txtFreq.getText()), txtTurmaAluno.getText(), Integer.parseInt(txtOcorrencias.getText()), notas);
+					escola.adicionaPessoa(contaLogada, alunx);
+				}
+				if (professor.isSelected()){
+					String[] split = txtTurmaProf.getText().split(",");
+					String[] turmas = new String[3];
+					turmas[0] = split[0];
+					turmas[1] = split[1];
+					turmas[2] = split[2];
+					Pessoa professxr = new Professor(Long.parseLong(txtRegister.getText()), txtName.getText(), Float.parseFloat(txtFreq.getText()), Double.parseDouble(txtSalario.getText()), Integer.parseInt(txtReclamacoes.getText()), turmas);
+					escola.adicionaPessoa(contaLogada, professxr);
+				}
+				if (zelador.isSelected()){
+					Pessoa zeladxr = new Zelador(Long.parseLong(txtRegister.getText()), txtName.getText(), Float.parseFloat(txtFreq.getText()), Double.parseDouble(txtSalario.getText()), Integer.parseInt(txtReclamacoes.getText()), txtFuncao.getText());
+					escola.adicionaPessoa(contaLogada, zeladxr);
+				}
+				if (diretor.isSelected()){
+					Pessoa diretxr = new Diretor(Long.parseLong(txtRegister.getText()), txtName.getText(), Float.parseFloat(txtFreq.getText()), Double.parseDouble(txtSalario.getText()), Integer.parseInt(txtReclamacoes.getText()));
+					escola.adicionaPessoa(contaLogada, diretxr);
+				}
+				
+			}
+		});
 
 
 
@@ -411,7 +399,7 @@ public class AddPessoaUI extends JFrame {
 
     }
 
-	private class RadioButtonHandler implements ItemListener{
+	private class RadioButtonHandler implements ItemListener {
 
 		@Override
 		public void itemStateChanged(ItemEvent event) {
@@ -422,8 +410,6 @@ public class AddPessoaUI extends JFrame {
 				
 				contentPane.add(turmaAluno);
 				contentPane.add(txtTurmaAluno);
-				contentPane.add(ano);
-				contentPane.add(txtAno);
 				contentPane.add(notas);
 				contentPane.add(txtNotas);
 				contentPane.add(ocorrencias);
@@ -436,8 +422,6 @@ public class AddPessoaUI extends JFrame {
 				
 				contentPane.add(lblSalario);
 				contentPane.add(txtSalario);
-				contentPane.add(lblHorario);
-				contentPane.add(txtHorario);
 				contentPane.add(lblReclamacoes);
 				contentPane.add(txtReclamacoes);
 				contentPane.add(lblTurmaProf);
@@ -450,8 +434,6 @@ public class AddPessoaUI extends JFrame {
 				
 				contentPane.add(lblSalario);
 				contentPane.add(txtSalario);
-				contentPane.add(lblHorario);
-				contentPane.add(txtHorario);
 				contentPane.add(lblReclamacoes);
 				contentPane.add(txtReclamacoes);
 				contentPane.add(lblFuncao);
@@ -464,8 +446,6 @@ public class AddPessoaUI extends JFrame {
 			
 				contentPane.add(lblSalario);
 				contentPane.add(txtSalario);
-				contentPane.add(lblHorario);
-				contentPane.add(txtHorario);
 				contentPane.add(lblReclamacoes);
 				contentPane.add(txtReclamacoes);
 				contentPane.add(addButton);
