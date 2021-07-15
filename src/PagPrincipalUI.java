@@ -64,6 +64,7 @@ public class PagPrincipalUI extends JFrame {
 	
 
 	private boolean[] quaisMostrar;
+	private ArrayList<Pessoa> pessoasMarcadas;
 	
 	/**
 	 * Launch the application.
@@ -152,22 +153,22 @@ public class PagPrincipalUI extends JFrame {
 		btnBusca.setBounds(1220, 32, 72, 54);
 		btnBusca.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
+				pessoasMarcadas = null;
 				if(txtBusca.getText().isBlank() || txtBusca.getText().equals("Procurar...")) {
-					refreshListPessoas(sistema, contaLogada);
+					refreshListPessoas(sistema, contaLogada, quaisMostrar);
 					return;
 				}
-				ArrayList<Pessoa> pessoasEncontradas = null;
 				try {
 					int registro = Integer.parseInt(txtBusca.getText());
 					Pessoa pessoaEncontrada = sistema.buscaPessoa(registro);
-					pessoasEncontradas = new ArrayList<Pessoa>();
+					pessoasMarcadas = new ArrayList<Pessoa>();
 					if(pessoaEncontrada != null) {
-						pessoasEncontradas.add(pessoaEncontrada);
+						pessoasMarcadas.add(pessoaEncontrada);
 					}
 				} catch (Exception e) {
-					pessoasEncontradas = sistema.buscaPessoa(txtBusca.getText());
+					pessoasMarcadas = sistema.buscaPessoa(txtBusca.getText());
 				}
-				refreshListPessoas(pessoasEncontradas, contaLogada);
+				refreshListPessoas(pessoasMarcadas, contaLogada, quaisMostrar);
 			}
 		});
 		
@@ -179,26 +180,124 @@ public class PagPrincipalUI extends JFrame {
 		mnFiltros.setIcon(new ImageIcon(new ImageIcon(".\\UI Icons\\filter.png").getImage().getScaledInstance(30, 30, Image.SCALE_DEFAULT)));
 		mnFiltros.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
 		
-		mntmReset = new JMenuItem("Resetar  Filtros");
+		mntmReset = new JMenuItem("Resetar  Filtros") {
+	        protected void processMouseEvent(MouseEvent evt) {
+	            if (evt.getID() == MouseEvent.MOUSE_RELEASED && contains(evt.getPoint())) {
+	                doClick();
+	                setArmed(true);
+	            } else {
+	                super.processMouseEvent(evt);
+	            }
+	        }
+		};
 		mntmReset.setFont(new Font("Papyrus", Font.BOLD, 14));
 		mntmReset.setHorizontalAlignment(SwingConstants.RIGHT);
+		mntmReset.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				quaisMostrar = new boolean[] {true, true, true, true};
+				chckbxmntmMostrarAlunos.setSelected(true);
+				chckbxmntmMostrarProfessores.setSelected(true);
+				chckbxmntmMostrarZeladores.setSelected(true);
+				chckbxmntmMostrarDiretores.setSelected(true);
+			}
+		});
 		
 		mnMostrar = new JMenu("Mostrar:");
 		mnMostrar.setFont(new Font("Papyrus", Font.BOLD, 14));
 		mnMostrar.setHorizontalAlignment(SwingConstants.RIGHT);
 		mnMostrar.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
 		
-		chckbxmntmMostrarAlunos = new JCheckBoxMenuItem("Alunos");
+		chckbxmntmMostrarAlunos = new JCheckBoxMenuItem("Alunos") {
+	        protected void processMouseEvent(MouseEvent evt) {
+	            if (evt.getID() == MouseEvent.MOUSE_RELEASED && contains(evt.getPoint())) {
+	                doClick();
+	                setArmed(true);
+	            } else {
+	                super.processMouseEvent(evt);
+	            }
+	        }
+		};
 		chckbxmntmMostrarAlunos.setFont(new Font("Papyrus", Font.BOLD, 14));
+		chckbxmntmMostrarAlunos.setSelected(true);
+		chckbxmntmMostrarAlunos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				quaisMostrar[0] = !quaisMostrar[0];
+				if(pessoasMarcadas == null) {
+					refreshListPessoas(sistema, contaLogada, quaisMostrar);
+				} else {
+					refreshListPessoas(pessoasMarcadas, contaLogada, quaisMostrar);
+				}
+			}
+		});
 		
-		chckbxmntmMostrarProfessores = new JCheckBoxMenuItem("Professores");
+		chckbxmntmMostrarProfessores = new JCheckBoxMenuItem("Professores") {
+	        protected void processMouseEvent(MouseEvent evt) {
+	            if (evt.getID() == MouseEvent.MOUSE_RELEASED && contains(evt.getPoint())) {
+	                doClick();
+	                setArmed(true);
+	            } else {
+	                super.processMouseEvent(evt);
+	            }
+	        }
+		};
 		chckbxmntmMostrarProfessores.setFont(new Font("Papyrus", Font.BOLD, 14));
+		chckbxmntmMostrarProfessores.setSelected(true);
+		chckbxmntmMostrarProfessores.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				quaisMostrar[1] = !quaisMostrar[1];
+				if(pessoasMarcadas == null) {
+					refreshListPessoas(sistema, contaLogada, quaisMostrar);
+				} else {
+					refreshListPessoas(pessoasMarcadas, contaLogada, quaisMostrar);
+				}
+			}
+		});
 		
-		chckbxmntmMostrarZeladores = new JCheckBoxMenuItem("Zeladores");
+		chckbxmntmMostrarZeladores = new JCheckBoxMenuItem("Zeladores") {
+	        protected void processMouseEvent(MouseEvent evt) {
+	            if (evt.getID() == MouseEvent.MOUSE_RELEASED && contains(evt.getPoint())) {
+	                doClick();
+	                setArmed(true);
+	            } else {
+	                super.processMouseEvent(evt);
+	            }
+	        }
+		};
 		chckbxmntmMostrarZeladores.setFont(new Font("Papyrus", Font.BOLD, 14));
+		chckbxmntmMostrarZeladores.setSelected(true);
+		chckbxmntmMostrarZeladores.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				quaisMostrar[2] = !quaisMostrar[2];
+				if(pessoasMarcadas == null) {
+					refreshListPessoas(sistema, contaLogada, quaisMostrar);
+				} else {
+					refreshListPessoas(pessoasMarcadas, contaLogada, quaisMostrar);
+				}
+			}
+		});
 		
-		chckbxmntmMostrarDiretores = new JCheckBoxMenuItem("Diretores");
+		chckbxmntmMostrarDiretores = new JCheckBoxMenuItem("Diretores") {
+	        protected void processMouseEvent(MouseEvent evt) {
+	            if (evt.getID() == MouseEvent.MOUSE_RELEASED && contains(evt.getPoint())) {
+	                doClick();
+	                setArmed(true);
+	            } else {
+	                super.processMouseEvent(evt);
+	            }
+	        }
+		};
 		chckbxmntmMostrarDiretores.setFont(new Font("Papyrus", Font.BOLD, 14));
+		chckbxmntmMostrarDiretores.setSelected(true);
+		chckbxmntmMostrarDiretores.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				quaisMostrar[3] = !quaisMostrar[3];
+				if(pessoasMarcadas == null) {
+					refreshListPessoas(sistema, contaLogada, quaisMostrar);
+				} else {
+					refreshListPessoas(pessoasMarcadas, contaLogada, quaisMostrar);
+				}
+			}
+		});
 		
 		mnMostrar.add(chckbxmntmMostrarAlunos);
 		mnMostrar.add(chckbxmntmMostrarProfessores);
@@ -210,10 +309,28 @@ public class PagPrincipalUI extends JFrame {
 		mnOrdenar.setHorizontalAlignment(SwingConstants.RIGHT);
 		mnOrdenar.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
 		
-		rdbtnmntmOrdenarAlfabetico = new JRadioButtonMenuItem("Nome");
+		rdbtnmntmOrdenarAlfabetico = new JRadioButtonMenuItem("Nome") {
+	        protected void processMouseEvent(MouseEvent evt) {
+	            if (evt.getID() == MouseEvent.MOUSE_RELEASED && contains(evt.getPoint())) {
+	                doClick();
+	                setArmed(true);
+	            } else {
+	                super.processMouseEvent(evt);
+	            }
+	        }
+		};
 		rdbtnmntmOrdenarAlfabetico.setFont(new Font("Papyrus", Font.BOLD, 14));
 		
-		rdbtnmntmOrdenarRegistro = new JRadioButtonMenuItem("Registro");
+		rdbtnmntmOrdenarRegistro = new JRadioButtonMenuItem("Registro") {
+	        protected void processMouseEvent(MouseEvent evt) {
+	            if (evt.getID() == MouseEvent.MOUSE_RELEASED && contains(evt.getPoint())) {
+	                doClick();
+	                setArmed(true);
+	            } else {
+	                super.processMouseEvent(evt);
+	            }
+	        }
+		};
 		rdbtnmntmOrdenarRegistro.setFont(new Font("Papyrus", Font.BOLD, 14));
 		
 		mnOrdenar.add(rdbtnmntmOrdenarAlfabetico);
@@ -231,38 +348,67 @@ public class PagPrincipalUI extends JFrame {
 		titlePane.add(btnBusca);
 		titlePane.add(mnbrFiltros);
 		
+		quaisMostrar = new boolean[] {true, true, true, true};
+		pessoasMarcadas = null;
 		cardsPane = new JPanel();
 		cardsPane.setForeground(new Color(0, 0, 0));
 		cardsPane.setBackground(new Color(240, 230, 140));
 		cardsPane.setBorder(new EmptyBorder(0, 0, 0, 0));
 		cardsPane.setBounds(-1, 118, 1330, 628);
 		cardsPane.setLayout(new CardLayout());
-		refreshListPessoas(sistema, contaLogada);
+		refreshListPessoas(sistema, contaLogada, quaisMostrar);
 		
 		contentPane.add(titlePane);
 		contentPane.add(cardsPane);
 	}
 	
-	private void refreshListPessoas(Escola sistema, Pessoa contaLogada) {
-		int numPessoas = sistema.getNPessoas();
+	private void refreshListPessoas(Escola sistema, Pessoa contaLogada, boolean[] quais) {
+		ArrayList<Pessoa> pessoas = sistema.getPessoas(/*quais*/);
+		String[] dadosPessoas = sistema.imprimePessoas(/*quais*/);
+		int numPessoas = pessoas.size();
 		int numPaginas = numPessoas/27 + 1;
 		int numPessoasUltimaPagina = numPessoas - (numPaginas-1)*27;
-		ArrayList<Pessoa> pessoas = sistema.getPessoas();
-		String[] dadosPessoas = sistema.imprimePessoas();
 		
 		refreshListPessoas(numPessoas, numPaginas, numPessoasUltimaPagina, dadosPessoas, pessoas, contaLogada);
 	}
 	
-	private void refreshListPessoas(ArrayList<Pessoa> pessoasParaMostrar, Pessoa contaLogada) {
-		int numPessoas = pessoasParaMostrar.size();
+	private void refreshListPessoas(ArrayList<Pessoa> pessoasParaMostrar, Pessoa contaLogada, boolean[] quais) {
+		ArrayList<Pessoa> pessoas = new ArrayList<Pessoa>();
+		for(int i=0 ; i<pessoasParaMostrar.size() ; i++) {
+			if(pessoasParaMostrar.get(i) instanceof Aluno) {
+				if(quais[0]) {
+					pessoas.add(pessoasParaMostrar.get(i));
+				}
+				break;
+			}
+			if(pessoasParaMostrar.get(i) instanceof Professor) {
+				if(quais[1]) {
+					pessoas.add(pessoasParaMostrar.get(i));
+				}
+				break;
+			}
+			if(pessoasParaMostrar.get(i) instanceof Zelador) {
+				if(quais[2]) {
+					pessoas.add(pessoasParaMostrar.get(i));
+				}
+				break;
+			}
+			if(pessoasParaMostrar.get(i) instanceof Diretor) {
+				if(quais[3]) {
+					pessoas.add(pessoasParaMostrar.get(i));
+				}
+				break;
+			}
+		}
+		String[] dadosPessoas = new String[pessoas.size()];
+		for(int i=0 ; i<pessoas.size() ; i++) {
+			dadosPessoas[i] = pessoas.get(i).getClass().toString() + "\nNome: " + pessoas.get(i).getNome() + "\nNº de Registro: " + pessoas.get(i).getRegister();
+		}
+		int numPessoas = pessoas.size();
 		int numPaginas = numPessoas/27 + 1;
 		int numPessoasUltimaPagina = numPessoas - (numPaginas-1)*27;
-		String[] dadosPessoas = new String[numPessoas];
-		for(int i=0 ; i<numPessoas ; i++) {
-			dadosPessoas[i] = pessoasParaMostrar.get(i).getClass().toString() + "\nNome: " + pessoasParaMostrar.get(i).getNome() + "\nNï¿½ de Registro: " + pessoasParaMostrar.get(i).getRegister();
-		}
 		
-		refreshListPessoas(numPessoas, numPaginas, numPessoasUltimaPagina, dadosPessoas, pessoasParaMostrar, contaLogada);
+		refreshListPessoas(numPessoas, numPaginas, numPessoasUltimaPagina, dadosPessoas, pessoas, contaLogada);
 	}
 	
 	private void refreshListPessoas(int numPessoas, int numPaginas, int numPessoasUltimaPagina, String[] dadosPessoas, ArrayList<Pessoa> pessoas, Pessoa contaLogada) {
@@ -398,7 +544,7 @@ public class PagPrincipalUI extends JFrame {
 			previousNextPanes[i].add(new JPanel());
 			return;
 		}
-		btnsPrevious[i] = new JButton("Pï¿½gina Anterior");
+		btnsPrevious[i] = new JButton("Página Anterior");
 		btnsPrevious[i].setFont(new Font("Papyrus", Font.BOLD | Font.ITALIC, 21));
 		btnsPrevious[i].setIcon(new ImageIcon(new ImageIcon(".\\UI Icons\\previousArrow.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT)));
 		btnsPrevious[i].addActionListener(new ActionListener() {
@@ -415,7 +561,7 @@ public class PagPrincipalUI extends JFrame {
 			previousNextPanes[i].add(new JPanel());
 			return;
 		}
-		btnsNext[i] = new JButton("Prï¿½xima Pï¿½gina");
+		btnsNext[i] = new JButton("Próxima Página");
 		btnsNext[i].setFont(new Font("Papyrus", Font.BOLD | Font.ITALIC, 21));
 		btnsNext[i].setIcon(new ImageIcon(new ImageIcon(".\\UI Icons\\nextArrow.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT)));
 		btnsNext[i].addActionListener(new ActionListener() {
@@ -432,7 +578,7 @@ public class PagPrincipalUI extends JFrame {
 			previousNextPanes[i].add(new JPanel());
 			return;
 		}
-		btnsFirst[i] = new JButton("Primeira Pï¿½gina");
+		btnsFirst[i] = new JButton("Primeira Página");
 		btnsFirst[i].setFont(new Font("Papyrus", Font.BOLD | Font.ITALIC, 21));
 		btnsFirst[i].setIcon(new ImageIcon(new ImageIcon(".\\UI Icons\\firstArrow.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT)));
 		btnsFirst[i].addActionListener(new ActionListener() {
@@ -449,7 +595,7 @@ public class PagPrincipalUI extends JFrame {
 			previousNextPanes[i].add(new JPanel());
 			return;
 		}
-		btnsLast[i] = new JButton("ï¿½ltima Pï¿½gina");
+		btnsLast[i] = new JButton("Última Página");
 		btnsLast[i].setFont(new Font("Papyrus", Font.BOLD | Font.ITALIC, 21));
 		btnsLast[i].setIcon(new ImageIcon(new ImageIcon(".\\UI Icons\\lastArrow.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT)));
 		btnsLast[i].addActionListener(new ActionListener() {

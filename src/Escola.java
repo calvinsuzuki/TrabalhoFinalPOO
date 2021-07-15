@@ -33,11 +33,11 @@ public class Escola {
 			}
 		
 			for (int i = 0; i < nPessoas; i++) {
-				if (novaPessoa.register == pessoas.get(i).register) {
+				if (novaPessoa.getRegister() == pessoas.get(i).getRegister()) {
 					throw new RegistroUsadoException();
 				}
 		        
-		        if (novaPessoa.register < pessoas.get(i).register) {
+		        if (novaPessoa.getRegister() < pessoas.get(i).getRegister()) {
 		        	pessoas.add(i, novaPessoa);
 		        	nPessoas++;
 		        	return;
@@ -65,7 +65,7 @@ public class Escola {
 		int index = -1;
 		try {
 			for(int i = 0; i < nPessoas; i++) {
-				if(pessoas.get(i).register == registroPessoaRemovida) {
+				if(pessoas.get(i).getRegister() == registroPessoaRemovida) {
 					index = i;
 					break;
 				}
@@ -92,9 +92,7 @@ public class Escola {
 	public String[] imprimePessoas() {
 		String[] impressoes = new String[nPessoas];
 		for(int i = 0; i < nPessoas; i++) {
-			impressoes[i] = pessoas.get(i).getClass().toString() + "\nNome: " + pessoas.get(i).nome + "\nNº de Registro: " + 
-					pessoas.get(i).register;
-
+			impressoes[i] = pessoas.get(i).getClass().toString() + "\nNome: " + pessoas.get(i).getNome() + "\nNº de Registro: " + pessoas.get(i).getRegister();
 		}
 		return impressoes;
 	}
@@ -109,7 +107,7 @@ public class Escola {
 		int index = -1;
 		
 		for(int i = 0; i < nPessoas; i++) {
-			if(pessoas.get(i).register == registro) {
+			if(pessoas.get(i).getRegister() == registro) {
 				index = i;
 				break;
 			}
@@ -130,7 +128,7 @@ public class Escola {
 		ArrayList<Pessoa> pessoasPesquisadas = new ArrayList<Pessoa>();
 		
 		for(int i = 0; i < nPessoas; i++) {
-			if(pessoas.get(i).nome.equalsIgnoreCase(nome)) {
+			if(pessoas.get(i).getNome().equalsIgnoreCase(nome)) {
 				pessoasPesquisadas.add(pessoas.get(i));
 				break;
 			}
@@ -151,8 +149,7 @@ public class Escola {
 		if(pessoaLogada instanceof Diretor || pessoaLogada.getClass().equals(pessoaRequerida.getClass())) {
 			r = pessoaRequerida.toString()+'\n';
 		} else {
-			r = pessoaRequerida.getClass().toString() + "\nNome: " + pessoaRequerida.nome + "\nNº de Registro: " + 
-					pessoaRequerida.register;
+			r = pessoaRequerida.getClass().toString() + "\nNome: " + pessoaRequerida.getNome() + "\nNº de Registro: " + pessoaRequerida.getRegister();
 		}
 		return r;
 	}

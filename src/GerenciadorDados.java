@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class GerenciadorDados {
 	private String row = new String();
-	private Diretor classeParaPermissoes = new Diretor(-1, "GA", 0, null, null, null);
+	private Diretor classeParaPermissoes = new Diretor(-1, "GA", 0, null, 0);
 	
 	/**
 	 * Esse método cria um novo aluno dado um array de strings correlacionado à uma linha do csv
@@ -16,7 +16,7 @@ public class GerenciadorDados {
 	 * @param dados - os dados de uma linha (que é de um aluno) no csv
 	 * */
 	private void processaLinhaAluno(Escola escola, String[] dados) {
-		String[] ocorrencias = { "Chato", "Feio", "Esquisito" };
+		int ocorrencias = 1;
 		Double[] notas = { 8.0, 5.0, 5.0, 5.2, 5.6, 7.2};
 		Aluno novoAluno = new Aluno(Long.parseLong(dados[1]), dados[2], Float.parseFloat(dados[3]), dados[4], ocorrencias, notas);
 		escola.adicionaPessoa(classeParaPermissoes, novoAluno);
@@ -29,16 +29,15 @@ public class GerenciadorDados {
 	 * */
 	private void processaLinhaFuncionario(Escola escola, String[] dados) {
 		Pessoa novaPessoa = null;
-		String[] reclamacoes = { "Chato", "Feio", "Esquisito" };
-		String[] horarios = { "1h", "3h", "5h" };
+		int reclamacoes = 1;
 		String[] turmas = {"turma 1", "turma 2"};
 		
 		if(dados[1].equals("PROFESSOR")) {
-			novaPessoa = new Professor(Long.parseLong(dados[2]), dados[3], Float.parseFloat(dados[4]), Double.parseDouble(dados[5]), horarios, reclamacoes, turmas);
+			novaPessoa = new Professor(Long.parseLong(dados[2]), dados[3], Float.parseFloat(dados[4]), Double.parseDouble(dados[5]), reclamacoes, turmas);
 		} else if(dados[1].equals("ZELADOR")) {
-			novaPessoa = new Zelador(Long.parseLong(dados[2]), dados[3], Float.parseFloat(dados[4]), Double.parseDouble(dados[5]), horarios, reclamacoes, "mudar aqui");
+			novaPessoa = new Zelador(Long.parseLong(dados[2]), dados[3], Float.parseFloat(dados[4]), Double.parseDouble(dados[5]), reclamacoes, "mudar aqui");
 		} else if(dados[1].equals("DIRETOR")) {
-			novaPessoa = new Diretor(Long.parseLong(dados[2]), dados[3], Float.parseFloat(dados[4]), Double.parseDouble(dados[5]), horarios, reclamacoes);
+			novaPessoa = new Diretor(Long.parseLong(dados[2]), dados[3], Float.parseFloat(dados[4]), Double.parseDouble(dados[5]), reclamacoes);
 		}
 		escola.adicionaPessoa(classeParaPermissoes, novaPessoa);
 	}
@@ -76,8 +75,8 @@ public class GerenciadorDados {
 	private void escreveAlunosArquivo(Aluno aluno, FileWriter escritorcsv) throws IOException {
 		DecimalFormat df = new DecimalFormat();
 		df.setMaximumFractionDigits(2);
-		escritorcsv.append("ALUNO"+ ',' +String.valueOf(aluno.register) + ',' + aluno.nome + ',');
-		escritorcsv.append(String.valueOf(df.format(aluno.freq)) + ',' + aluno.turma + '\n');
+		escritorcsv.append("ALUNO"+ ',' +String.valueOf(aluno.getRegister()) + ',' + aluno.getNome() + ',');
+		escritorcsv.append(String.valueOf(df.format(aluno.getFreq())) + ',' + aluno.getTurma() + '\n');
 	}
 	
 	/**
@@ -88,8 +87,8 @@ public class GerenciadorDados {
 	private void escreveProfessoresArquivo(Professor professor, FileWriter escritorcsv) throws IOException {
 		DecimalFormat df = new DecimalFormat();
 		df.setMaximumFractionDigits(2);
-		escritorcsv.append("PROFESSOR"+ ',' +String.valueOf(professor.register) + ',' + professor.nome + ',');
-		escritorcsv.append(String.valueOf(df.format(professor.freq)) + ',' + professor.salario + '\n');
+		escritorcsv.append("PROFESSOR"+ ',' +String.valueOf(professor.getRegister()) + ',' + professor.getNome() + ',');
+		escritorcsv.append(String.valueOf(df.format(professor.getFreq())) + ',' + professor.getSalario() + '\n');
 	}
 	
 	/**
@@ -100,8 +99,8 @@ public class GerenciadorDados {
 	private void escreveZeladoresArquivo(Zelador zelador, FileWriter escritorcsv) throws IOException {
 		DecimalFormat df = new DecimalFormat();
 		df.setMaximumFractionDigits(2);
-		escritorcsv.append("ZELADOR"+ ',' +String.valueOf(zelador.register) + ',' + zelador.nome + ',');
-		escritorcsv.append(String.valueOf(df.format(zelador.freq)) + ',' + zelador.salario + '\n');
+		escritorcsv.append("ZELADOR"+ ',' +String.valueOf(zelador.getRegister()) + ',' + zelador.getNome() + ',');
+		escritorcsv.append(String.valueOf(df.format(zelador.getFreq())) + ',' + zelador.getSalario() + '\n');
 	}
 	
 	/**
@@ -112,8 +111,8 @@ public class GerenciadorDados {
 	private void escreveDiretoresArquivo(Diretor diretor, FileWriter escritorcsv) throws IOException {
 		DecimalFormat df = new DecimalFormat();
 		df.setMaximumFractionDigits(2);
-		escritorcsv.append("DIRETOR"+ ',' +String.valueOf(diretor.register) + ',' + diretor.nome + ',');
-		escritorcsv.append(String.valueOf(df.format(diretor.freq)) + ',' + diretor.salario + '\n');
+		escritorcsv.append("DIRETOR"+ ',' +String.valueOf(diretor.getRegister()) + ',' + diretor.getNome() + ',');
+		escritorcsv.append(String.valueOf(df.format(diretor.getFreq())) + ',' + diretor.getSalario() + '\n');
 	}
 	
 	/**
