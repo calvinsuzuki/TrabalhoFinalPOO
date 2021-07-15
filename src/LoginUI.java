@@ -167,7 +167,6 @@ public class LoginUI extends JFrame {
 			public void actionPerformed(ActionEvent evt) {
 				try {
 					/*contaLogada = sistema.checkLogin(txtRegistro.getText(), new String(txtSenha.getPassword()));*/
-					dispose();
 					EventQueue.invokeLater(new Runnable() {
 						public void run() {
 							try {
@@ -178,6 +177,7 @@ public class LoginUI extends JFrame {
 							}
 						}
 					});
+					dispose();
 				} catch (Exception e) {
 					JOptionPane.showMessageDialog(null, "Registro ou Senha INVÁLIDO!", "ERRO no Login", JOptionPane.ERROR_MESSAGE);
 				}

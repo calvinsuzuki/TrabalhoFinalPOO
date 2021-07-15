@@ -65,10 +65,25 @@ public class AddPessoaUI extends JFrame {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		int ocorrencias = 1;
+		Double[] notas = { 8.0, 5.0, 5.0, 5.2, 5.6, 7.2};
+		Escola escolaX = new Escola();
+		Diretor diretorY = new Diretor(9999, "Y", (float) 90/100, 5000.00, ocorrencias);
+		Aluno alunoZ = new Aluno(123, "Z", (float) 54/100, "019", ocorrencias, notas );
+		GerenciadorDados ga = new GerenciadorDados();
+		
+		//leitura do banco de dados FAZER ISSO NA INICIALIZAÇÃO DO PROGRAMA
+		ga.leAdicionaPessoasArquivos(escolaX, "src/baseDados.csv");
+				
+		//uso de adicionaPessoa, primeiramente sem permissão, depois com
+		escolaX.adicionaPessoa(alunoZ, alunoZ);
+		escolaX.adicionaPessoa(diretorY, alunoZ);
+		escolaX.adicionaPessoa(diretorY, diretorY);
+		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AddPessoaUI frame = new AddPessoaUI();
+					AddPessoaUI frame = new AddPessoaUI(escolaX, diretorY);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -81,12 +96,12 @@ public class AddPessoaUI extends JFrame {
     /**
 	 * Create the frame.
 	 */
-    public AddPessoaUI(){
+    public AddPessoaUI(Escola sistema, Pessoa contaLogada){
         setBackground(Color.WHITE);
         setResizable(false);
         setType(Type.UTILITY);
         setTitle("Adicionar Pessoa");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setBounds(100, 100, 770, 500);
 
         contentPane = new JPanel();

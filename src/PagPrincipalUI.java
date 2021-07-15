@@ -11,7 +11,9 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JCheckBoxMenuItem;
+import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JSeparator;
+import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import java.awt.Image;
 import java.awt.Color;
@@ -31,7 +33,6 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.JRadioButtonMenuItem;
 
 public class PagPrincipalUI extends JFrame {
 	
@@ -59,12 +60,17 @@ public class PagPrincipalUI extends JFrame {
 	private JCheckBoxMenuItem chckbxmntmMostrarProfessores;
 	private JCheckBoxMenuItem chckbxmntmMostrarZeladores;
 	private JCheckBoxMenuItem chckbxmntmMostrarDiretores;
-	private JRadioButtonMenuItem rdbtnmntmOrdenarAlfabetico;
 	private JRadioButtonMenuItem rdbtnmntmOrdenarRegistro;
+	private JRadioButtonMenuItem rdbtnmntmOrdenarAlfabetico;
+	private ButtonGroup gpOrdenar;
 	
 
 	private boolean[] quaisMostrar;
 	private ArrayList<Pessoa> pessoasMarcadas;
+	private int pageNumWhileInfoPessoa;
+	private int pageNumWhileAddPessoa;
+	private int scrollValueWhileInfoPessoa;
+	private int scrollValueWhileAddPessoa;
 	
 	/**
 	 * Launch the application.
@@ -77,14 +83,13 @@ public class PagPrincipalUI extends JFrame {
 		Aluno alunoZ = new Aluno(123, "Z", (float) 54/100, "019", ocorrencias, notas );
 		GerenciadorDados ga = new GerenciadorDados();
 		
-		//leitura do banco de dados FAZER ISSO NA INICIALIZAï¿½ï¿½O DO PROGRAMA
+		//leitura do banco de dados FAZER ISSO NA INICIALIZAÇÃO DO PROGRAMA
 		ga.leAdicionaPessoasArquivos(escolaX, "src/baseDados.csv");
-		
-		//uso de adicionaPessoa, primeiramente sem permissï¿½o, depois com
+				
+		//uso de adicionaPessoa, primeiramente sem permissão, depois com
 		escolaX.adicionaPessoa(alunoZ, alunoZ);
 		escolaX.adicionaPessoa(diretorY, alunoZ);
 		escolaX.adicionaPessoa(diretorY, diretorY);
-		
 		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -168,7 +173,8 @@ public class PagPrincipalUI extends JFrame {
 				} catch (Exception e) {
 					pessoasMarcadas = sistema.buscaPessoa(txtBusca.getText());
 				}
-				refreshListPessoas(pessoasMarcadas, contaLogada, quaisMostrar);
+				
+				refreshListPessoas(sistema, pessoasMarcadas, contaLogada, quaisMostrar);
 			}
 		});
 		
@@ -199,6 +205,16 @@ public class PagPrincipalUI extends JFrame {
 				chckbxmntmMostrarProfessores.setSelected(true);
 				chckbxmntmMostrarZeladores.setSelected(true);
 				chckbxmntmMostrarDiretores.setSelected(true);
+				/*sistema.sortRegistro();*/
+				rdbtnmntmOrdenarRegistro.setSelected(true);
+				rdbtnmntmOrdenarAlfabetico.setSelected(false);
+				rdbtnmntmOrdenarRegistro.setEnabled(false);
+				rdbtnmntmOrdenarAlfabetico.setEnabled(true);
+				if(pessoasMarcadas == null) {
+					refreshListPessoas(sistema, contaLogada, quaisMostrar);
+				} else {
+					refreshListPessoas(sistema, pessoasMarcadas, contaLogada, quaisMostrar);
+				}
 			}
 		});
 		
@@ -225,7 +241,7 @@ public class PagPrincipalUI extends JFrame {
 				if(pessoasMarcadas == null) {
 					refreshListPessoas(sistema, contaLogada, quaisMostrar);
 				} else {
-					refreshListPessoas(pessoasMarcadas, contaLogada, quaisMostrar);
+					refreshListPessoas(sistema, pessoasMarcadas, contaLogada, quaisMostrar);
 				}
 			}
 		});
@@ -248,7 +264,7 @@ public class PagPrincipalUI extends JFrame {
 				if(pessoasMarcadas == null) {
 					refreshListPessoas(sistema, contaLogada, quaisMostrar);
 				} else {
-					refreshListPessoas(pessoasMarcadas, contaLogada, quaisMostrar);
+					refreshListPessoas(sistema, pessoasMarcadas, contaLogada, quaisMostrar);
 				}
 			}
 		});
@@ -271,7 +287,7 @@ public class PagPrincipalUI extends JFrame {
 				if(pessoasMarcadas == null) {
 					refreshListPessoas(sistema, contaLogada, quaisMostrar);
 				} else {
-					refreshListPessoas(pessoasMarcadas, contaLogada, quaisMostrar);
+					refreshListPessoas(sistema, pessoasMarcadas, contaLogada, quaisMostrar);
 				}
 			}
 		});
@@ -294,7 +310,7 @@ public class PagPrincipalUI extends JFrame {
 				if(pessoasMarcadas == null) {
 					refreshListPessoas(sistema, contaLogada, quaisMostrar);
 				} else {
-					refreshListPessoas(pessoasMarcadas, contaLogada, quaisMostrar);
+					refreshListPessoas(sistema, pessoasMarcadas, contaLogada, quaisMostrar);
 				}
 			}
 		});
@@ -309,17 +325,7 @@ public class PagPrincipalUI extends JFrame {
 		mnOrdenar.setHorizontalAlignment(SwingConstants.RIGHT);
 		mnOrdenar.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
 		
-		rdbtnmntmOrdenarAlfabetico = new JRadioButtonMenuItem("Nome") {
-	        protected void processMouseEvent(MouseEvent evt) {
-	            if (evt.getID() == MouseEvent.MOUSE_RELEASED && contains(evt.getPoint())) {
-	                doClick();
-	                setArmed(true);
-	            } else {
-	                super.processMouseEvent(evt);
-	            }
-	        }
-		};
-		rdbtnmntmOrdenarAlfabetico.setFont(new Font("Papyrus", Font.BOLD, 14));
+		gpOrdenar = new ButtonGroup();
 		
 		rdbtnmntmOrdenarRegistro = new JRadioButtonMenuItem("Registro") {
 	        protected void processMouseEvent(MouseEvent evt) {
@@ -332,9 +338,52 @@ public class PagPrincipalUI extends JFrame {
 	        }
 		};
 		rdbtnmntmOrdenarRegistro.setFont(new Font("Papyrus", Font.BOLD, 14));
+		rdbtnmntmOrdenarRegistro.setSelected(true);
+		rdbtnmntmOrdenarRegistro.setEnabled(false);
+		rdbtnmntmOrdenarRegistro.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				/*sistema.sortRegistro();*/
+				if(pessoasMarcadas == null) {
+					refreshListPessoas(sistema, contaLogada, quaisMostrar);
+				} else {
+					refreshListPessoas(sistema, pessoasMarcadas, contaLogada, quaisMostrar);
+				}
+				rdbtnmntmOrdenarRegistro.setEnabled(false);
+				rdbtnmntmOrdenarAlfabetico.setEnabled(true);
+			}
+		});
 		
-		mnOrdenar.add(rdbtnmntmOrdenarAlfabetico);
+		rdbtnmntmOrdenarAlfabetico = new JRadioButtonMenuItem("Nome") {
+	        protected void processMouseEvent(MouseEvent evt) {
+	            if (evt.getID() == MouseEvent.MOUSE_RELEASED && contains(evt.getPoint())) {
+	                doClick();
+	                setArmed(true);
+	            } else {
+	                super.processMouseEvent(evt);
+	            }
+	        }
+		};
+		rdbtnmntmOrdenarAlfabetico.setFont(new Font("Papyrus", Font.BOLD, 14));
+		rdbtnmntmOrdenarAlfabetico.setSelected(false);
+		rdbtnmntmOrdenarAlfabetico.setEnabled(true);
+		rdbtnmntmOrdenarAlfabetico.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				/*sistema.sortAlfabetico();*/
+				if(pessoasMarcadas == null) {
+					refreshListPessoas(sistema, contaLogada, quaisMostrar);
+				} else {
+					refreshListPessoas(sistema, pessoasMarcadas, contaLogada, quaisMostrar);
+				}
+				rdbtnmntmOrdenarRegistro.setEnabled(true);
+				rdbtnmntmOrdenarAlfabetico.setEnabled(false);
+			}
+		});
+		
+		gpOrdenar.add(rdbtnmntmOrdenarRegistro);
+		gpOrdenar.add(rdbtnmntmOrdenarAlfabetico);
+		
 		mnOrdenar.add(rdbtnmntmOrdenarRegistro);
+		mnOrdenar.add(rdbtnmntmOrdenarAlfabetico);
 		
 		mnFiltros.add(mntmReset);
 		mnFiltros.add(new JSeparator());
@@ -363,41 +412,34 @@ public class PagPrincipalUI extends JFrame {
 	}
 	
 	private void refreshListPessoas(Escola sistema, Pessoa contaLogada, boolean[] quais) {
-		ArrayList<Pessoa> pessoas = sistema.getPessoas(new boolean[] {true, true, true, true}/*quais*/);
-		String[] dadosPessoas = sistema.imprimePessoas(new boolean[] {true, true, true, true}/*quais*/);
+		ArrayList<Pessoa> pessoas = sistema.getPessoas(quais);
+		String[] dadosPessoas = sistema.imprimePessoas(quais);
 		int numPessoas = pessoas.size();
 		int numPaginas = numPessoas/27 + 1;
 		int numPessoasUltimaPagina = numPessoas - (numPaginas-1)*27;
 		
-		refreshListPessoas(numPessoas, numPaginas, numPessoasUltimaPagina, dadosPessoas, pessoas, contaLogada);
+		refreshListPessoas(numPessoas, numPaginas, numPessoasUltimaPagina, dadosPessoas, pessoas, sistema, contaLogada);
 	}
 	
-	private void refreshListPessoas(ArrayList<Pessoa> pessoasParaMostrar, Pessoa contaLogada, boolean[] quais) {
+	private void refreshListPessoas(Escola sistema, ArrayList<Pessoa> pessoasParaMostrar, Pessoa contaLogada, boolean[] quais) {
 		ArrayList<Pessoa> pessoas = new ArrayList<Pessoa>();
 		for(int i=0 ; i<pessoasParaMostrar.size() ; i++) {
 			if(pessoasParaMostrar.get(i) instanceof Aluno) {
 				if(quais[0]) {
 					pessoas.add(pessoasParaMostrar.get(i));
 				}
-				break;
-			}
-			if(pessoasParaMostrar.get(i) instanceof Professor) {
+			} else if(pessoasParaMostrar.get(i) instanceof Professor) {
 				if(quais[1]) {
 					pessoas.add(pessoasParaMostrar.get(i));
 				}
-				break;
-			}
-			if(pessoasParaMostrar.get(i) instanceof Zelador) {
+			} else if(pessoasParaMostrar.get(i) instanceof Zelador) {
 				if(quais[2]) {
 					pessoas.add(pessoasParaMostrar.get(i));
 				}
-				break;
-			}
-			if(pessoasParaMostrar.get(i) instanceof Diretor) {
+			} else if(pessoasParaMostrar.get(i) instanceof Diretor) {
 				if(quais[3]) {
 					pessoas.add(pessoasParaMostrar.get(i));
 				}
-				break;
 			}
 		}
 		String[] dadosPessoas = new String[pessoas.size()];
@@ -408,10 +450,10 @@ public class PagPrincipalUI extends JFrame {
 		int numPaginas = numPessoas/27 + 1;
 		int numPessoasUltimaPagina = numPessoas - (numPaginas-1)*27;
 		
-		refreshListPessoas(numPessoas, numPaginas, numPessoasUltimaPagina, dadosPessoas, pessoas, contaLogada);
+		refreshListPessoas(numPessoas, numPaginas, numPessoasUltimaPagina, dadosPessoas, pessoas, sistema, contaLogada);
 	}
 	
-	private void refreshListPessoas(int numPessoas, int numPaginas, int numPessoasUltimaPagina, String[] dadosPessoas, ArrayList<Pessoa> pessoas, Pessoa contaLogada) {
+	private void refreshListPessoas(int numPessoas, int numPaginas, int numPessoasUltimaPagina, String[] dadosPessoas, ArrayList<Pessoa> pessoas, Escola sistema, Pessoa contaLogada) {
 		cardsPane.removeAll();
 		cardsPane.repaint();
 		cardsPane.revalidate();
@@ -447,7 +489,7 @@ public class PagPrincipalUI extends JFrame {
 			previousNextPanes[i].setBackground(new Color(240, 230, 140));
 			previousNextPanes[i].setBorder(new EmptyBorder(0, 0, 0, 0));
 			previousNextPanes[i].setPreferredSize(new Dimension(1310, 200));
-			previousNextPanes[i].setLayout(new GridLayout(3, 2, 815, 20));
+			previousNextPanes[i].setLayout(new GridLayout(3, 2, 816, 20));
 			
 			int numPessoasNessaPagina;
 			if(i == numPaginas-1) {
@@ -457,30 +499,32 @@ public class PagPrincipalUI extends JFrame {
 			}
 			
 			for(int j=0 ; j<numPessoasNessaPagina ; j++) {
-				int pessoaIndex = 27*i + j;
+				int pessoaIndex = 27*i + j, iAgora = i;
 				String infoFormatada = "<html>" + dadosPessoas[pessoaIndex].substring(6).replaceAll("\\n", "<br/>") + "</html>";
 				btnsPessoa[pessoaIndex] = new JButton(infoFormatada);
 				btnsPessoa[pessoaIndex].setHorizontalAlignment(SwingConstants.LEFT);
 				btnsPessoa[pessoaIndex].setFont(new Font("Papyrus", Font.BOLD, 18));
 				btnsPessoa[pessoaIndex].setPreferredSize(new Dimension(400, 100));
-				/*btnsPessoa[pessoaIndex].addActionListener(new ActionListener() {
+				btnsPessoa[pessoaIndex].addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent evt) {
 						if(checkPermission(contaLogada, pessoas.get(pessoaIndex))) {
+							pageNumWhileInfoPessoa = iAgora;
+							scrollValueWhileInfoPessoa = scrollPanes[iAgora].getVerticalScrollBar().getValue();
 							EventQueue.invokeLater(new Runnable() {
 								public void run() {
 									try {
-										InfoPessoaUI frame = new InfoPessoaUI(pessoas.get(pessoaIndex), contaLogada);
-										frame.setVisible(true);
+										/*InfoPessoaUI frame = new InfoPessoaUI(pessoas.get(pessoaIndex), contaLogada);
+										frame.setVisible(true);*/
 									} catch (Exception e) {
 										e.printStackTrace();
 									}
 								}
 							});
 						} else {
-							JOptionPane.showMessageDialog(null, "Vocï¿½ nï¿½o tem permissï¿½o para ver essas informaï¿½ï¿½es!", "ACESSO NEGADO", JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(null, "Você não tem permissão para ver essas informações!", "ACESSO NEGADO", JOptionPane.ERROR_MESSAGE);
 						}
 					}
-				});*/
+				});
 				listPanes[i].add(btnsPessoa[27*i + j]);
 			}
 			
@@ -491,10 +535,12 @@ public class PagPrincipalUI extends JFrame {
 				btnAddPessoa.setPreferredSize(new Dimension(220, 80));
 				btnAddPessoa.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent evt) {
+						pageNumWhileAddPessoa = numPaginas-1;
+						scrollValueWhileAddPessoa = scrollPanes[numPaginas-1].getVerticalScrollBar().getValue();
 						EventQueue.invokeLater(new Runnable() {
 							public void run() {
 								try {
-									AddPessoaUI frame = new AddPessoaUI();
+									AddPessoaUI frame = new AddPessoaUI(sistema, contaLogada);
 									frame.setVisible(true);
 								} catch (Exception e) {
 									e.printStackTrace();
@@ -541,7 +587,11 @@ public class PagPrincipalUI extends JFrame {
 	private void addButtonPrevious(int i, boolean verdade) {
 		if(!verdade) {
 			btnsPrevious[i] = null;
-			previousNextPanes[i].add(new JPanel());
+			JPanel paneVazio = new JPanel();
+			paneVazio.setForeground(new Color(0, 0, 0));
+			paneVazio.setBackground(new Color(240, 230, 140));
+			paneVazio.setBorder(new EmptyBorder(0, 0, 0, 0));
+			previousNextPanes[i].add(paneVazio);
 			return;
 		}
 		btnsPrevious[i] = new JButton("Página Anterior");
@@ -558,7 +608,11 @@ public class PagPrincipalUI extends JFrame {
 	private void addButtonNext(int i, boolean verdade) {
 		if(!verdade) {
 			btnsNext[i] = null;
-			previousNextPanes[i].add(new JPanel());
+			JPanel paneVazio = new JPanel();
+			paneVazio.setForeground(new Color(0, 0, 0));
+			paneVazio.setBackground(new Color(240, 230, 140));
+			paneVazio.setBorder(new EmptyBorder(0, 0, 0, 0));
+			previousNextPanes[i].add(paneVazio);
 			return;
 		}
 		btnsNext[i] = new JButton("Próxima Página");
@@ -575,7 +629,11 @@ public class PagPrincipalUI extends JFrame {
 	private void addButtonFirst(int i, boolean verdade) {
 		if(!verdade) {
 			btnsFirst[i] = null;
-			previousNextPanes[i].add(new JPanel());
+			JPanel paneVazio = new JPanel();
+			paneVazio.setForeground(new Color(0, 0, 0));
+			paneVazio.setBackground(new Color(240, 230, 140));
+			paneVazio.setBorder(new EmptyBorder(0, 0, 0, 0));
+			previousNextPanes[i].add(paneVazio);
 			return;
 		}
 		btnsFirst[i] = new JButton("Primeira Página");
@@ -592,7 +650,11 @@ public class PagPrincipalUI extends JFrame {
 	private void addButtonLast(int i, boolean verdade) {
 		if(!verdade) {
 			btnsLast[i] = null;
-			previousNextPanes[i].add(new JPanel());
+			JPanel paneVazio = new JPanel();
+			paneVazio.setForeground(new Color(0, 0, 0));
+			paneVazio.setBackground(new Color(240, 230, 140));
+			paneVazio.setBorder(new EmptyBorder(0, 0, 0, 0));
+			previousNextPanes[i].add(paneVazio);
 			return;
 		}
 		btnsLast[i] = new JButton("Última Página");
@@ -625,5 +687,29 @@ public class PagPrincipalUI extends JFrame {
 			}
 		}
 		return false;
+	}
+	
+	public void addPessoaFinished(Escola sistema, Pessoa contaLogada) {
+		if(pessoasMarcadas == null) {
+			refreshListPessoas(sistema, contaLogada, quaisMostrar);
+		} else {
+			refreshListPessoas(sistema, pessoasMarcadas, contaLogada, quaisMostrar);
+		}
+		for(int i=0 ; i<pageNumWhileAddPessoa ; i++) {
+			((CardLayout)cardsPane.getLayout()).next(cardsPane);
+		}
+		((JScrollPane)cardsPane.getComponent(pageNumWhileAddPessoa)).getVerticalScrollBar().setValue(scrollValueWhileAddPessoa);
+	}
+	
+	public void infoPessoaFinished(Escola sistema, Pessoa contaLogada) {
+		if(pessoasMarcadas == null) {
+			refreshListPessoas(sistema, contaLogada, quaisMostrar);
+		} else {
+			refreshListPessoas(sistema, pessoasMarcadas, contaLogada, quaisMostrar);
+		}
+		for(int i=0 ; i<pageNumWhileInfoPessoa ; i++) {
+			((CardLayout)cardsPane.getLayout()).next(cardsPane);
+		}
+		((JScrollPane)cardsPane.getComponent(pageNumWhileInfoPessoa)).getVerticalScrollBar().setValue(scrollValueWhileInfoPessoa);
 	}
 }
