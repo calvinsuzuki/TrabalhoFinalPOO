@@ -363,8 +363,8 @@ public class PagPrincipalUI extends JFrame {
 	}
 	
 	private void refreshListPessoas(Escola sistema, Pessoa contaLogada, boolean[] quais) {
-		ArrayList<Pessoa> pessoas = sistema.getPessoas(/*quais*/);
-		String[] dadosPessoas = sistema.imprimePessoas(/*quais*/);
+		ArrayList<Pessoa> pessoas = sistema.getPessoas(new boolean[] {true, true, true, true}/*quais*/);
+		String[] dadosPessoas = sistema.imprimePessoas(new boolean[] {true, true, true, true}/*quais*/);
 		int numPessoas = pessoas.size();
 		int numPaginas = numPessoas/27 + 1;
 		int numPessoasUltimaPagina = numPessoas - (numPaginas-1)*27;

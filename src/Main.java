@@ -27,8 +27,9 @@ public class Main {
 		escolaX.adicionaPessoa(diretorY, diretorY);
 		
 		//uso de printPessoas
-		String[] printPessoas = escolaX.imprimePessoas();
+		String[] printPessoas = escolaX.imprimePessoas(new boolean[] {false, true, true, true});
 		for(int i = 0; i < escolaX.getNPessoas(); i++) {
+			if(printPessoas[i] == null) {continue;}
 			System.out.println(printPessoas[i]);
 		}
 		
