@@ -64,7 +64,6 @@ public class PagPrincipalUI extends JFrame {
 	private JRadioButtonMenuItem rdbtnmntmOrdenarAlfabetico;
 	private ButtonGroup gpOrdenar;
 	
-
 	private boolean[] quaisMostrar;
 	private ArrayList<Pessoa> pessoasMarcadas;
 	private int pageNumWhileInfoPessoa;
@@ -125,7 +124,7 @@ public class PagPrincipalUI extends JFrame {
 		titlePane.setForeground(new Color(0, 0, 0));
 		titlePane.setBackground(new Color(218, 165, 32));
 		titlePane.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(218, 165, 32)));
-		titlePane.setBounds(0, 0, 1327, 120);
+		titlePane.setBounds(0, 0, 1328, 120);
 		titlePane.setLayout(null);
 		
 		txtBusca = new JTextField();
@@ -164,7 +163,7 @@ public class PagPrincipalUI extends JFrame {
 					return;
 				}
 				try {
-					int registro = Integer.parseInt(txtBusca.getText());
+					long registro = Long.parseLong(txtBusca.getText());
 					Pessoa pessoaEncontrada = sistema.buscaPessoa(registro);
 					pessoasMarcadas = new ArrayList<Pessoa>();
 					if(pessoaEncontrada != null) {
@@ -499,7 +498,8 @@ public class PagPrincipalUI extends JFrame {
 			}
 			
 			for(int j=0 ; j<numPessoasNessaPagina ; j++) {
-				int pessoaIndex = 27*i + j, iAgora = i;
+				int pessoaIndex = 27*i + j;
+				int thisPage = i;
 				String infoFormatada = "<html>" + dadosPessoas[pessoaIndex].substring(6).replaceAll("\\n", "<br/>") + "</html>";
 				btnsPessoa[pessoaIndex] = new JButton(infoFormatada);
 				btnsPessoa[pessoaIndex].setHorizontalAlignment(SwingConstants.LEFT);
@@ -508,8 +508,8 @@ public class PagPrincipalUI extends JFrame {
 				btnsPessoa[pessoaIndex].addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent evt) {
 						if(checkPermission(contaLogada, pessoas.get(pessoaIndex))) {
-							pageNumWhileInfoPessoa = iAgora;
-							scrollValueWhileInfoPessoa = scrollPanes[iAgora].getVerticalScrollBar().getValue();
+							pageNumWhileInfoPessoa = thisPage;
+							scrollValueWhileInfoPessoa = scrollPanes[thisPage].getVerticalScrollBar().getValue();
 							EventQueue.invokeLater(new Runnable() {
 								public void run() {
 									try {

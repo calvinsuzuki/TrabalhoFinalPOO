@@ -11,7 +11,7 @@ public class Pessoa {
 	 * @param _nome - Nome da pessoa
 	 * @param _freq - Frequencia da pessoa
 	 */
-	Pessoa(long _register, String _nome, float _freq) {
+	Pessoa(long _register, String _nome, double _freq) {
 		register = _register;
 		nome = _nome;
 		freq = _freq;

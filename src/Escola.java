@@ -79,7 +79,7 @@ public class Escola {
 	 * obtido pelo usuário, ou feita uma busca pelo nome usando outra função e depois passada o registro
 	 * aqui
 	 * */
-	public void removePessoa(Pessoa pessoaLogada, int registroPessoaRemovida) {
+	public void removePessoa(Pessoa pessoaLogada, long registroPessoaRemovida) {
 		int index = -1;
 		try {
 			for(int i = 0; i < nPessoas; i++) {
@@ -140,7 +140,7 @@ public class Escola {
 	 * @return retorna null caso não seja encontrado registro equivalente e retorna a Pessoa caso o
 	 * usuário seja encontrado
 	 * */
-	public Pessoa buscaPessoa(int registro) {
+	public Pessoa buscaPessoa(long registro) {
 		int index = -1;
 		
 		for(int i = 0; i < nPessoas; i++) {

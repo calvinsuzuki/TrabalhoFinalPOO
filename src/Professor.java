@@ -3,7 +3,7 @@ public class Professor extends Funcionario {
 
 	private String[] turmas;
 	
-	Professor(long register, String nome, float freq, Double salario, int reclamacoes, String[] turmas) {
+	Professor(long register, String nome, double freq, Double salario, int reclamacoes, String[] turmas) {
 		super(register, nome, freq, salario, reclamacoes);
 		this.turmas = turmas;
 	}

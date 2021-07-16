@@ -5,7 +5,7 @@ public class Aluno extends Pessoa {
 	private int ocorr;
 	private Double[] notas;
 	
-	Aluno(long register, String nome, float freq, String turma, int ocorrencias, Double[] notas) {
+	Aluno(long register, String nome, double freq, String turma, int ocorrencias, Double[] notas) {
 		super(register, nome, freq);
 		this.turma = turma;
 		this.ocorr = ocorrencias;

@@ -1,7 +1,7 @@
 
 public class Diretor extends Funcionario {
 	
-	Diretor(long register, String nome, float freq, Double salario, int reclamacoes) {
+	Diretor(long register, String nome, double freq, Double salario, int reclamacoes) {
 		super(register, nome, freq, salario, reclamacoes);
 	}
 	
