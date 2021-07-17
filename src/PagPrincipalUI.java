@@ -76,11 +76,10 @@ public class PagPrincipalUI extends JFrame {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		int ocorrencias = 0;
 		Double[] notas = { 8.0, 5.0, 5.0, 5.2, 5.6, 7.2};
 		Escola escolaX = new Escola();
-		Diretor diretorY = new Diretor(9999, "Y", (double) 90/100, 5000.00, ocorrencias);
-		Aluno alunoZ = new Aluno(123, "Z", (double) 54/100, "019", ocorrencias, notas );
+		Diretor diretorY = new Diretor(9999, "Y", (double) 90/100, 5000.00, 1);
+		Aluno alunoZ = new Aluno(123, "Z", (double) 54/100, "019", 0, notas );
 		GerenciadorDados ga = new GerenciadorDados();
 		
 		//leitura do banco de dados FAZER ISSO NA INICIALIZAÇÃO DO PROGRAMA
@@ -94,7 +93,7 @@ public class PagPrincipalUI extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					PagPrincipalUI frame = new PagPrincipalUI(escolaX, alunoZ);
+					PagPrincipalUI frame = new PagPrincipalUI(escolaX, diretorY);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
