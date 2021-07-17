@@ -44,6 +44,7 @@ public class PagPrincipalUI extends JFrame {
 	private JPanel[] previousNextPanes;
 	private JScrollPane[] scrollPanes;
 	private JTextField txtBusca;
+	private JButton btnUser;
 	private JButton btnBusca;
 	private JButton[] btnsPessoa;
 	private JButton btnAddPessoa;
@@ -75,11 +76,11 @@ public class PagPrincipalUI extends JFrame {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		int ocorrencias = 1;
+		int ocorrencias = 0;
 		Double[] notas = { 8.0, 5.0, 5.0, 5.2, 5.6, 7.2};
 		Escola escolaX = new Escola();
-		Diretor diretorY = new Diretor(9999, "Y", (float) 90/100, 5000.00, ocorrencias);
-		Aluno alunoZ = new Aluno(123, "Z", (float) 54/100, "019", ocorrencias, notas );
+		Diretor diretorY = new Diretor(9999, "Y", (double) 90/100, 5000.00, ocorrencias);
+		Aluno alunoZ = new Aluno(123, "Z", (double) 54/100, "019", ocorrencias, notas );
 		GerenciadorDados ga = new GerenciadorDados();
 		
 		//leitura do banco de dados FAZER ISSO NA INICIALIZAÇÃO DO PROGRAMA
@@ -93,7 +94,7 @@ public class PagPrincipalUI extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					PagPrincipalUI frame = new PagPrincipalUI(escolaX, diretorY);
+					PagPrincipalUI frame = new PagPrincipalUI(escolaX, alunoZ);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -126,6 +127,25 @@ public class PagPrincipalUI extends JFrame {
 		titlePane.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(218, 165, 32)));
 		titlePane.setBounds(0, 0, 1328, 120);
 		titlePane.setLayout(null);
+		
+		PagPrincipalUI paginaPrincipal = this;
+		btnUser = new JButton();
+		btnUser.setIcon(new ImageIcon(new ImageIcon(".\\UI Icons\\user.png").getImage().getScaledInstance(45, 45, Image.SCALE_DEFAULT)));
+		btnUser.setBounds(32, 28, 62, 62);
+		btnUser.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				EventQueue.invokeLater(new Runnable() {
+					public void run() {
+						try {
+							InfoPessoaUI frame = new InfoPessoaUI(sistema, contaLogada, contaLogada, paginaPrincipal);
+							frame.setVisible(true);
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+				});
+			}
+		});
 		
 		txtBusca = new JTextField();
 		txtBusca.setForeground(new Color(105, 105, 105));
@@ -393,6 +413,7 @@ public class PagPrincipalUI extends JFrame {
 		mnbrFiltros.add(mnFiltros);
 		
 		titlePane.add(txtBusca);
+		titlePane.add(btnUser);
 		titlePane.add(btnBusca);
 		titlePane.add(mnbrFiltros);
 		
@@ -670,6 +691,8 @@ public class PagPrincipalUI extends JFrame {
 	}
 	
 	private boolean checkPermission(Pessoa contaLogada, Pessoa aSerVista) {
+		System.out.println(contaLogada.toString());
+		System.out.println(aSerVista.toString());
 		if(contaLogada.toString().equals(aSerVista.toString())) {
 			return true;
 		}

@@ -20,7 +20,7 @@ public class GerenciadorDados {
 		for(int i = 6; i < 12; i++ ) {
 			notas[i-6] = Double.parseDouble(dados[i]);
 		}
-		Aluno novoAluno = new Aluno(Long.parseLong(dados[1]), dados[2], Float.parseFloat(dados[3]), dados[4], Integer.parseInt(dados[5]), notas);
+		Aluno novoAluno = new Aluno(Long.parseLong(dados[1]), dados[2], Double.parseDouble(dados[3]), dados[4], Integer.parseInt(dados[5]), notas);
 		escola.adicionaPessoa(classeParaPermissoes, novoAluno);
 	}
 	
@@ -31,18 +31,18 @@ public class GerenciadorDados {
 	 * */
 	private void processaLinhaFuncionario(Escola escola, String[] dados) {
 		Pessoa novaPessoa = null;
-		String[] dadosExtra = new String[dados.length-6];
+		String[] dadosExtra = new String[dados.length-7];
 		
-		for(int i = 6; i < dados.length; i++) {
-			dadosExtra[i-6] = dados[i];
+		for(int i = 7; i < dados.length; i++) {
+			dadosExtra[i-7] = dados[i];
 		}
 		
 		if(dados[1].equals("PROFESSOR")) {
-			novaPessoa = new Professor(Long.parseLong(dados[2]), dados[3], Float.parseFloat(dados[4]), Double.parseDouble(dados[5]), Integer.parseInt(dados[6]), dadosExtra);
+			novaPessoa = new Professor(Long.parseLong(dados[2]), dados[3], Double.parseDouble(dados[4]), Double.parseDouble(dados[5]), Integer.parseInt(dados[6]), dadosExtra);
 		} else if(dados[1].equals("ZELADOR")) {
-			novaPessoa = new Zelador(Long.parseLong(dados[2]), dados[3], Float.parseFloat(dados[4]), Double.parseDouble(dados[5]), Integer.parseInt(dados[6]), dadosExtra[0]);
+			novaPessoa = new Zelador(Long.parseLong(dados[2]), dados[3], Double.parseDouble(dados[4]), Double.parseDouble(dados[5]), Integer.parseInt(dados[6]), dadosExtra[0]);
 		} else if(dados[1].equals("DIRETOR")) {
-			novaPessoa = new Diretor(Long.parseLong(dados[2]), dados[3], Float.parseFloat(dados[4]), Double.parseDouble(dados[5]), Integer.parseInt(dados[6]));
+			novaPessoa = new Diretor(Long.parseLong(dados[2]), dados[3], Double.parseDouble(dados[4]), Double.parseDouble(dados[5]), Integer.parseInt(dados[6]));
 		}
 		escola.adicionaPessoa(classeParaPermissoes, novaPessoa);
 	}

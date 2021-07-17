@@ -39,6 +39,8 @@ public class InfoPessoaUI extends JFrame {
 	private JLabel lblRegistro;
 	private JLabel lblTurma;
 	private JLabel lblSalario;
+	private JLabel lblTurmas;
+	private JLabel lblFuncao;
 	private JLabel lblNotas;
 	private JLabel lblCiencias;
 	private JLabel lblMatematica;
@@ -82,6 +84,7 @@ public class InfoPessoaUI extends JFrame {
 		Escola escolaX = new Escola();
 		Diretor diretorY = new Diretor(9999, "Y", (double) 90/100, 5000.00, ocorrencias);
 		Professor professorW = new Professor(010101, "W", (double) 0.95, 1000, ocorrencias, new String[] {"A", "B", "C"});
+		Zelador zeladorZ = new Zelador(121212, "Z", (double) 0.21, 102.45, ocorrencias, "sei la po");
 		Aluno alunoZ = new Aluno(123, "Z", (double) 54/100, "019", ocorrencias, notas );
 		GerenciadorDados ga = new GerenciadorDados();
 		
@@ -149,7 +152,7 @@ public class InfoPessoaUI extends JFrame {
 		
 		titlePane = new JPanel();
 		titlePane.setForeground(new Color(0, 0, 0));
-		titlePane.setBackground(new Color(240, 230, 140));
+		titlePane.setBackground(new Color(46, 129, 255));
 		titlePane.setBorder(new MatteBorder(4, 4, 4, 4, (Color) new Color(218, 165, 32)));
 		titlePane.setBounds(0, 0, 758, 130);
 		titlePane.setLayout(null);
@@ -471,7 +474,7 @@ public class InfoPessoaUI extends JFrame {
 		
 		titlePane = new JPanel();
 		titlePane.setForeground(new Color(0, 0, 0));
-		titlePane.setBackground(new Color(240, 230, 140));
+		titlePane.setBackground(new Color(255, 146, 46));
 		titlePane.setBorder(new MatteBorder(4, 4, 4, 4, (Color) new Color(218, 165, 32)));
 		titlePane.setBounds(0, 0, 758, 172);
 		titlePane.setLayout(null);
@@ -499,18 +502,18 @@ public class InfoPessoaUI extends JFrame {
 			}
 		}
 		if(professor.getTurmas().length > 1) {
-			lblTurma = new JLabel("Turmas : " + turmas);
+			lblTurmas = new JLabel("Turmas : " + turmas);
 		} else {
-			lblTurma = new JLabel("Turma : " + turmas);
+			lblTurmas = new JLabel("Turma : " + turmas);
 		}
-		lblTurma.setForeground(new Color(0, 0, 0));
-		lblTurma.setFont(new Font("Papyrus", Font.BOLD | Font.ITALIC, 26));
-		lblTurma.setBounds(62, 115, 400, 46);
+		lblTurmas.setForeground(new Color(0, 0, 0));
+		lblTurmas.setFont(new Font("Papyrus", Font.BOLD | Font.ITALIC, 26));
+		lblTurmas.setBounds(62, 115, 400, 46);
 		
 		titlePane.add(lblNome);
 		titlePane.add(lblRegistro);
 		titlePane.add(lblSalario);
-		titlePane.add(lblTurma);
+		titlePane.add(lblTurmas);
 		
 		infoPane = new JPanel();
 		infoPane.setForeground(new Color(0, 0, 0));
@@ -614,37 +617,304 @@ public class InfoPessoaUI extends JFrame {
 		ehAPessoa = contaLogada.toString().equals(zelador.toString());
 		setBackground(Color.WHITE);
 		setResizable(false);
-		setType(Type.NORMAL);
-		setTitle("Infos do Aluno");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 770, 500);
+		setType(Type.UTILITY);
+		if(ehAPessoa) {
+			setTitle("Suas Infos");
+		} else {
+			setTitle("Infos do Zelador");
+		}
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setBounds(100, 100, 770, 350);
+		addWindowStateListener(new WindowStateListener() {
+			public void windowStateChanged(WindowEvent evt) {
+				if(evt.getNewState() == WindowEvent.WINDOW_DEACTIVATED) {
+					dispose();
+				}
+			}
+		});
 		
 		contentPane = new JPanel();
 		contentPane.setForeground(new Color(0, 0, 0));
 		contentPane.setBackground(new Color(240, 230, 140));
-		contentPane.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(218, 165, 32)));
+		contentPane.setBorder(new EmptyBorder(0, 0, 0, 0));
 		contentPane.setLayout(null);
 		setContentPane(contentPane);
 		
+		titlePane = new JPanel();
+		titlePane.setForeground(new Color(0, 0, 0));
+		titlePane.setBackground(new Color(106, 218, 88));
+		titlePane.setBorder(new MatteBorder(4, 4, 4, 4, (Color) new Color(218, 165, 32)));
+		titlePane.setBounds(0, 0, 758, 172);
+		titlePane.setLayout(null);
 		
+		lblNome = new JLabel("Nome : " + zelador.getNome());
+		lblNome.setForeground(new Color(0, 0, 0));
+		lblNome.setFont(new Font("Papyrus", Font.BOLD | Font.ITALIC, 32));
+		lblNome.setBounds(32, 20, 706, 48);
+		
+		lblRegistro = new JLabel("Registro : " + zelador.getRegister());
+		lblRegistro.setForeground(new Color(0, 0, 0));
+		lblRegistro.setFont(new Font("Papyrus", Font.BOLD | Font.ITALIC, 26));
+		lblRegistro.setBounds(68, 72, 365, 46);
+		
+		lblSalario = new JLabel("Salário : $" + String.format("%.2f", zelador.getSalario()));
+		lblSalario.setForeground(new Color(0, 0, 0));
+		lblSalario.setFont(new Font("Papyrus", Font.BOLD | Font.ITALIC, 26));
+		lblSalario.setBounds(465, 72, 273, 46);
+		
+		lblFuncao = new JLabel("Função : " + zelador.getFuncao());
+		lblFuncao.setForeground(new Color(0, 0, 0));
+		lblFuncao.setFont(new Font("Papyrus", Font.BOLD | Font.ITALIC, 26));
+		lblFuncao.setBounds(65, 115, 400, 46);
+		
+		titlePane.add(lblNome);
+		titlePane.add(lblRegistro);
+		titlePane.add(lblSalario);
+		titlePane.add(lblFuncao);
+		
+		infoPane = new JPanel();
+		infoPane.setForeground(new Color(0, 0, 0));
+		infoPane.setBackground(new Color(240, 230, 140));
+		infoPane.setBorder(new MatteBorder(4, 4, 4, 4, (Color) new Color(218, 165, 32)));
+		infoPane.setBounds(0, 168, 758, 147);
+		infoPane.setLayout(null);
+		
+		lblFrequencia = new JLabel("Frequência :");
+		lblFrequencia.setForeground(new Color(0, 0, 0));
+		lblFrequencia.setFont(new Font("Papyrus", Font.BOLD | Font.ITALIC, 22));
+		lblFrequencia.setBounds(32, 20, 128, 32);
+		
+		lblFrequenciaNum = new JLabel(((int)(zelador.getFreq()*100)) + "%");
+		lblFrequenciaNum.setForeground(new Color(0, 0, 0));
+		lblFrequenciaNum.setFont(new Font("Papyrus", Font.BOLD | Font.ITALIC, 16));
+		lblFrequenciaNum.setHorizontalAlignment(SwingConstants.CENTER);
+		lblFrequenciaNum.setBounds(175 + 2*((int)(zelador.getFreq()*100)), 13, 42, 16);
+		
+		Dictionary<Integer, JLabel> labelTable = new Hashtable<Integer, JLabel>();
+		for(int i=0 ; i<=100 ; i+=25) {
+			JLabel label = new JLabel(i + "%");
+			label.setForeground(new Color(0, 0, 0));
+			label.setFont(new Font("Papyrus", Font.BOLD | Font.ITALIC, 12));
+			label.setHorizontalAlignment(SwingConstants.CENTER);
+			label.setPreferredSize(new Dimension(34, 12));
+			labelTable.put(i, label);
+		}
+		sldFrequencia = new JSlider(JSlider.HORIZONTAL, 0, 100, (int)(zelador.getFreq()*100));
+		sldFrequencia.setForeground(new Color(0, 0, 0));
+		sldFrequencia.setBackground(new Color(240, 230, 140));
+		sldFrequencia.setMinorTickSpacing(5);
+		sldFrequencia.setMajorTickSpacing(25);
+		sldFrequencia.setPaintTicks(true);
+		sldFrequencia.setLabelTable(labelTable);
+		sldFrequencia.setPaintLabels(true);
+		sldFrequencia.setEnabled(!ehAPessoa);
+		sldFrequencia.setBounds(180, 26, 230, 47);
+		sldFrequencia.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent evt) {
+				lblFrequenciaNum.setText(sldFrequencia.getValue() + "%");
+				lblFrequenciaNum.setBounds(175 + 2*sldFrequencia.getValue(), 13, 42, 16);
+			}
+		});
+		
+		lblReclamacoes = new JLabel("Reclamações :");
+		lblReclamacoes.setForeground(new Color(0, 0, 0));
+		lblReclamacoes.setFont(new Font("Papyrus", Font.BOLD | Font.ITALIC, 22));
+		lblReclamacoes.setBounds(466, 20, 144, 32);
+		
+		spnReclamacoes = new JSpinner(new SpinnerNumberModel());
+		((SpinnerNumberModel)spnReclamacoes.getModel()).setValue(zelador.getReclam());
+		((SpinnerNumberModel)spnReclamacoes.getModel()).setMinimum(0);
+		((SpinnerNumberModel)spnReclamacoes.getModel()).setStepSize(1);
+		spnReclamacoes.setFont(new Font("Papyrus", Font.BOLD, 22));
+		((JSpinner.DefaultEditor)spnReclamacoes.getEditor()).getTextField().setHorizontalAlignment(SwingConstants.CENTER);
+		spnReclamacoes.setEnabled(!ehAPessoa);
+		spnReclamacoes.setBounds(620, 20, 72, 32);
+		
+		btnSalvar = new JButton("Salvar Modificações");
+		btnSalvar.setFont(new Font("Papyrus", Font.BOLD, 18));
+		btnSalvar.setEnabled(!ehAPessoa);
+		btnSalvar.setBounds(130, 82, 210, 44);
+		btnSalvar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				/*sistema.mudaZelador(zelador, (double)sldFrequencia.getValue()/100f, (int)spnReclamacoes.getValue());*/
+				JOptionPane.showMessageDialog(null, "Informações do Zelador atualizadas", "Modificações SALVAS", JOptionPane.INFORMATION_MESSAGE);
+				dispose();
+			}
+		});
+		
+		btnRemover = new JButton("Remover Zelador");
+		btnRemover.setFont(new Font("Papyrus", Font.BOLD, 18));
+		btnRemover.setEnabled(!ehAPessoa);
+		btnRemover.setBounds(430, 82, 210, 44);
+		btnRemover.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				int certeza = JOptionPane.showConfirmDialog(null, "Tem certeza de que deseja remover o Zelador?", "Confirme a ação", JOptionPane.YES_NO_OPTION);
+				if(certeza == JOptionPane.YES_OPTION) {
+					sistema.removePessoa(contaLogada, zelador.getRegister());
+					JOptionPane.showMessageDialog(null, "Zelador removido do Sistema", "Remoção realizada com SUCESSO", JOptionPane.INFORMATION_MESSAGE);
+					paginaPrincipal.infoPessoaFinished(sistema, contaLogada);
+					dispose();
+				}
+			}
+		});
+		
+		infoPane.add(lblFrequencia);
+		infoPane.add(lblFrequenciaNum);
+		infoPane.add(lblReclamacoes);
+		infoPane.add(spnReclamacoes);
+		infoPane.add(sldFrequencia);
+		infoPane.add(btnSalvar);
+		infoPane.add(btnRemover);
+		
+		contentPane.add(titlePane);
+		contentPane.add(infoPane);
 	}
 	
 	public void InfoDiretorUI(Escola sistema, Diretor diretor, Pessoa contaLogada, PagPrincipalUI paginaPrincipal) {
 		ehAPessoa = contaLogada.toString().equals(diretor.toString());
 		setBackground(Color.WHITE);
 		setResizable(false);
-		setType(Type.NORMAL);
-		setTitle("Infos do Aluno");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 770, 500);
+		setType(Type.UTILITY);
+		if(ehAPessoa) {
+			setTitle("Suas Infos");
+		} else {
+			setTitle("Infos do Diretor");
+		}
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setBounds(100, 100, 770, 308);
+		addWindowStateListener(new WindowStateListener() {
+			public void windowStateChanged(WindowEvent evt) {
+				if(evt.getNewState() == WindowEvent.WINDOW_DEACTIVATED) {
+					dispose();
+				}
+			}
+		});
 		
 		contentPane = new JPanel();
 		contentPane.setForeground(new Color(0, 0, 0));
 		contentPane.setBackground(new Color(240, 230, 140));
-		contentPane.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(218, 165, 32)));
+		contentPane.setBorder(new EmptyBorder(0, 0, 0, 0));
 		contentPane.setLayout(null);
 		setContentPane(contentPane);
 		
+		titlePane = new JPanel();
+		titlePane.setForeground(new Color(0, 0, 0));
+		titlePane.setBackground(new Color(245, 45, 81));
+		titlePane.setBorder(new MatteBorder(4, 4, 4, 4, (Color) new Color(218, 165, 32)));
+		titlePane.setBounds(0, 0, 758, 130);
+		titlePane.setLayout(null);
 		
+		lblNome = new JLabel("Nome : " + diretor.getNome());
+		lblNome.setForeground(new Color(0, 0, 0));
+		lblNome.setFont(new Font("Papyrus", Font.BOLD | Font.ITALIC, 32));
+		lblNome.setBounds(32, 20, 706, 48);
+		
+		lblRegistro = new JLabel("Registro : " + diretor.getRegister());
+		lblRegistro.setForeground(new Color(0, 0, 0));
+		lblRegistro.setFont(new Font("Papyrus", Font.BOLD | Font.ITALIC, 26));
+		lblRegistro.setBounds(68, 72, 365, 46);
+		
+		lblSalario = new JLabel("Salário : $" + String.format("%.2f", diretor.getSalario()));
+		lblSalario.setForeground(new Color(0, 0, 0));
+		lblSalario.setFont(new Font("Papyrus", Font.BOLD | Font.ITALIC, 26));
+		lblSalario.setBounds(465, 72, 273, 46);
+		
+		titlePane.add(lblNome);
+		titlePane.add(lblRegistro);
+		titlePane.add(lblSalario);
+		
+		infoPane = new JPanel();
+		infoPane.setForeground(new Color(0, 0, 0));
+		infoPane.setBackground(new Color(240, 230, 140));
+		infoPane.setBorder(new MatteBorder(4, 4, 4, 4, (Color) new Color(218, 165, 32)));
+		infoPane.setBounds(0, 126, 758, 147);
+		infoPane.setLayout(null);
+		
+		lblFrequencia = new JLabel("Frequência :");
+		lblFrequencia.setForeground(new Color(0, 0, 0));
+		lblFrequencia.setFont(new Font("Papyrus", Font.BOLD | Font.ITALIC, 22));
+		lblFrequencia.setBounds(32, 20, 128, 32);
+		
+		lblFrequenciaNum = new JLabel(((int)(diretor.getFreq()*100)) + "%");
+		lblFrequenciaNum.setForeground(new Color(0, 0, 0));
+		lblFrequenciaNum.setFont(new Font("Papyrus", Font.BOLD | Font.ITALIC, 16));
+		lblFrequenciaNum.setHorizontalAlignment(SwingConstants.CENTER);
+		lblFrequenciaNum.setBounds(175 + 2*((int)(diretor.getFreq()*100)), 13, 42, 16);
+		
+		Dictionary<Integer, JLabel> labelTable = new Hashtable<Integer, JLabel>();
+		for(int i=0 ; i<=100 ; i+=25) {
+			JLabel label = new JLabel(i + "%");
+			label.setForeground(new Color(0, 0, 0));
+			label.setFont(new Font("Papyrus", Font.BOLD | Font.ITALIC, 12));
+			label.setHorizontalAlignment(SwingConstants.CENTER);
+			label.setPreferredSize(new Dimension(34, 12));
+			labelTable.put(i, label);
+		}
+		sldFrequencia = new JSlider(JSlider.HORIZONTAL, 0, 100, (int)(diretor.getFreq()*100));
+		sldFrequencia.setForeground(new Color(0, 0, 0));
+		sldFrequencia.setBackground(new Color(240, 230, 140));
+		sldFrequencia.setMinorTickSpacing(5);
+		sldFrequencia.setMajorTickSpacing(25);
+		sldFrequencia.setPaintTicks(true);
+		sldFrequencia.setLabelTable(labelTable);
+		sldFrequencia.setPaintLabels(true);
+		sldFrequencia.setBounds(180, 26, 230, 47);
+		sldFrequencia.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent evt) {
+				lblFrequenciaNum.setText(sldFrequencia.getValue() + "%");
+				lblFrequenciaNum.setBounds(175 + 2*sldFrequencia.getValue(), 13, 42, 16);
+			}
+		});
+		
+		lblReclamacoes = new JLabel("Reclamações :");
+		lblReclamacoes.setForeground(new Color(0, 0, 0));
+		lblReclamacoes.setFont(new Font("Papyrus", Font.BOLD | Font.ITALIC, 22));
+		lblReclamacoes.setBounds(466, 20, 144, 32);
+		
+		spnReclamacoes = new JSpinner(new SpinnerNumberModel());
+		((SpinnerNumberModel)spnReclamacoes.getModel()).setValue(diretor.getReclam());
+		((SpinnerNumberModel)spnReclamacoes.getModel()).setMinimum(0);
+		((SpinnerNumberModel)spnReclamacoes.getModel()).setStepSize(1);
+		spnReclamacoes.setFont(new Font("Papyrus", Font.BOLD, 22));
+		((JSpinner.DefaultEditor)spnReclamacoes.getEditor()).getTextField().setHorizontalAlignment(SwingConstants.CENTER);
+		spnReclamacoes.setBounds(620, 20, 72, 32);
+		
+		btnSalvar = new JButton("Salvar Modificações");
+		btnSalvar.setFont(new Font("Papyrus", Font.BOLD, 18));
+		btnSalvar.setBounds(130, 82, 210, 44);
+		btnSalvar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				/*sistema.mudaDiretor(diretor, (double)sldFrequencia.getValue()/100f, (int)spnReclamacoes.getValue());*/
+				JOptionPane.showMessageDialog(null, "Informações do Diretor atualizadas", "Modificações SALVAS", JOptionPane.INFORMATION_MESSAGE);
+				dispose();
+			}
+		});
+		
+		btnRemover = new JButton("Remover Diretor");
+		btnRemover.setFont(new Font("Papyrus", Font.BOLD, 18));
+		btnRemover.setEnabled(!ehAPessoa);
+		btnRemover.setBounds(430, 82, 210, 44);
+		btnRemover.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				int certeza = JOptionPane.showConfirmDialog(null, "Tem certeza de que deseja remover o Diretor?", "Confirme a ação", JOptionPane.YES_NO_OPTION);
+				if(certeza == JOptionPane.YES_OPTION) {
+					sistema.removePessoa(contaLogada, diretor.getRegister());
+					JOptionPane.showMessageDialog(null, "Diretor removido do Sistema", "Remoção realizada com SUCESSO", JOptionPane.INFORMATION_MESSAGE);
+					paginaPrincipal.infoPessoaFinished(sistema, contaLogada);
+					dispose();
+				}
+			}
+		});
+		
+		infoPane.add(lblFrequencia);
+		infoPane.add(lblFrequenciaNum);
+		infoPane.add(lblReclamacoes);
+		infoPane.add(spnReclamacoes);
+		infoPane.add(sldFrequencia);
+		infoPane.add(btnSalvar);
+		infoPane.add(btnRemover);
+		
+		contentPane.add(titlePane);
+		contentPane.add(infoPane);
 	}
 }
