@@ -108,7 +108,7 @@ public class PagPrincipalUI extends JFrame {
 	public PagPrincipalUI(Escola sistema, Pessoa contaLogada) {
 		setBackground(Color.WHITE);
 		setResizable(false);
-		setType(Type.UTILITY);
+		setType(Type.NORMAL);
 		setTitle("Main Page");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(60, 30, 1340, 780);
@@ -498,6 +498,7 @@ public class PagPrincipalUI extends JFrame {
 			}
 			
 			for(int j=0 ; j<numPessoasNessaPagina ; j++) {
+				PagPrincipalUI paginaPrincipal = this;
 				int pessoaIndex = 27*i + j;
 				int thisPage = i;
 				String infoFormatada = "<html>" + dadosPessoas[pessoaIndex].substring(6).replaceAll("\\n", "<br/>") + "</html>";
@@ -513,8 +514,8 @@ public class PagPrincipalUI extends JFrame {
 							EventQueue.invokeLater(new Runnable() {
 								public void run() {
 									try {
-										/*InfoPessoaUI frame = new InfoPessoaUI(sistema, pessoas.get(pessoaIndex), contaLogada);
-										frame.setVisible(true);*/
+										InfoPessoaUI frame = new InfoPessoaUI(sistema, pessoas.get(pessoaIndex), contaLogada, paginaPrincipal);
+										frame.setVisible(true);
 									} catch (Exception e) {
 										e.printStackTrace();
 									}
@@ -698,6 +699,7 @@ public class PagPrincipalUI extends JFrame {
 		for(int i=0 ; i<pageNumWhileAddPessoa ; i++) {
 			((CardLayout)cardsPane.getLayout()).next(cardsPane);
 		}
+		((JScrollPane)cardsPane.getComponent(pageNumWhileAddPessoa)).getVerticalScrollBar().setValue(775);
 		((JScrollPane)cardsPane.getComponent(pageNumWhileAddPessoa)).getVerticalScrollBar().setValue(scrollValueWhileAddPessoa);
 	}
 	
@@ -710,6 +712,7 @@ public class PagPrincipalUI extends JFrame {
 		for(int i=0 ; i<pageNumWhileInfoPessoa ; i++) {
 			((CardLayout)cardsPane.getLayout()).next(cardsPane);
 		}
+		((JScrollPane)cardsPane.getComponent(pageNumWhileInfoPessoa)).getVerticalScrollBar().setValue(775);
 		((JScrollPane)cardsPane.getComponent(pageNumWhileInfoPessoa)).getVerticalScrollBar().setValue(scrollValueWhileInfoPessoa);
 	}
 }

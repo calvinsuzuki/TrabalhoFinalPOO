@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class GerenciadorDados {
 	private String row = new String();
-	private Diretor classeParaPermissoes = new Diretor(-1, "GA", 0, null, 0);
+	private Diretor classeParaPermissoes = new Diretor(-1, "GA", 0, 0, 0);
 	
 	/**
 	 * Esse método cria um novo aluno dado um array de strings correlacionado à uma linha do csv

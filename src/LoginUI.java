@@ -71,7 +71,7 @@ public class LoginUI extends JFrame {
 	public LoginUI(Escola sistema) {
 		setBackground(Color.WHITE);
 		setResizable(false);
-		setType(Type.UTILITY);
+		setType(Type.NORMAL);
 		setTitle("Login Page");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 770, 500);

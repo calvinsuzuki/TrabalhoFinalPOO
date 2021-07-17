@@ -3,7 +3,7 @@ public class Zelador extends Funcionario {
 	
 	private String funcao;
 	
-	Zelador(long register, String nome, double freq, Double salario, int reclamacoes, String funcao) {
+	Zelador(long register, String nome, double freq, double salario, int reclamacoes, String funcao) {
 		super(register, nome, freq, salario, reclamacoes);
 		this.funcao = funcao;
 	}

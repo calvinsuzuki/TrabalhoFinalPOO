@@ -4,7 +4,7 @@ public class Funcionario extends Pessoa {
 	private Double salario;
 	private int reclamacoes;
 	
-	Funcionario(long register, String nome, double freq, Double salario, int reclamacoes) {
+	Funcionario(long register, String nome, double freq, double salario, int reclamacoes) {
 		super(register, nome, freq);
 		this.salario = salario;
 		this.reclamacoes = reclamacoes;
