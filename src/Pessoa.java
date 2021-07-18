@@ -58,7 +58,7 @@ public class Pessoa {
 		return;
 	}
 	
-	public void setFreq(float _freq) {
+	public void setFreq(double _freq) {
 		freq = _freq;
 		return;
 	}

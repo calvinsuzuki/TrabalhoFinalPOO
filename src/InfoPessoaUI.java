@@ -159,17 +159,17 @@ public class InfoPessoaUI extends JFrame {
 		
 		lblNome = new JLabel("Nome : " + aluno.getNome());
 		lblNome.setForeground(new Color(0, 0, 0));
-		lblNome.setFont(new Font("Papyrus", Font.BOLD | Font.ITALIC, 32));
+		lblNome.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 32));
 		lblNome.setBounds(32, 20, 706, 48);
 		
 		lblRegistro = new JLabel("Registro : " + aluno.getRegister());
 		lblRegistro.setForeground(new Color(0, 0, 0));
-		lblRegistro.setFont(new Font("Papyrus", Font.BOLD | Font.ITALIC, 26));
+		lblRegistro.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 26));
 		lblRegistro.setBounds(68, 72, 365, 46);
 		
 		lblTurma = new JLabel("Turma : " + aluno.getTurma());
 		lblTurma.setForeground(new Color(0, 0, 0));
-		lblTurma.setFont(new Font("Papyrus", Font.BOLD | Font.ITALIC, 26));
+		lblTurma.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 26));
 		lblTurma.setBounds(465, 72, 273, 46);
 		
 		titlePane.add(lblNome);
@@ -185,36 +185,36 @@ public class InfoPessoaUI extends JFrame {
 		
 		lblNotas = new JLabel("Notas :");
 		lblNotas.setForeground(new Color(0, 0, 0));
-		lblNotas.setFont(new Font("Papyrus", Font.BOLD | Font.ITALIC, 22));
+		lblNotas.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 22));
 		lblNotas.setBounds(32, 34, 80, 40);
 		
 		lblCiencias = new JLabel("Ciências");
 		lblCiencias.setForeground(new Color(0, 0, 0));
-		lblCiencias.setFont(new Font("Papyrus", Font.BOLD | Font.ITALIC, 20));
+		lblCiencias.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 20));
 		lblCiencias.setBounds(144, 60, 95, 24);
 		
 		lblMatematica = new JLabel("Matemática");
 		lblMatematica.setForeground(new Color(0, 0, 0));
-		lblMatematica.setFont(new Font("Papyrus", Font.BOLD | Font.ITALIC, 20));
+		lblMatematica.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 20));
 		lblMatematica.setBounds(122, 111, 117, 24);
 		
 		lblPortugues = new JLabel("Português");
 		lblPortugues.setForeground(new Color(0, 0, 0));
-		lblPortugues.setFont(new Font("Papyrus", Font.BOLD | Font.ITALIC, 20));
+		lblPortugues.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 20));
 		lblPortugues.setBounds(134, 162, 105, 24);
 		
 		lblProva1 = new JLabel("Prova 1");
 		lblProva1.setForeground(new Color(0, 0, 0));
-		lblProva1.setFont(new Font("Papyrus", Font.BOLD | Font.ITALIC, 20));
+		lblProva1.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 20));
 		lblProva1.setBounds(259, 22, 76, 24);
 		
 		lblProva2 = new JLabel("Prova 2");
 		lblProva2.setForeground(new Color(0, 0, 0));
-		lblProva2.setFont(new Font("Papyrus", Font.BOLD | Font.ITALIC, 20));
+		lblProva2.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 20));
 		lblProva2.setBounds(377, 22, 76, 24);
 		
 		spnCienciasProva1 = new JSpinner(new SpinnerNumberModel((double)aluno.getNotas()[0], (double)0, (double)10, (double)0.1));
-		spnCienciasProva1.setFont(new Font("Papyrus", Font.BOLD, 22));
+		spnCienciasProva1.setFont(new Font("Arial", Font.BOLD, 22));
 		((JSpinner.DefaultEditor)spnCienciasProva1.getEditor()).getTextField().setHorizontalAlignment(SwingConstants.CENTER);
 		spnCienciasProva1.setEnabled(!ehAPessoa);
 		spnCienciasProva1.setBounds(249, 50, 90, 45);
@@ -228,7 +228,7 @@ public class InfoPessoaUI extends JFrame {
 		});
 		
 		spnCienciasProva2 = new JSpinner(new SpinnerNumberModel((double)aluno.getNotas()[1], (double)0, (double)10, (double)0.1));
-		spnCienciasProva2.setFont(new Font("Papyrus", Font.BOLD, 22));
+		spnCienciasProva2.setFont(new Font("Arial", Font.BOLD, 22));
 		((JSpinner.DefaultEditor)spnCienciasProva2.getEditor()).getTextField().setHorizontalAlignment(SwingConstants.CENTER);
 		spnCienciasProva2.setEnabled(!ehAPessoa);
 		spnCienciasProva2.setBounds(367, 50, 90, 45);
@@ -242,7 +242,7 @@ public class InfoPessoaUI extends JFrame {
 		});
 		
 		spnMatematicaProva1 = new JSpinner(new SpinnerNumberModel((double)aluno.getNotas()[2], (double)0, (double)10, (double)0.1));
-		spnMatematicaProva1.setFont(new Font("Papyrus", Font.BOLD, 22));
+		spnMatematicaProva1.setFont(new Font("Arial", Font.BOLD, 22));
 		((JSpinner.DefaultEditor)spnMatematicaProva1.getEditor()).getTextField().setHorizontalAlignment(SwingConstants.CENTER);
 		spnMatematicaProva1.setEnabled(!ehAPessoa);
 		spnMatematicaProva1.setBounds(249, 100, 90, 45);
@@ -256,7 +256,7 @@ public class InfoPessoaUI extends JFrame {
 		});
 		
 		spnMatematicaProva2 = new JSpinner(new SpinnerNumberModel((double)aluno.getNotas()[3], (double)0, (double)10, (double)0.1));
-		spnMatematicaProva2.setFont(new Font("Papyrus", Font.BOLD, 22));
+		spnMatematicaProva2.setFont(new Font("Arial", Font.BOLD, 22));
 		((JSpinner.DefaultEditor)spnMatematicaProva2.getEditor()).getTextField().setHorizontalAlignment(SwingConstants.CENTER);
 		spnMatematicaProva2.setEnabled(!ehAPessoa);
 		spnMatematicaProva2.setBounds(367, 100, 90, 45);
@@ -270,7 +270,7 @@ public class InfoPessoaUI extends JFrame {
 		});
 		
 		spnPortuguesProva1 = new JSpinner(new SpinnerNumberModel((double)aluno.getNotas()[4], (double)0, (double)10, (double)0.1));
-		spnPortuguesProva1.setFont(new Font("Papyrus", Font.BOLD, 22));
+		spnPortuguesProva1.setFont(new Font("Arial", Font.BOLD, 22));
 		((JSpinner.DefaultEditor)spnPortuguesProva1.getEditor()).getTextField().setHorizontalAlignment(SwingConstants.CENTER);
 		spnPortuguesProva1.setEnabled(!ehAPessoa);
 		spnPortuguesProva1.setBounds(249, 150, 90, 45);
@@ -284,7 +284,7 @@ public class InfoPessoaUI extends JFrame {
 		});
 		
 		spnPortuguesProva2 = new JSpinner(new SpinnerNumberModel((double)aluno.getNotas()[5], (double)0, (double)10, (double)0.1));
-		spnPortuguesProva2.setFont(new Font("Papyrus", Font.BOLD, 22));
+		spnPortuguesProva2.setFont(new Font("Arial", Font.BOLD, 22));
 		((JSpinner.DefaultEditor)spnPortuguesProva2.getEditor()).getTextField().setHorizontalAlignment(SwingConstants.CENTER);
 		spnPortuguesProva2.setEnabled(!ehAPessoa);
 		spnPortuguesProva2.setBounds(367, 150, 90, 45);
@@ -299,58 +299,58 @@ public class InfoPessoaUI extends JFrame {
 		
 		lblMedia = new JLabel("Média");
 		lblMedia.setForeground(new Color(0, 0, 0));
-		lblMedia.setFont(new Font("Papyrus", Font.BOLD | Font.ITALIC, 20));
+		lblMedia.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 20));
 		lblMedia.setBounds(489, 22, 68, 24);
 		
 		mediaCiencias = (aluno.getNotas()[0]+aluno.getNotas()[1])/2;
 		lblMediaCiencias = new JLabel(String.format("%.1f", mediaCiencias));
 		lblMediaCiencias.setForeground(new Color(0, 0, 0));
-		lblMediaCiencias.setFont(new Font("Papyrus", Font.BOLD | Font.ITALIC, 24));
+		lblMediaCiencias.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 24));
 		lblMediaCiencias.setHorizontalAlignment(SwingConstants.CENTER);
 		lblMediaCiencias.setBounds(489, 59, 56, 24);
 		
 		mediaMatematica = (aluno.getNotas()[2]+aluno.getNotas()[3])/2;
 		lblMediaMatematica = new JLabel(String.format("%.1f", mediaMatematica));
 		lblMediaMatematica.setForeground(new Color(0, 0, 0));
-		lblMediaMatematica.setFont(new Font("Papyrus", Font.BOLD | Font.ITALIC, 24));
+		lblMediaMatematica.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 24));
 		lblMediaMatematica.setHorizontalAlignment(SwingConstants.CENTER);
 		lblMediaMatematica.setBounds(489, 109, 56, 24);
 		
 		mediaPortugues = (aluno.getNotas()[4]+aluno.getNotas()[5])/2;
 		lblMediaPortugues = new JLabel(String.format("%.1f", mediaPortugues));
 		lblMediaPortugues.setForeground(new Color(0, 0, 0));
-		lblMediaPortugues.setFont(new Font("Papyrus", Font.BOLD | Font.ITALIC, 24));
+		lblMediaPortugues.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 24));
 		lblMediaPortugues.setHorizontalAlignment(SwingConstants.CENTER);
 		lblMediaPortugues.setBounds(489, 159, 56, 24);
 		
 		lblMediaGeral = new JLabel("Média Geral :");
 		lblMediaGeral.setForeground(new Color(0, 0, 0));
-		lblMediaGeral.setFont(new Font("Papyrus", Font.BOLD | Font.ITALIC, 24));
+		lblMediaGeral.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 24));
 		lblMediaGeral.setBounds(572, 84, 168, 42);
 		
 		mediaGeral = (mediaCiencias+mediaMatematica+mediaPortugues)/3;
 		lblMediaGeralNum = new JLabel(String.format("%.2f", mediaGeral));
 		lblMediaGeralNum.setForeground(new Color(0, 0, 0));
-		lblMediaGeralNum.setFont(new Font("Papyrus", Font.BOLD | Font.ITALIC, 26));
+		lblMediaGeralNum.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 26));
 		lblMediaGeralNum.setHorizontalAlignment(SwingConstants.CENTER);
 		lblMediaGeralNum.setBounds(572, 116, 140, 42);
 		
 		lblFrequencia = new JLabel("Frequência :");
 		lblFrequencia.setForeground(new Color(0, 0, 0));
-		lblFrequencia.setFont(new Font("Papyrus", Font.BOLD | Font.ITALIC, 22));
-		lblFrequencia.setBounds(32, 217, 128, 32);
+		lblFrequencia.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 22));
+		lblFrequencia.setBounds(32, 217, 132, 32);
 		
 		lblFrequenciaNum = new JLabel(((int)(aluno.getFreq()*100)) + "%");
 		lblFrequenciaNum.setForeground(new Color(0, 0, 0));
-		lblFrequenciaNum.setFont(new Font("Papyrus", Font.BOLD | Font.ITALIC, 16));
+		lblFrequenciaNum.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 16));
 		lblFrequenciaNum.setHorizontalAlignment(SwingConstants.CENTER);
-		lblFrequenciaNum.setBounds(175 + 2*((int)(aluno.getFreq()*100)), 210, 42, 16);
+		lblFrequenciaNum.setBounds(175 + 2*((int)(aluno.getFreq()*100)), 208, 42, 16);
 		
 		Dictionary<Integer, JLabel> labelTable = new Hashtable<Integer, JLabel>();
 		for(int i=0 ; i<=100 ; i+=25) {
 			JLabel label = new JLabel(i + "%");
 			label.setForeground(new Color(0, 0, 0));
-			label.setFont(new Font("Papyrus", Font.BOLD | Font.ITALIC, 12));
+			label.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 12));
 			label.setHorizontalAlignment(SwingConstants.CENTER);
 			label.setPreferredSize(new Dimension(34, 12));
 			labelTable.put(i, label);
@@ -368,39 +368,40 @@ public class InfoPessoaUI extends JFrame {
 		sldFrequencia.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent evt) {
 				lblFrequenciaNum.setText(sldFrequencia.getValue() + "%");
-				lblFrequenciaNum.setBounds(175 + 2*sldFrequencia.getValue(), 210, 42, 16);
+				lblFrequenciaNum.setBounds(175 + 2*sldFrequencia.getValue(), 208, 42, 16);
 			}
 		});
 		
 		lblOcorrencias = new JLabel("Ocorrências :");
 		lblOcorrencias.setForeground(new Color(0, 0, 0));
-		lblOcorrencias.setFont(new Font("Papyrus", Font.BOLD | Font.ITALIC, 22));
+		lblOcorrencias.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 22));
 		lblOcorrencias.setBounds(466, 217, 144, 32);
 		
 		spnOcorrencias = new JSpinner(new SpinnerNumberModel());
 		((SpinnerNumberModel)spnOcorrencias.getModel()).setValue(aluno.getOcorr());
 		((SpinnerNumberModel)spnOcorrencias.getModel()).setMinimum(0);
 		((SpinnerNumberModel)spnOcorrencias.getModel()).setStepSize(1);
-		spnOcorrencias.setFont(new Font("Papyrus", Font.BOLD, 22));
+		spnOcorrencias.setFont(new Font("Arial", Font.BOLD, 22));
 		((JSpinner.DefaultEditor)spnOcorrencias.getEditor()).getTextField().setHorizontalAlignment(SwingConstants.CENTER);
 		spnOcorrencias.setEnabled(!ehAPessoa);
 		spnOcorrencias.setBounds(620, 217, 72, 32);
 		
 		btnSalvar = new JButton("Salvar Modificações");
-		btnSalvar.setFont(new Font("Papyrus", Font.BOLD, 18));
+		btnSalvar.setFont(new Font("Arial", Font.BOLD, 18));
 		btnSalvar.setEnabled(!ehAPessoa);
 		btnSalvar.setBounds(130, 274, 210, 44);
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				double[] notas = new double[] {(double)spnCienciasProva1.getValue(), (double)spnCienciasProva2.getValue(), (double)spnMatematicaProva1.getValue(), (double)spnMatematicaProva2.getValue(), (double)spnPortuguesProva1.getValue(), (double)spnPortuguesProva2.getValue()};
-				/*sistema.mudaAluno(aluno, (double)sldFrequencia.getValue()/100f, notas, (int)spnOcorrencias.getValue());*/
+				aluno.setFreq((double)sldFrequencia.getValue()/100f);
+				aluno.setNotas(new Double[] {(double)spnCienciasProva1.getValue(), (double)spnCienciasProva2.getValue(), (double)spnMatematicaProva1.getValue(), (double)spnMatematicaProva2.getValue(), (double)spnPortuguesProva1.getValue(), (double)spnPortuguesProva2.getValue()});
+				aluno.setOcorr((int)spnOcorrencias.getValue());
 				JOptionPane.showMessageDialog(null, "Informações do Aluno atualizadas", "Modificações SALVAS", JOptionPane.INFORMATION_MESSAGE);
 				dispose();
 			}
 		});
 		
 		btnRemover = new JButton("Remover Aluno");
-		btnRemover.setFont(new Font("Papyrus", Font.BOLD, 18));
+		btnRemover.setFont(new Font("Arial", Font.BOLD, 18));
 		btnRemover.setEnabled(!ehAPessoa);
 		btnRemover.setBounds(430, 274, 210, 44);
 		btnRemover.addActionListener(new ActionListener() {
@@ -481,17 +482,17 @@ public class InfoPessoaUI extends JFrame {
 		
 		lblNome = new JLabel("Nome : " + professor.getNome());
 		lblNome.setForeground(new Color(0, 0, 0));
-		lblNome.setFont(new Font("Papyrus", Font.BOLD | Font.ITALIC, 32));
+		lblNome.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 32));
 		lblNome.setBounds(32, 20, 706, 48);
 		
 		lblRegistro = new JLabel("Registro : " + professor.getRegister());
 		lblRegistro.setForeground(new Color(0, 0, 0));
-		lblRegistro.setFont(new Font("Papyrus", Font.BOLD | Font.ITALIC, 26));
+		lblRegistro.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 26));
 		lblRegistro.setBounds(68, 72, 365, 46);
 		
 		lblSalario = new JLabel("Salário : $" + String.format("%.2f", professor.getSalario()));
 		lblSalario.setForeground(new Color(0, 0, 0));
-		lblSalario.setFont(new Font("Papyrus", Font.BOLD | Font.ITALIC, 26));
+		lblSalario.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 26));
 		lblSalario.setBounds(465, 72, 273, 46);
 		
 		String turmas = "";
@@ -507,7 +508,7 @@ public class InfoPessoaUI extends JFrame {
 			lblTurmas = new JLabel("Turma : " + turmas);
 		}
 		lblTurmas.setForeground(new Color(0, 0, 0));
-		lblTurmas.setFont(new Font("Papyrus", Font.BOLD | Font.ITALIC, 26));
+		lblTurmas.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 26));
 		lblTurmas.setBounds(62, 115, 400, 46);
 		
 		titlePane.add(lblNome);
@@ -524,20 +525,20 @@ public class InfoPessoaUI extends JFrame {
 		
 		lblFrequencia = new JLabel("Frequência :");
 		lblFrequencia.setForeground(new Color(0, 0, 0));
-		lblFrequencia.setFont(new Font("Papyrus", Font.BOLD | Font.ITALIC, 22));
-		lblFrequencia.setBounds(32, 20, 128, 32);
+		lblFrequencia.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 22));
+		lblFrequencia.setBounds(32, 20, 132, 32);
 		
 		lblFrequenciaNum = new JLabel(((int)(professor.getFreq()*100)) + "%");
 		lblFrequenciaNum.setForeground(new Color(0, 0, 0));
-		lblFrequenciaNum.setFont(new Font("Papyrus", Font.BOLD | Font.ITALIC, 16));
+		lblFrequenciaNum.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 16));
 		lblFrequenciaNum.setHorizontalAlignment(SwingConstants.CENTER);
-		lblFrequenciaNum.setBounds(175 + 2*((int)(professor.getFreq()*100)), 13, 42, 16);
+		lblFrequenciaNum.setBounds(175 + 2*((int)(professor.getFreq()*100)), 11, 42, 16);
 		
 		Dictionary<Integer, JLabel> labelTable = new Hashtable<Integer, JLabel>();
 		for(int i=0 ; i<=100 ; i+=25) {
 			JLabel label = new JLabel(i + "%");
 			label.setForeground(new Color(0, 0, 0));
-			label.setFont(new Font("Papyrus", Font.BOLD | Font.ITALIC, 12));
+			label.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 12));
 			label.setHorizontalAlignment(SwingConstants.CENTER);
 			label.setPreferredSize(new Dimension(34, 12));
 			labelTable.put(i, label);
@@ -555,38 +556,39 @@ public class InfoPessoaUI extends JFrame {
 		sldFrequencia.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent evt) {
 				lblFrequenciaNum.setText(sldFrequencia.getValue() + "%");
-				lblFrequenciaNum.setBounds(175 + 2*sldFrequencia.getValue(), 13, 42, 16);
+				lblFrequenciaNum.setBounds(175 + 2*sldFrequencia.getValue(), 11, 42, 16);
 			}
 		});
 		
 		lblReclamacoes = new JLabel("Reclamações :");
 		lblReclamacoes.setForeground(new Color(0, 0, 0));
-		lblReclamacoes.setFont(new Font("Papyrus", Font.BOLD | Font.ITALIC, 22));
-		lblReclamacoes.setBounds(466, 20, 144, 32);
+		lblReclamacoes.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 22));
+		lblReclamacoes.setBounds(456, 20, 156, 32);
 		
 		spnReclamacoes = new JSpinner(new SpinnerNumberModel());
 		((SpinnerNumberModel)spnReclamacoes.getModel()).setValue(professor.getReclam());
 		((SpinnerNumberModel)spnReclamacoes.getModel()).setMinimum(0);
 		((SpinnerNumberModel)spnReclamacoes.getModel()).setStepSize(1);
-		spnReclamacoes.setFont(new Font("Papyrus", Font.BOLD, 22));
+		spnReclamacoes.setFont(new Font("Arial", Font.BOLD, 22));
 		((JSpinner.DefaultEditor)spnReclamacoes.getEditor()).getTextField().setHorizontalAlignment(SwingConstants.CENTER);
 		spnReclamacoes.setEnabled(!ehAPessoa);
 		spnReclamacoes.setBounds(620, 20, 72, 32);
 		
 		btnSalvar = new JButton("Salvar Modificações");
-		btnSalvar.setFont(new Font("Papyrus", Font.BOLD, 18));
+		btnSalvar.setFont(new Font("Arial", Font.BOLD, 18));
 		btnSalvar.setEnabled(!ehAPessoa);
 		btnSalvar.setBounds(130, 82, 210, 44);
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				/*sistema.mudaProfessor(professor, (double)sldFrequencia.getValue()/100f, (int)spnReclamacoes.getValue());*/
+				professor.setFreq((double)sldFrequencia.getValue()/100f);
+				professor.setReclam((int)spnReclamacoes.getValue());
 				JOptionPane.showMessageDialog(null, "Informações do Professor atualizadas", "Modificações SALVAS", JOptionPane.INFORMATION_MESSAGE);
 				dispose();
 			}
 		});
 		
 		btnRemover = new JButton("Remover Professor");
-		btnRemover.setFont(new Font("Papyrus", Font.BOLD, 18));
+		btnRemover.setFont(new Font("Arial", Font.BOLD, 18));
 		btnRemover.setEnabled(!ehAPessoa);
 		btnRemover.setBounds(430, 82, 210, 44);
 		btnRemover.addActionListener(new ActionListener() {
@@ -649,22 +651,22 @@ public class InfoPessoaUI extends JFrame {
 		
 		lblNome = new JLabel("Nome : " + zelador.getNome());
 		lblNome.setForeground(new Color(0, 0, 0));
-		lblNome.setFont(new Font("Papyrus", Font.BOLD | Font.ITALIC, 32));
+		lblNome.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 32));
 		lblNome.setBounds(32, 20, 706, 48);
 		
 		lblRegistro = new JLabel("Registro : " + zelador.getRegister());
 		lblRegistro.setForeground(new Color(0, 0, 0));
-		lblRegistro.setFont(new Font("Papyrus", Font.BOLD | Font.ITALIC, 26));
+		lblRegistro.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 26));
 		lblRegistro.setBounds(68, 72, 365, 46);
 		
 		lblSalario = new JLabel("Salário : $" + String.format("%.2f", zelador.getSalario()));
 		lblSalario.setForeground(new Color(0, 0, 0));
-		lblSalario.setFont(new Font("Papyrus", Font.BOLD | Font.ITALIC, 26));
+		lblSalario.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 26));
 		lblSalario.setBounds(465, 72, 273, 46);
 		
 		lblFuncao = new JLabel("Função : " + zelador.getFuncao());
 		lblFuncao.setForeground(new Color(0, 0, 0));
-		lblFuncao.setFont(new Font("Papyrus", Font.BOLD | Font.ITALIC, 26));
+		lblFuncao.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 26));
 		lblFuncao.setBounds(65, 115, 400, 46);
 		
 		titlePane.add(lblNome);
@@ -681,20 +683,20 @@ public class InfoPessoaUI extends JFrame {
 		
 		lblFrequencia = new JLabel("Frequência :");
 		lblFrequencia.setForeground(new Color(0, 0, 0));
-		lblFrequencia.setFont(new Font("Papyrus", Font.BOLD | Font.ITALIC, 22));
-		lblFrequencia.setBounds(32, 20, 128, 32);
+		lblFrequencia.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 22));
+		lblFrequencia.setBounds(32, 20, 132, 32);
 		
 		lblFrequenciaNum = new JLabel(((int)(zelador.getFreq()*100)) + "%");
 		lblFrequenciaNum.setForeground(new Color(0, 0, 0));
-		lblFrequenciaNum.setFont(new Font("Papyrus", Font.BOLD | Font.ITALIC, 16));
+		lblFrequenciaNum.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 16));
 		lblFrequenciaNum.setHorizontalAlignment(SwingConstants.CENTER);
-		lblFrequenciaNum.setBounds(175 + 2*((int)(zelador.getFreq()*100)), 13, 42, 16);
+		lblFrequenciaNum.setBounds(175 + 2*((int)(zelador.getFreq()*100)), 11, 42, 16);
 		
 		Dictionary<Integer, JLabel> labelTable = new Hashtable<Integer, JLabel>();
 		for(int i=0 ; i<=100 ; i+=25) {
 			JLabel label = new JLabel(i + "%");
 			label.setForeground(new Color(0, 0, 0));
-			label.setFont(new Font("Papyrus", Font.BOLD | Font.ITALIC, 12));
+			label.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 12));
 			label.setHorizontalAlignment(SwingConstants.CENTER);
 			label.setPreferredSize(new Dimension(34, 12));
 			labelTable.put(i, label);
@@ -712,38 +714,39 @@ public class InfoPessoaUI extends JFrame {
 		sldFrequencia.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent evt) {
 				lblFrequenciaNum.setText(sldFrequencia.getValue() + "%");
-				lblFrequenciaNum.setBounds(175 + 2*sldFrequencia.getValue(), 13, 42, 16);
+				lblFrequenciaNum.setBounds(175 + 2*sldFrequencia.getValue(), 11, 42, 16);
 			}
 		});
 		
 		lblReclamacoes = new JLabel("Reclamações :");
 		lblReclamacoes.setForeground(new Color(0, 0, 0));
-		lblReclamacoes.setFont(new Font("Papyrus", Font.BOLD | Font.ITALIC, 22));
-		lblReclamacoes.setBounds(466, 20, 144, 32);
+		lblReclamacoes.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 22));
+		lblReclamacoes.setBounds(456, 20, 156, 32);
 		
 		spnReclamacoes = new JSpinner(new SpinnerNumberModel());
 		((SpinnerNumberModel)spnReclamacoes.getModel()).setValue(zelador.getReclam());
 		((SpinnerNumberModel)spnReclamacoes.getModel()).setMinimum(0);
 		((SpinnerNumberModel)spnReclamacoes.getModel()).setStepSize(1);
-		spnReclamacoes.setFont(new Font("Papyrus", Font.BOLD, 22));
+		spnReclamacoes.setFont(new Font("Arial", Font.BOLD, 22));
 		((JSpinner.DefaultEditor)spnReclamacoes.getEditor()).getTextField().setHorizontalAlignment(SwingConstants.CENTER);
 		spnReclamacoes.setEnabled(!ehAPessoa);
 		spnReclamacoes.setBounds(620, 20, 72, 32);
 		
 		btnSalvar = new JButton("Salvar Modificações");
-		btnSalvar.setFont(new Font("Papyrus", Font.BOLD, 18));
+		btnSalvar.setFont(new Font("Arial", Font.BOLD, 18));
 		btnSalvar.setEnabled(!ehAPessoa);
 		btnSalvar.setBounds(130, 82, 210, 44);
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				/*sistema.mudaZelador(zelador, (double)sldFrequencia.getValue()/100f, (int)spnReclamacoes.getValue());*/
+				zelador.setFreq((double)sldFrequencia.getValue()/100f);
+				zelador.setReclam((int)spnReclamacoes.getValue());
 				JOptionPane.showMessageDialog(null, "Informações do Zelador atualizadas", "Modificações SALVAS", JOptionPane.INFORMATION_MESSAGE);
 				dispose();
 			}
 		});
 		
 		btnRemover = new JButton("Remover Zelador");
-		btnRemover.setFont(new Font("Papyrus", Font.BOLD, 18));
+		btnRemover.setFont(new Font("Arial", Font.BOLD, 18));
 		btnRemover.setEnabled(!ehAPessoa);
 		btnRemover.setBounds(430, 82, 210, 44);
 		btnRemover.addActionListener(new ActionListener() {
@@ -806,17 +809,17 @@ public class InfoPessoaUI extends JFrame {
 		
 		lblNome = new JLabel("Nome : " + diretor.getNome());
 		lblNome.setForeground(new Color(0, 0, 0));
-		lblNome.setFont(new Font("Papyrus", Font.BOLD | Font.ITALIC, 32));
+		lblNome.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 32));
 		lblNome.setBounds(32, 20, 706, 48);
 		
 		lblRegistro = new JLabel("Registro : " + diretor.getRegister());
 		lblRegistro.setForeground(new Color(0, 0, 0));
-		lblRegistro.setFont(new Font("Papyrus", Font.BOLD | Font.ITALIC, 26));
+		lblRegistro.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 26));
 		lblRegistro.setBounds(68, 72, 365, 46);
 		
 		lblSalario = new JLabel("Salário : $" + String.format("%.2f", diretor.getSalario()));
 		lblSalario.setForeground(new Color(0, 0, 0));
-		lblSalario.setFont(new Font("Papyrus", Font.BOLD | Font.ITALIC, 26));
+		lblSalario.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 26));
 		lblSalario.setBounds(465, 72, 273, 46);
 		
 		titlePane.add(lblNome);
@@ -832,20 +835,20 @@ public class InfoPessoaUI extends JFrame {
 		
 		lblFrequencia = new JLabel("Frequência :");
 		lblFrequencia.setForeground(new Color(0, 0, 0));
-		lblFrequencia.setFont(new Font("Papyrus", Font.BOLD | Font.ITALIC, 22));
-		lblFrequencia.setBounds(32, 20, 128, 32);
+		lblFrequencia.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 22));
+		lblFrequencia.setBounds(32, 20, 132, 32);
 		
 		lblFrequenciaNum = new JLabel(((int)(diretor.getFreq()*100)) + "%");
 		lblFrequenciaNum.setForeground(new Color(0, 0, 0));
-		lblFrequenciaNum.setFont(new Font("Papyrus", Font.BOLD | Font.ITALIC, 16));
+		lblFrequenciaNum.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 16));
 		lblFrequenciaNum.setHorizontalAlignment(SwingConstants.CENTER);
-		lblFrequenciaNum.setBounds(175 + 2*((int)(diretor.getFreq()*100)), 13, 42, 16);
+		lblFrequenciaNum.setBounds(175 + 2*((int)(diretor.getFreq()*100)), 11, 42, 16);
 		
 		Dictionary<Integer, JLabel> labelTable = new Hashtable<Integer, JLabel>();
 		for(int i=0 ; i<=100 ; i+=25) {
 			JLabel label = new JLabel(i + "%");
 			label.setForeground(new Color(0, 0, 0));
-			label.setFont(new Font("Papyrus", Font.BOLD | Font.ITALIC, 12));
+			label.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 12));
 			label.setHorizontalAlignment(SwingConstants.CENTER);
 			label.setPreferredSize(new Dimension(34, 12));
 			labelTable.put(i, label);
@@ -862,36 +865,37 @@ public class InfoPessoaUI extends JFrame {
 		sldFrequencia.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent evt) {
 				lblFrequenciaNum.setText(sldFrequencia.getValue() + "%");
-				lblFrequenciaNum.setBounds(175 + 2*sldFrequencia.getValue(), 13, 42, 16);
+				lblFrequenciaNum.setBounds(175 + 2*sldFrequencia.getValue(), 11, 42, 16);
 			}
 		});
 		
 		lblReclamacoes = new JLabel("Reclamações :");
 		lblReclamacoes.setForeground(new Color(0, 0, 0));
-		lblReclamacoes.setFont(new Font("Papyrus", Font.BOLD | Font.ITALIC, 22));
-		lblReclamacoes.setBounds(466, 20, 144, 32);
+		lblReclamacoes.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 22));
+		lblReclamacoes.setBounds(456, 20, 156, 32);
 		
 		spnReclamacoes = new JSpinner(new SpinnerNumberModel());
 		((SpinnerNumberModel)spnReclamacoes.getModel()).setValue(diretor.getReclam());
 		((SpinnerNumberModel)spnReclamacoes.getModel()).setMinimum(0);
 		((SpinnerNumberModel)spnReclamacoes.getModel()).setStepSize(1);
-		spnReclamacoes.setFont(new Font("Papyrus", Font.BOLD, 22));
+		spnReclamacoes.setFont(new Font("Arial", Font.BOLD, 22));
 		((JSpinner.DefaultEditor)spnReclamacoes.getEditor()).getTextField().setHorizontalAlignment(SwingConstants.CENTER);
 		spnReclamacoes.setBounds(620, 20, 72, 32);
 		
 		btnSalvar = new JButton("Salvar Modificações");
-		btnSalvar.setFont(new Font("Papyrus", Font.BOLD, 18));
+		btnSalvar.setFont(new Font("Arial", Font.BOLD, 18));
 		btnSalvar.setBounds(130, 82, 210, 44);
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				/*sistema.mudaDiretor(diretor, (double)sldFrequencia.getValue()/100f, (int)spnReclamacoes.getValue());*/
+				diretor.setFreq((double)sldFrequencia.getValue()/100f);
+				diretor.setReclam((int)spnReclamacoes.getValue());
 				JOptionPane.showMessageDialog(null, "Informações do Diretor atualizadas", "Modificações SALVAS", JOptionPane.INFORMATION_MESSAGE);
 				dispose();
 			}
 		});
 		
 		btnRemover = new JButton("Remover Diretor");
-		btnRemover.setFont(new Font("Papyrus", Font.BOLD, 18));
+		btnRemover.setFont(new Font("Arial", Font.BOLD, 18));
 		btnRemover.setEnabled(!ehAPessoa);
 		btnRemover.setBounds(430, 82, 210, 44);
 		btnRemover.addActionListener(new ActionListener() {

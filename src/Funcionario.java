@@ -31,7 +31,7 @@ public class Funcionario extends Pessoa {
 		return reclamacoes;
 	}
 	
-	void setSalario(Double salario) {
+	void setSalario(double salario) {
 		this.salario = salario;
 	}
 	

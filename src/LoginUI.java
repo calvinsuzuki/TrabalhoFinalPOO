@@ -85,13 +85,13 @@ public class LoginUI extends JFrame {
 		
 		lblRegistro = new JLabel("Nº do Registro:");
 		lblRegistro.setForeground(new Color(0, 0, 0));
-		lblRegistro.setFont(new Font("Papyrus", Font.BOLD | Font.ITALIC, 35));
-		lblRegistro.setBounds(61, 236, 262, 48);
+		lblRegistro.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 35));
+		lblRegistro.setBounds(61, 232, 262, 48);
 		
 		txtRegistro = new JTextField();
 		txtRegistro.setForeground(new Color(105, 105, 105));
 		txtRegistro.setBackground(new Color(211, 211, 211));
-		txtRegistro.setFont(new Font("Papyrus", Font.BOLD, 20));
+		txtRegistro.setFont(new Font("Arial", Font.BOLD, 20));
 		txtRegistro.setText("Insira o número do Registro");
 		txtRegistro.setBounds(333, 239, 340, 38);
 		txtRegistro.addKeyListener(new KeyAdapter() {
@@ -124,14 +124,14 @@ public class LoginUI extends JFrame {
 		
 		lblSenha = new JLabel("Senha:");
 		lblSenha.setForeground(Color.BLACK);
-		lblSenha.setFont(new Font("Papyrus", Font.BOLD | Font.ITALIC, 35));
-		lblSenha.setBounds(188, 295, 135, 48);
+		lblSenha.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 35));
+		lblSenha.setBounds(198, 292, 125, 48);
 		
 		senhaVisivel = false;
 		txtSenha = new JPasswordField();
 		txtSenha.setForeground(new Color(105, 105, 105));
 		txtSenha.setBackground(new Color(211, 211, 211));
-		txtSenha.setFont(new Font("Papyrus", Font.BOLD, 20));
+		txtSenha.setFont(new Font("Arial", Font.BOLD, 20));
 		txtSenha.setEchoChar((char)0);
 		txtSenha.setText("Insira a Senha");
 		txtSenha.setBounds(333, 299, 340, 38);
@@ -161,7 +161,7 @@ public class LoginUI extends JFrame {
 		});
 		
 		btnLogin = new JButton("Login");
-		btnLogin.setFont(new Font("Papyrus", Font.BOLD, 22));
+		btnLogin.setFont(new Font("Arial", Font.BOLD, 22));
 		btnLogin.setBounds(261, 368, 216, 48);
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {

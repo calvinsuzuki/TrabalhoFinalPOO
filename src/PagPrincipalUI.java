@@ -67,6 +67,7 @@ public class PagPrincipalUI extends JFrame {
 	
 	private boolean[] quaisMostrar;
 	private ArrayList<Pessoa> pessoasMarcadas;
+	private int pageNumAtual;
 	private int pageNumWhileInfoPessoa;
 	private int pageNumWhileAddPessoa;
 	private int scrollValueWhileInfoPessoa;
@@ -149,7 +150,7 @@ public class PagPrincipalUI extends JFrame {
 		txtBusca = new JTextField();
 		txtBusca.setForeground(new Color(105, 105, 105));
 		txtBusca.setBackground(new Color(211, 211, 211));
-		txtBusca.setFont(new Font("Papyrus", Font.BOLD, 20));
+		txtBusca.setFont(new Font("Arial", Font.BOLD, 20));
 		txtBusca.setText("Procurar...");
 		txtBusca.setBounds(880, 32, 330, 54);
 		txtBusca.addMouseListener(new MouseAdapter() {
@@ -214,7 +215,7 @@ public class PagPrincipalUI extends JFrame {
 	            }
 	        }
 		};
-		mntmReset.setFont(new Font("Papyrus", Font.BOLD, 14));
+		mntmReset.setFont(new Font("Arial", Font.BOLD, 14));
 		mntmReset.setHorizontalAlignment(SwingConstants.RIGHT);
 		mntmReset.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
@@ -231,13 +232,14 @@ public class PagPrincipalUI extends JFrame {
 				if(pessoasMarcadas == null) {
 					refreshListPessoas(sistema, contaLogada, quaisMostrar);
 				} else {
+					/*sistema.sortRegistro(pessoasMarcadas);*/
 					refreshListPessoas(sistema, pessoasMarcadas, contaLogada, quaisMostrar);
 				}
 			}
 		});
 		
 		mnMostrar = new JMenu("Mostrar:");
-		mnMostrar.setFont(new Font("Papyrus", Font.BOLD, 14));
+		mnMostrar.setFont(new Font("Arial", Font.BOLD, 14));
 		mnMostrar.setHorizontalAlignment(SwingConstants.RIGHT);
 		mnMostrar.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
 		
@@ -251,7 +253,7 @@ public class PagPrincipalUI extends JFrame {
 	            }
 	        }
 		};
-		chckbxmntmMostrarAlunos.setFont(new Font("Papyrus", Font.BOLD, 14));
+		chckbxmntmMostrarAlunos.setFont(new Font("Arial", Font.BOLD, 14));
 		chckbxmntmMostrarAlunos.setSelected(true);
 		chckbxmntmMostrarAlunos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
@@ -274,7 +276,7 @@ public class PagPrincipalUI extends JFrame {
 	            }
 	        }
 		};
-		chckbxmntmMostrarProfessores.setFont(new Font("Papyrus", Font.BOLD, 14));
+		chckbxmntmMostrarProfessores.setFont(new Font("Arial", Font.BOLD, 14));
 		chckbxmntmMostrarProfessores.setSelected(true);
 		chckbxmntmMostrarProfessores.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
@@ -297,7 +299,7 @@ public class PagPrincipalUI extends JFrame {
 	            }
 	        }
 		};
-		chckbxmntmMostrarZeladores.setFont(new Font("Papyrus", Font.BOLD, 14));
+		chckbxmntmMostrarZeladores.setFont(new Font("Arial", Font.BOLD, 14));
 		chckbxmntmMostrarZeladores.setSelected(true);
 		chckbxmntmMostrarZeladores.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
@@ -320,7 +322,7 @@ public class PagPrincipalUI extends JFrame {
 	            }
 	        }
 		};
-		chckbxmntmMostrarDiretores.setFont(new Font("Papyrus", Font.BOLD, 14));
+		chckbxmntmMostrarDiretores.setFont(new Font("Arial", Font.BOLD, 14));
 		chckbxmntmMostrarDiretores.setSelected(true);
 		chckbxmntmMostrarDiretores.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
@@ -339,7 +341,7 @@ public class PagPrincipalUI extends JFrame {
 		mnMostrar.add(chckbxmntmMostrarDiretores);
 		
 		mnOrdenar = new JMenu("Ordenar  por:");
-		mnOrdenar.setFont(new Font("Papyrus", Font.BOLD, 14));
+		mnOrdenar.setFont(new Font("Arial", Font.BOLD, 14));
 		mnOrdenar.setHorizontalAlignment(SwingConstants.RIGHT);
 		mnOrdenar.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
 		
@@ -355,7 +357,7 @@ public class PagPrincipalUI extends JFrame {
 	            }
 	        }
 		};
-		rdbtnmntmOrdenarRegistro.setFont(new Font("Papyrus", Font.BOLD, 14));
+		rdbtnmntmOrdenarRegistro.setFont(new Font("Arial", Font.BOLD, 14));
 		rdbtnmntmOrdenarRegistro.setSelected(true);
 		rdbtnmntmOrdenarRegistro.setEnabled(false);
 		rdbtnmntmOrdenarRegistro.addActionListener(new ActionListener() {
@@ -364,6 +366,7 @@ public class PagPrincipalUI extends JFrame {
 				if(pessoasMarcadas == null) {
 					refreshListPessoas(sistema, contaLogada, quaisMostrar);
 				} else {
+					/*sistema.sortRegistro(pessoasMarcadas);*/
 					refreshListPessoas(sistema, pessoasMarcadas, contaLogada, quaisMostrar);
 				}
 				rdbtnmntmOrdenarRegistro.setEnabled(false);
@@ -381,7 +384,7 @@ public class PagPrincipalUI extends JFrame {
 	            }
 	        }
 		};
-		rdbtnmntmOrdenarAlfabetico.setFont(new Font("Papyrus", Font.BOLD, 14));
+		rdbtnmntmOrdenarAlfabetico.setFont(new Font("Arial", Font.BOLD, 14));
 		rdbtnmntmOrdenarAlfabetico.setSelected(false);
 		rdbtnmntmOrdenarAlfabetico.setEnabled(true);
 		rdbtnmntmOrdenarAlfabetico.addActionListener(new ActionListener() {
@@ -390,6 +393,7 @@ public class PagPrincipalUI extends JFrame {
 				if(pessoasMarcadas == null) {
 					refreshListPessoas(sistema, contaLogada, quaisMostrar);
 				} else {
+					/*sistema.sortAlfabetico(pessoasMarcadas);*/
 					refreshListPessoas(sistema, pessoasMarcadas, contaLogada, quaisMostrar);
 				}
 				rdbtnmntmOrdenarRegistro.setEnabled(true);
@@ -417,6 +421,7 @@ public class PagPrincipalUI extends JFrame {
 		titlePane.add(mnbrFiltros);
 		
 		quaisMostrar = new boolean[] {true, true, true, true};
+		/*sistema.sortRegistro();*/
 		pessoasMarcadas = null;
 		cardsPane = new JPanel();
 		cardsPane.setForeground(new Color(0, 0, 0));
@@ -473,6 +478,7 @@ public class PagPrincipalUI extends JFrame {
 	}
 	
 	private void refreshListPessoas(int numPessoas, int numPaginas, int numPessoasUltimaPagina, String[] dadosPessoas, ArrayList<Pessoa> pessoas, Escola sistema, Pessoa contaLogada) {
+		pageNumAtual = 0;
 		cardsPane.removeAll();
 		cardsPane.repaint();
 		cardsPane.revalidate();
@@ -503,13 +509,6 @@ public class PagPrincipalUI extends JFrame {
 			listPanes[i].setPreferredSize(new Dimension(1310, 1200));
 			listPanes[i].setLayout(new FlowLayout(FlowLayout.LEFT, 26, 26));
 			
-			previousNextPanes[i] = new JPanel();
-			previousNextPanes[i].setForeground(new Color(0, 0, 0));
-			previousNextPanes[i].setBackground(new Color(240, 230, 140));
-			previousNextPanes[i].setBorder(new EmptyBorder(0, 0, 0, 0));
-			previousNextPanes[i].setPreferredSize(new Dimension(1310, 200));
-			previousNextPanes[i].setLayout(new GridLayout(3, 2, 816, 20));
-			
 			int numPessoasNessaPagina;
 			if(i == numPaginas-1) {
 				numPessoasNessaPagina = numPessoasUltimaPagina;
@@ -524,7 +523,7 @@ public class PagPrincipalUI extends JFrame {
 				String infoFormatada = "<html>" + dadosPessoas[pessoaIndex].substring(6).replaceAll("\\n", "<br/>") + "</html>";
 				btnsPessoa[pessoaIndex] = new JButton(infoFormatada);
 				btnsPessoa[pessoaIndex].setHorizontalAlignment(SwingConstants.LEFT);
-				btnsPessoa[pessoaIndex].setFont(new Font("Papyrus", Font.BOLD, 18));
+				btnsPessoa[pessoaIndex].setFont(new Font("Arial", Font.BOLD, 20));
 				btnsPessoa[pessoaIndex].setPreferredSize(new Dimension(400, 100));
 				btnsPessoa[pessoaIndex].addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent evt) {
@@ -551,9 +550,9 @@ public class PagPrincipalUI extends JFrame {
 			
 			if(i == numPaginas-1 && contaLogada instanceof Diretor) {
 				btnAddPessoa = new JButton("<html>Adicionar<br/>nova Pessoa</html>");
-				btnAddPessoa.setFont(new Font("Papyrus", Font.BOLD | Font.ITALIC, 22));
+				btnAddPessoa.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 22));
 				btnAddPessoa.setIcon(new ImageIcon(new ImageIcon(".\\UI Icons\\plus.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT)));
-				btnAddPessoa.setPreferredSize(new Dimension(220, 80));
+				btnAddPessoa.setPreferredSize(new Dimension(240, 80));
 				btnAddPessoa.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent evt) {
 						pageNumWhileAddPessoa = numPaginas-1;
@@ -573,6 +572,13 @@ public class PagPrincipalUI extends JFrame {
 				
 				listPanes[i].add(btnAddPessoa);
 			}
+			
+			previousNextPanes[i] = new JPanel();
+			previousNextPanes[i].setForeground(new Color(0, 0, 0));
+			previousNextPanes[i].setBackground(new Color(240, 230, 140));
+			previousNextPanes[i].setBorder(new EmptyBorder(0, 0, 0, 0));
+			previousNextPanes[i].setPreferredSize(new Dimension(1310, 200));
+			previousNextPanes[i].setLayout(new GridLayout(3, 2, 810, 20));
 			
 			if(numPaginas > 1) {
 				if(i == 0) {
@@ -616,11 +622,15 @@ public class PagPrincipalUI extends JFrame {
 			return;
 		}
 		btnsPrevious[i] = new JButton("Página Anterior");
-		btnsPrevious[i].setFont(new Font("Papyrus", Font.BOLD | Font.ITALIC, 21));
+		btnsPrevious[i].setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 21));
 		btnsPrevious[i].setIcon(new ImageIcon(new ImageIcon(".\\UI Icons\\previousArrow.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT)));
+		btnsPrevious[i].setHorizontalAlignment(SwingConstants.LEFT);
 		btnsPrevious[i].addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				((CardLayout)cardsPane.getLayout()).previous(cardsPane);
+				pageNumAtual = pageNumAtual - 1;
+				((JScrollPane)cardsPane.getComponent(pageNumAtual)).getVerticalScrollBar().setValue(775);
+				((JScrollPane)cardsPane.getComponent(pageNumAtual)).getVerticalScrollBar().setValue(0);
 			}
 		});
 		previousNextPanes[i].add(btnsPrevious[i]);
@@ -637,11 +647,15 @@ public class PagPrincipalUI extends JFrame {
 			return;
 		}
 		btnsNext[i] = new JButton("Próxima Página");
-		btnsNext[i].setFont(new Font("Papyrus", Font.BOLD | Font.ITALIC, 21));
+		btnsNext[i].setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 21));
 		btnsNext[i].setIcon(new ImageIcon(new ImageIcon(".\\UI Icons\\nextArrow.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT)));
+		btnsNext[i].setHorizontalAlignment(SwingConstants.RIGHT);
 		btnsNext[i].addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				((CardLayout)cardsPane.getLayout()).next(cardsPane);
+				pageNumAtual = pageNumAtual + 1;
+				((JScrollPane)cardsPane.getComponent(pageNumAtual)).getVerticalScrollBar().setValue(775);
+				((JScrollPane)cardsPane.getComponent(pageNumAtual)).getVerticalScrollBar().setValue(0);
 			}
 		});
 		previousNextPanes[i].add(btnsNext[i]);
@@ -658,11 +672,15 @@ public class PagPrincipalUI extends JFrame {
 			return;
 		}
 		btnsFirst[i] = new JButton("Primeira Página");
-		btnsFirst[i].setFont(new Font("Papyrus", Font.BOLD | Font.ITALIC, 21));
+		btnsFirst[i].setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 21));
 		btnsFirst[i].setIcon(new ImageIcon(new ImageIcon(".\\UI Icons\\firstArrow.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT)));
+		btnsFirst[i].setHorizontalAlignment(SwingConstants.LEFT);
 		btnsFirst[i].addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				((CardLayout)cardsPane.getLayout()).first(cardsPane);
+				pageNumAtual = 0;
+				((JScrollPane)cardsPane.getComponent(pageNumAtual)).getVerticalScrollBar().setValue(775);
+				((JScrollPane)cardsPane.getComponent(pageNumAtual)).getVerticalScrollBar().setValue(0);
 			}
 		});
 		previousNextPanes[i].add(btnsFirst[i]);
@@ -679,19 +697,21 @@ public class PagPrincipalUI extends JFrame {
 			return;
 		}
 		btnsLast[i] = new JButton("Última Página");
-		btnsLast[i].setFont(new Font("Papyrus", Font.BOLD | Font.ITALIC, 21));
+		btnsLast[i].setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 21));
 		btnsLast[i].setIcon(new ImageIcon(new ImageIcon(".\\UI Icons\\lastArrow.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT)));
+		btnsLast[i].setHorizontalAlignment(SwingConstants.RIGHT);
 		btnsLast[i].addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				((CardLayout)cardsPane.getLayout()).last(cardsPane);
+				pageNumAtual = cardsPane.getComponentCount() - 1;
+				((JScrollPane)cardsPane.getComponent(pageNumAtual)).getVerticalScrollBar().setValue(775);
+				((JScrollPane)cardsPane.getComponent(pageNumAtual)).getVerticalScrollBar().setValue(0);
 			}
 		});
 		previousNextPanes[i].add(btnsLast[i]);
 	}
 	
 	private boolean checkPermission(Pessoa contaLogada, Pessoa aSerVista) {
-		System.out.println(contaLogada.toString());
-		System.out.println(aSerVista.toString());
 		if(contaLogada.toString().equals(aSerVista.toString())) {
 			return true;
 		}
@@ -721,6 +741,7 @@ public class PagPrincipalUI extends JFrame {
 		for(int i=0 ; i<pageNumWhileAddPessoa ; i++) {
 			((CardLayout)cardsPane.getLayout()).next(cardsPane);
 		}
+		pageNumAtual = pageNumWhileAddPessoa;
 		((JScrollPane)cardsPane.getComponent(pageNumWhileAddPessoa)).getVerticalScrollBar().setValue(775);
 		((JScrollPane)cardsPane.getComponent(pageNumWhileAddPessoa)).getVerticalScrollBar().setValue(scrollValueWhileAddPessoa);
 	}
@@ -734,6 +755,7 @@ public class PagPrincipalUI extends JFrame {
 		for(int i=0 ; i<pageNumWhileInfoPessoa ; i++) {
 			((CardLayout)cardsPane.getLayout()).next(cardsPane);
 		}
+		pageNumAtual = pageNumWhileInfoPessoa;
 		((JScrollPane)cardsPane.getComponent(pageNumWhileInfoPessoa)).getVerticalScrollBar().setValue(775);
 		((JScrollPane)cardsPane.getComponent(pageNumWhileInfoPessoa)).getVerticalScrollBar().setValue(scrollValueWhileInfoPessoa);
 	}

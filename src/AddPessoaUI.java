@@ -123,7 +123,7 @@ public class AddPessoaUI extends JFrame {
 
         txtRegister = new JTextField();
 		txtRegister.setBounds(333, 239, 340, 38);
-		txtRegister.setFont(new Font("Papyrus", Font.BOLD, 20));
+		txtRegister.setFont(new Font("Arial", Font.BOLD, 20));
 		txtRegister.setBackground(new Color(211, 211, 211));
 		txtRegister.setForeground(new Color(105, 105, 105));
 		txtRegister.setText("Insira o número do Registro");
@@ -153,7 +153,7 @@ public class AddPessoaUI extends JFrame {
 
         txtName = new JTextField();
 		txtName.setBounds(333, 239, 340, 38);
-		txtName.setFont(new Font("Papyrus", Font.BOLD, 20));
+		txtName.setFont(new Font("Arial", Font.BOLD, 20));
 		txtName.setBackground(new Color(211, 211, 211));
 		txtName.setForeground(new Color(105, 105, 105));
 		txtName.setText("Insira o nome");
@@ -175,7 +175,7 @@ public class AddPessoaUI extends JFrame {
 
         txtFreq = new JTextField();
 		txtFreq.setBounds(333, 239, 340, 38);
-		txtFreq.setFont(new Font("Papyrus", Font.BOLD, 20));
+		txtFreq.setFont(new Font("Arial", Font.BOLD, 20));
 		txtFreq.setBackground(new Color(211, 211, 211));
 		txtFreq.setForeground(new Color(105, 105, 105));
 		txtFreq.setText("Insira a frequência");
@@ -196,7 +196,7 @@ public class AddPessoaUI extends JFrame {
 
 		txtTurmaAluno = new JTextField();
 		txtTurmaAluno.setBounds(333, 239, 340, 38);
-		txtTurmaAluno.setFont(new Font("Papyrus", Font.BOLD, 20));
+		txtTurmaAluno.setFont(new Font("Arial", Font.BOLD, 20));
 		txtTurmaAluno.setBackground(new Color(211, 211, 211));
 		txtTurmaAluno.setForeground(new Color(105, 105, 105));
 		txtTurmaAluno.setText("Insira a turma");
@@ -217,7 +217,7 @@ public class AddPessoaUI extends JFrame {
 
 		txtNotas = new JTextField();
 		txtNotas.setBounds(333, 239, 340, 38);
-		txtNotas.setFont(new Font("Papyrus", Font.BOLD, 20));
+		txtNotas.setFont(new Font("Arial", Font.BOLD, 20));
 		txtNotas.setBackground(new Color(211, 211, 211));
 		txtNotas.setForeground(new Color(105, 105, 105));
 		txtNotas.setText("Insira as notas (x.xx,y.yy,z.zz)");
@@ -238,7 +238,7 @@ public class AddPessoaUI extends JFrame {
 
 		txtOcorrencias = new JTextField();
 		txtOcorrencias.setBounds(333, 239, 340, 38);
-		txtOcorrencias.setFont(new Font("Papyrus", Font.BOLD, 20));
+		txtOcorrencias.setFont(new Font("Arial", Font.BOLD, 20));
 		txtOcorrencias.setBackground(new Color(211, 211, 211));
 		txtOcorrencias.setForeground(new Color(105, 105, 105));
 		txtOcorrencias.setText("Número de ocorrências");
@@ -259,7 +259,7 @@ public class AddPessoaUI extends JFrame {
 
 		txtSalario = new JTextField();
 		txtSalario.setBounds(333, 239, 340, 38);
-		txtSalario.setFont(new Font("Papyrus", Font.BOLD, 20));
+		txtSalario.setFont(new Font("Arial", Font.BOLD, 20));
 		txtSalario.setBackground(new Color(211, 211, 211));
 		txtSalario.setForeground(new Color(105, 105, 105));
 		txtSalario.setText("Insira o salário (R$)");
@@ -280,7 +280,7 @@ public class AddPessoaUI extends JFrame {
 
 		txtReclamacoes = new JTextField();
 		txtReclamacoes.setBounds(333, 239, 340, 38);
-		txtReclamacoes.setFont(new Font("Papyrus", Font.BOLD, 20));
+		txtReclamacoes.setFont(new Font("Arial", Font.BOLD, 20));
 		txtReclamacoes.setBackground(new Color(211, 211, 211));
 		txtReclamacoes.setForeground(new Color(105, 105, 105));
 		txtReclamacoes.setText("Número de Reclamações");
@@ -300,7 +300,7 @@ public class AddPessoaUI extends JFrame {
 
 		txtTurmaProf = new JTextField();
 		txtTurmaProf.setBounds(333, 239, 340, 38);
-		txtTurmaProf.setFont(new Font("Papyrus", Font.BOLD, 20));
+		txtTurmaProf.setFont(new Font("Arial", Font.BOLD, 20));
 		txtTurmaProf.setBackground(new Color(211, 211, 211));
 		txtTurmaProf.setForeground(new Color(105, 105, 105));
 		txtTurmaProf.setText("Insira as turmas (xx,yy,zz)");
@@ -321,7 +321,7 @@ public class AddPessoaUI extends JFrame {
 
 		txtFuncao = new JTextField();
 		txtFuncao.setBounds(333, 239, 340, 38);
-		txtFuncao.setFont(new Font("Papyrus", Font.BOLD, 20));
+		txtFuncao.setFont(new Font("Arial", Font.BOLD, 20));
 		txtFuncao.setBackground(new Color(211, 211, 211));
 		txtFuncao.setForeground(new Color(105, 105, 105));
 		txtFuncao.setText("Insira a função");
@@ -336,7 +336,7 @@ public class AddPessoaUI extends JFrame {
 		});
 
 		addButton = new JButton("Adicionar");
-		addButton.setFont(new Font("Papyrus", Font.BOLD, 22));
+		addButton.setFont(new Font("Arial", Font.BOLD, 22));
 		addButton.setBounds(261, 368, 216, 48);
 		addButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
