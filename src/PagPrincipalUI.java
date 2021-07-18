@@ -78,8 +78,8 @@ public class PagPrincipalUI extends JFrame {
 	public static void main(String[] args) {
 		Double[] notas = { 8.0, 5.0, 5.0, 5.2, 5.6, 7.2};
 		Escola escolaX = new Escola();
-		Diretor diretorY = new Diretor(9999, "Y", (double) 90/100, 5000.00, 1);
-		Aluno alunoZ = new Aluno(123, "Z", (double) 54/100, "019", 0, notas );
+		Diretor diretorY = new Diretor(9999, "Y", (double) 90/100, "senha", 5000.00, 1);
+		Aluno alunoZ = new Aluno(123, "Z", (double) 54/100, "senha", "019", 0, notas );
 		GerenciadorDados ga = new GerenciadorDados();
 		
 		//leitura do banco de dados FAZER ISSO NA INICIALIZAÇÃO DO PROGRAMA

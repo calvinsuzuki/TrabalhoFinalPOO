@@ -66,8 +66,8 @@ public class AddPessoaUI extends JFrame {
 		int ocorrencias = 1;
 		Double[] notas = { 8.0, 5.0, 5.0, 5.2, 5.6, 7.2};
 		Escola escolaX = new Escola();
-		Diretor diretorY = new Diretor(9999, "Y", (float) 90/100, 5000.00, ocorrencias);
-		Aluno alunoZ = new Aluno(123, "Z", (float) 54/100, "019", ocorrencias, notas );
+		Diretor diretorY = new Diretor(9999, "Y", (float) 90/100, "123", 5000.00, ocorrencias);
+		Aluno alunoZ = new Aluno(123, "Z", (float) 54/100, "123", "019", ocorrencias, notas );
 		GerenciadorDados ga = new GerenciadorDados();
 		
 		//leitura do banco de dados FAZER ISSO NA INICIALIZAÇÃO DO PROGRAMA
@@ -347,7 +347,7 @@ public class AddPessoaUI extends JFrame {
 					notas[0] = Double.parseDouble(split[0]);
 					notas[1] = Double.parseDouble(split[1]);
 					notas[2] = Double.parseDouble(split[2]);
-					Pessoa alunx = new Aluno(Long.parseLong(txtRegister.getText()), txtName.getText(), Float.parseFloat(txtFreq.getText()), txtTurmaAluno.getText(), Integer.parseInt(txtOcorrencias.getText()), notas);
+					Pessoa alunx = new Aluno(Long.parseLong(txtRegister.getText()), txtName.getText(), Float.parseFloat(txtFreq.getText()), "senha", txtTurmaAluno.getText(), Integer.parseInt(txtOcorrencias.getText()), notas);
 					escola.adicionaPessoa(contaLogada, alunx);
 				}
 				if (professor.isSelected()){
@@ -356,15 +356,15 @@ public class AddPessoaUI extends JFrame {
 					turmas[0] = split[0];
 					turmas[1] = split[1];
 					turmas[2] = split[2];
-					Pessoa professxr = new Professor(Long.parseLong(txtRegister.getText()), txtName.getText(), Float.parseFloat(txtFreq.getText()), Double.parseDouble(txtSalario.getText()), Integer.parseInt(txtReclamacoes.getText()), turmas);
+					Pessoa professxr = new Professor(Long.parseLong(txtRegister.getText()), txtName.getText(), Float.parseFloat(txtFreq.getText()), "senha", Double.parseDouble(txtSalario.getText()), Integer.parseInt(txtReclamacoes.getText()), turmas);
 					escola.adicionaPessoa(contaLogada, professxr);
 				}
 				if (zelador.isSelected()){
-					Pessoa zeladxr = new Zelador(Long.parseLong(txtRegister.getText()), txtName.getText(), Float.parseFloat(txtFreq.getText()), Double.parseDouble(txtSalario.getText()), Integer.parseInt(txtReclamacoes.getText()), txtFuncao.getText());
+					Pessoa zeladxr = new Zelador(Long.parseLong(txtRegister.getText()), txtName.getText(), Float.parseFloat(txtFreq.getText()), "senha", Double.parseDouble(txtSalario.getText()), Integer.parseInt(txtReclamacoes.getText()), txtFuncao.getText());
 					escola.adicionaPessoa(contaLogada, zeladxr);
 				}
 				if (diretor.isSelected()){
-					Pessoa diretxr = new Diretor(Long.parseLong(txtRegister.getText()), txtName.getText(), Float.parseFloat(txtFreq.getText()), Double.parseDouble(txtSalario.getText()), Integer.parseInt(txtReclamacoes.getText()));
+					Pessoa diretxr = new Diretor(Long.parseLong(txtRegister.getText()), txtName.getText(), Float.parseFloat(txtFreq.getText()), "senha", Double.parseDouble(txtSalario.getText()), Integer.parseInt(txtReclamacoes.getText()));
 					escola.adicionaPessoa(contaLogada, diretxr);
 				}
 				

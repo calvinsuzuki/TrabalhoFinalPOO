@@ -82,10 +82,10 @@ public class InfoPessoaUI extends JFrame {
 		int ocorrencias = 1;
 		Double[] notas = { 8.0, 5.0, 5.0, 5.2, 5.6, 7.2};
 		Escola escolaX = new Escola();
-		Diretor diretorY = new Diretor(9999, "Y", (double) 90/100, 5000.00, ocorrencias);
-		Professor professorW = new Professor(010101, "W", (double) 0.95, 1000, ocorrencias, new String[] {"A", "B", "C"});
-		Zelador zeladorZ = new Zelador(121212, "Z", (double) 0.21, 102.45, ocorrencias, "sei la po");
-		Aluno alunoZ = new Aluno(123, "Z", (double) 54/100, "019", ocorrencias, notas );
+		Diretor diretorY = new Diretor(9999, "Y", (double) 90/100, "senha", 5000.00, ocorrencias);
+		Professor professorW = new Professor(010101, "W", (double) 0.95, "senha", 1000, ocorrencias, new String[] {"A", "B", "C"});
+		Zelador zeladorZ = new Zelador(121212, "Z", (double) 0.21, "senha", 102.45, ocorrencias, "sei la po");
+		Aluno alunoZ = new Aluno(123, "Z", (double) 54/100, "senha", "019", ocorrencias, notas );
 		GerenciadorDados ga = new GerenciadorDados();
 		
 		//leitura do banco de dados FAZER ISSO NA INICIALIZAÇÃO DO PROGRAMA

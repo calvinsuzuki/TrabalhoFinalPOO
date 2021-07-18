@@ -14,8 +14,8 @@ public class Main {
 		int ocorrencias = 1;
 		Double[] notas = { 8.0, 5.0, 5.0, 5.2, 5.6, 7.2};
 		Escola escolaX = new Escola();
-		Diretor diretorY = new Diretor(9999, "Y", (float) 90/100, 5000.00, ocorrencias);
-		Aluno alunoZ = new Aluno(123, "Z", (float) 54/100, "019", ocorrencias, notas );
+		Diretor diretorY = new Diretor(9999, "Y", (float) 90/100, "senha", 5000.00, ocorrencias);
+		Aluno alunoZ = new Aluno(123, "Z", (float) 54/100, "senha", "019", ocorrencias, notas );
 		GerenciadorDados ga = new GerenciadorDados();
 		
 		//leitura do banco de dados FAZER ISSO NA INICIALIZAÇÃO DO PROGRAMA

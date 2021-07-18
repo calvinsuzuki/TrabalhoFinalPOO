@@ -2,7 +2,7 @@
 public class Pessoa {
 	
 	private long register;
-	private String nome;
+	private String nome, senha;
 	private double freq;
 	
 	/**
@@ -11,10 +11,11 @@ public class Pessoa {
 	 * @param _nome - Nome da pessoa
 	 * @param _freq - Frequencia da pessoa
 	 */
-	Pessoa(long _register, String _nome, double _freq) {
-		register = _register;
-		nome = _nome;
-		freq = _freq;
+	Pessoa(long register, String nome, double freq, String senha) {
+		this.register = register;
+		this.nome = nome;
+		this.freq = freq;
+		this.senha = senha;
 	}
 	
 	/**
@@ -31,6 +32,9 @@ public class Pessoa {
 		return str;
 	}
 	
+	public String getSenha() {
+		return senha;
+	}
 	
 	public long getRegister() {
 		return register;
@@ -56,6 +60,11 @@ public class Pessoa {
 	
 	public void setFreq(float _freq) {
 		freq = _freq;
+		return;
+	}
+	
+	public void setSenha(String senha) {
+		this.senha = senha;
 		return;
 	}
 

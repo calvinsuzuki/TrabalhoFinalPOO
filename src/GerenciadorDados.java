@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class GerenciadorDados {
 	private String row = new String();
-	private Diretor classeParaPermissoes = new Diretor(-1, "GA", 0, 0, 0);
+	private Diretor classeParaPermissoes = new Diretor(-1, "GA", 0, "senha", 0, 0);
 	
 	/**
 	 * Esse método cria um novo aluno dado um array de strings correlacionado à uma linha do csv
@@ -20,7 +20,7 @@ public class GerenciadorDados {
 		for(int i = 6; i < 12; i++ ) {
 			notas[i-6] = Double.parseDouble(dados[i]);
 		}
-		Aluno novoAluno = new Aluno(Long.parseLong(dados[1]), dados[2], Double.parseDouble(dados[3]), dados[4], Integer.parseInt(dados[5]), notas);
+		Aluno novoAluno = new Aluno(Long.parseLong(dados[1]), dados[2], Double.parseDouble(dados[3]), "senha", dados[4], Integer.parseInt(dados[5]), notas);
 		escola.adicionaPessoa(classeParaPermissoes, novoAluno);
 	}
 	
@@ -38,11 +38,11 @@ public class GerenciadorDados {
 		}
 		
 		if(dados[1].equals("PROFESSOR")) {
-			novaPessoa = new Professor(Long.parseLong(dados[2]), dados[3], Double.parseDouble(dados[4]), Double.parseDouble(dados[5]), Integer.parseInt(dados[6]), dadosExtra);
+			novaPessoa = new Professor(Long.parseLong(dados[2]), dados[3], Double.parseDouble(dados[4]), "senha", Double.parseDouble(dados[5]), Integer.parseInt(dados[6]), dadosExtra);
 		} else if(dados[1].equals("ZELADOR")) {
-			novaPessoa = new Zelador(Long.parseLong(dados[2]), dados[3], Double.parseDouble(dados[4]), Double.parseDouble(dados[5]), Integer.parseInt(dados[6]), dadosExtra[0]);
+			novaPessoa = new Zelador(Long.parseLong(dados[2]), dados[3], Double.parseDouble(dados[4]), "senha", Double.parseDouble(dados[5]), Integer.parseInt(dados[6]), dadosExtra[0]);
 		} else if(dados[1].equals("DIRETOR")) {
-			novaPessoa = new Diretor(Long.parseLong(dados[2]), dados[3], Double.parseDouble(dados[4]), Double.parseDouble(dados[5]), Integer.parseInt(dados[6]));
+			novaPessoa = new Diretor(Long.parseLong(dados[2]), dados[3], Double.parseDouble(dados[4]), "senha", Double.parseDouble(dados[5]), Integer.parseInt(dados[6]));
 		}
 		escola.adicionaPessoa(classeParaPermissoes, novaPessoa);
 	}
