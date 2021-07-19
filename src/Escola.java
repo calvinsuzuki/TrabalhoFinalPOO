@@ -50,17 +50,11 @@ public class Escola {
 				throw new UsuarioLogadoInvalidoException();
 			}
 		
-			for (int i = 0; i < nPessoas; i++) {
-				if (novaPessoa.getRegister() == pessoas.get(i).getRegister()) {
-					throw new RegistroUsadoException();
-				}
-		        
-		        if (novaPessoa.getRegister() < pessoas.get(i).getRegister()) {
-		        	pessoas.add(i, novaPessoa);
-		        	nPessoas++;
-		        	return;
-		        }
-		    }
+			if(this.buscaPessoa(novaPessoa.getRegister()) != null) {
+				throw new RegistroUsadoException();
+			}
+			
+			
 			pessoas.add(novaPessoa);
 			nPessoas++;
 		}  catch (RegistroUsadoException e) {
@@ -188,5 +182,40 @@ public class Escola {
 			r = pessoaRequerida.getClass().toString() + "\nNome: " + pessoaRequerida.getNome() + "\nNº de Registro: " + pessoaRequerida.getRegister();
 		}
 		return r;
+	}
+	
+	/**
+	 * Método usado para logar inicialmente um usuário no programa
+	 * @param txtRegistro - É uma string correspondente ao registro do usuário que
+	 * está tentando logar
+	 * @param txtSenha - É a senha do usuário que está tentando logar
+	 * @return - A pessoa logada ou null, caso tenha algum dado errado no login
+	 * */
+	public Pessoa checkLogin(String txtRegistro, String txtSenha) {
+		Pessoa pessoaLogada = null;
+		
+		
+		if(txtRegistro.matches("-?\\d+")) {
+			pessoaLogada = this.buscaPessoa(Integer.parseInt(txtRegistro));
+			
+			if(pessoaLogada.getSenha().equals("§")) {
+				if (pessoaLogada == null) {
+					System.out.println("Registro e/ou Senha inseridos não é/são válido(s)");
+				} else {
+					System.out.println(pessoaLogada.toString());
+				}
+				return pessoaLogada;
+			}
+			if(!txtSenha.equals(pessoaLogada.getSenha())) {pessoaLogada = null;}
+		} else {
+			pessoaLogada = null;
+		}
+		
+		if (pessoaLogada == null) {
+			System.out.println("Registro e/ou Senha inseridos não é/são válido(s)");
+		} else {
+			System.out.println(pessoaLogada.toString());
+		}
+		return pessoaLogada;
 	}
 }

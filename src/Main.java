@@ -28,7 +28,7 @@ public class Main {
 		
 		//uso de printPessoas
 		String[] printPessoas = escolaX.imprimePessoas(new boolean[] {false, true, true, true});
-		for(int i = 0; i < escolaX.getNPessoas(); i++) {
+		for(int i = 0; i < printPessoas.length ; i++) {
 			if(printPessoas[i] == null) {continue;}
 			System.out.println(printPessoas[i]);
 		}
@@ -59,6 +59,13 @@ public class Main {
 			//sem um for porque o registro é único por usuário
 			System.out.println(escolaX.infoPessoa(pessoasPesquisadas.get(0), diretorY));
 		}
+		
+		//uso de chacklogin, sendo só a terceira válida e as 2 últimas um login de alguém sem senha
+		escolaX.checkLogin("1a3", "senha");
+		escolaX.checkLogin("123", "SENHA");
+		escolaX.checkLogin("123", "senha");
+		escolaX.checkLogin("321", "senha");
+		escolaX.checkLogin("321", "rgrejgruy");
 		
 		//remoção de uma pessoa
 		escolaX.removePessoa(diretorY, 123);

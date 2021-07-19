@@ -17,10 +17,10 @@ public class GerenciadorDados {
 	 * */
 	private void processaLinhaAluno(Escola escola, String[] dados) {
 		Double[] notas = new Double[6];
-		for(int i = 6; i < 12; i++ ) {
-			notas[i-6] = Double.parseDouble(dados[i]);
+		for(int i = 7; i < 13; i++ ) {
+			notas[i-7] = Double.parseDouble(dados[i]);
 		}
-		Aluno novoAluno = new Aluno(Long.parseLong(dados[1]), dados[2], Double.parseDouble(dados[3]), "senha", dados[4], Integer.parseInt(dados[5]), notas);
+		Aluno novoAluno = new Aluno(Long.parseLong(dados[2]), dados[3], Double.parseDouble(dados[4]), dados[1], dados[5], Integer.parseInt(dados[6]), notas);
 		escola.adicionaPessoa(classeParaPermissoes, novoAluno);
 	}
 	
@@ -31,18 +31,18 @@ public class GerenciadorDados {
 	 * */
 	private void processaLinhaFuncionario(Escola escola, String[] dados) {
 		Pessoa novaPessoa = null;
-		String[] dadosExtra = new String[dados.length-7];
+		String[] dadosExtra = new String[dados.length-8];
 		
-		for(int i = 7; i < dados.length; i++) {
-			dadosExtra[i-7] = dados[i];
+		for(int i = 8; i < dados.length; i++) {
+			dadosExtra[i-8] = dados[i];
 		}
 		
 		if(dados[1].equals("PROFESSOR")) {
-			novaPessoa = new Professor(Long.parseLong(dados[2]), dados[3], Double.parseDouble(dados[4]), "senha", Double.parseDouble(dados[5]), Integer.parseInt(dados[6]), dadosExtra);
+			novaPessoa = new Professor(Long.parseLong(dados[3]), dados[4], Double.parseDouble(dados[5]), dados[2], Double.parseDouble(dados[6]), Integer.parseInt(dados[7]), dadosExtra);
 		} else if(dados[1].equals("ZELADOR")) {
-			novaPessoa = new Zelador(Long.parseLong(dados[2]), dados[3], Double.parseDouble(dados[4]), "senha", Double.parseDouble(dados[5]), Integer.parseInt(dados[6]), dadosExtra[0]);
+			novaPessoa = new Zelador(Long.parseLong(dados[3]), dados[4], Double.parseDouble(dados[5]), dados[2], Double.parseDouble(dados[6]), Integer.parseInt(dados[7]), dadosExtra[0]);
 		} else if(dados[1].equals("DIRETOR")) {
-			novaPessoa = new Diretor(Long.parseLong(dados[2]), dados[3], Double.parseDouble(dados[4]), "senha", Double.parseDouble(dados[5]), Integer.parseInt(dados[6]));
+			novaPessoa = new Diretor(Long.parseLong(dados[3]), dados[4], Double.parseDouble(dados[5]), dados[2], Double.parseDouble(dados[6]), Integer.parseInt(dados[7]));
 		}
 		escola.adicionaPessoa(classeParaPermissoes, novaPessoa);
 	}
@@ -82,7 +82,7 @@ public class GerenciadorDados {
 		df.setMaximumFractionDigits(2);
 		Double[] notas = aluno.getNotas();
 		
-		escritorcsv.append("ALUNO"+ ',' +String.valueOf(aluno.getRegister()) + ',' + aluno.getNome() + ',');
+		escritorcsv.append("ALUNO"+ ',' + aluno.getSenha() + ',' +String.valueOf(aluno.getRegister()) + ',' + aluno.getNome() + ',');
 		escritorcsv.append(String.valueOf(df.format(aluno.getFreq())) + ',' + aluno.getTurma() + ',' + aluno.getOcorr());
 		for(int i = 0; i < 6; i++) {
 			escritorcsv.append(',' + String.valueOf(notas[i]));
@@ -100,7 +100,7 @@ public class GerenciadorDados {
 		df.setMaximumFractionDigits(2);
 		String[] turmas = professor.getTurmas();
 		
-		escritorcsv.append("PROFESSOR"+ ',' +String.valueOf(professor.getRegister()) + ',' + professor.getNome() + ',');
+		escritorcsv.append("PROFESSOR"+ ',' + professor.getSenha() + ',' +String.valueOf(professor.getRegister()) + ',' + professor.getNome() + ',');
 		escritorcsv.append(String.valueOf(df.format(professor.getFreq())) + ',' + professor.getSalario() + ',' + professor.getReclam());
 		for(int i = 0; i < turmas.length; i++) {
 			escritorcsv.append(',' + turmas[i]);
@@ -116,8 +116,8 @@ public class GerenciadorDados {
 	private void escreveZeladoresArquivo(Zelador zelador, FileWriter escritorcsv) throws IOException {
 		DecimalFormat df = new DecimalFormat();
 		df.setMaximumFractionDigits(2);
-		escritorcsv.append("ZELADOR"+ ',' +String.valueOf(zelador.getRegister()) + ',' + zelador.getNome() + ',');
-		escritorcsv.append(String.valueOf(df.format(zelador.getFreq())) + ',' + zelador.getSalario() + ',' + zelador.getReclam() + zelador.getFuncao() + '\n');
+		escritorcsv.append("ZELADOR"+ ',' + zelador.getSenha() + ',' +String.valueOf(zelador.getRegister()) + ',' + zelador.getNome() + ',');
+		escritorcsv.append(String.valueOf(df.format(zelador.getFreq())) + ',' + zelador.getSalario() + ',' + zelador.getReclam() + ',' + zelador.getFuncao() + '\n');
 	}
 	
 	/**
@@ -128,7 +128,7 @@ public class GerenciadorDados {
 	private void escreveDiretoresArquivo(Diretor diretor, FileWriter escritorcsv) throws IOException {
 		DecimalFormat df = new DecimalFormat();
 		df.setMaximumFractionDigits(2);
-		escritorcsv.append("DIRETOR"+ ',' +String.valueOf(diretor.getRegister()) + ',' + diretor.getNome() + ',');
+		escritorcsv.append("DIRETOR"+ ',' + diretor.getSenha() + ',' +String.valueOf(diretor.getRegister()) + ',' + diretor.getNome() + ',');
 		escritorcsv.append(String.valueOf(df.format(diretor.getFreq())) + ',' + diretor.getSalario() + ',' + diretor.getReclam() + '\n');
 	}
 	
