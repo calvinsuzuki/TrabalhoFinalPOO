@@ -230,6 +230,7 @@ public class Escola {
 	
 	/**
 	 * Funcao ordena as pessoas da escola por ordem alfabetica
+	 * Respeitando a ordem ALUNO > PROFESSOR > ZELADOR > DIRETOR
 	 */
 	public void sortAlpha() {
 		
@@ -238,7 +239,23 @@ public class Escola {
 		        @Override
 		        public int compare(Pessoa p1, Pessoa p2)
 		        {
-
+		        	int[] classe = {-1, -1};
+		        	Pessoa[] aux = {p1, p2};
+		        	
+		        	for (int i = 0; i < 2; i++) {
+		        		if(aux[i].getClass().toString().equals("class Aluno"))
+		        			classe[i] = 0;
+				        if(aux[i].getClass().toString().equals("class Professor"))
+				        	classe[i] = 1;
+				        if(aux[i].getClass().toString().equals("class Zelador"))
+				        	classe[i] = 2;
+				        if(aux[i].getClass().toString().equals("class Diretor"))
+				        	classe[i] = 3;
+		        	}
+		        	
+		        	if( classe[0] > classe[1] ) return 1;
+		        	if( classe[0] < classe[1] ) return -1;
+		        	
 		            return  p1.getNome().compareTo(p2.getNome());
 		        }
 		    });
@@ -246,6 +263,7 @@ public class Escola {
 	
 	/**
 	 * Funcao ordena as pessoas da escola por ordem alfabetica
+	 * Respeitando a ordem ALUNO > PROFESSOR > ZELADOR > DIRETOR
 	 */
 	public void sortRegistro() {
 		
@@ -254,12 +272,28 @@ public class Escola {
 		        @Override
 		        public int compare(Pessoa p1, Pessoa p2)
 		        {	
-		        	int aux = 0;
-		        	if (p1.getRegister() == p2.getRegister()) aux = 0;
-		        	if (p1.getRegister() > p2.getRegister()) aux = 1;
-		        	if (p1.getRegister() < p2.getRegister()) aux = -1;
+		        	int[] classe = {-1, -1};
+		        	Pessoa[] aux = {p1, p2};
 		        	
-		            return aux;
+		        	for (int i = 0; i < 2; i++) {
+		        		if(aux[i].getClass().toString().equals("class Aluno"))
+		        			classe[i] = 0;
+				        if(aux[i].getClass().toString().equals("class Professor"))
+				        	classe[i] = 1;
+				        if(aux[i].getClass().toString().equals("class Zelador"))
+				        	classe[i] = 2;
+				        if(aux[i].getClass().toString().equals("class Diretor"))
+				        	classe[i] = 3;
+		        	}
+		        	
+		        	if( classe[0] > classe[1] ) return 1;		        	
+		        	if( classe[0] < classe[1] ) return -1;
+		        	
+		        	if (p1.getRegister() == p2.getRegister()) return 0;
+		        	if (p1.getRegister() > p2.getRegister()) return 1;
+		        	if (p1.getRegister() < p2.getRegister()) return -1;
+		        	
+		            return 0;
 		        }
 		    });
 	}

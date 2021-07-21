@@ -30,7 +30,7 @@ public class Main {
 		escolaX.sortAlpha();
 		
 		//uso de printPessoas
-		String[] printPessoas = escolaX.imprimePessoas(new boolean[] {true, false, false, false});
+		String[] printPessoas = escolaX.imprimePessoas(new boolean[] {true, true, true, true});
 		for(int i = 0; i < printPessoas.length ; i++) {
 			if(printPessoas[i] == null) continue;
 			System.out.println(printPessoas[i] + "\n");
@@ -40,7 +40,7 @@ public class Main {
 		escolaX.sortRegistro();
 		
 		//uso de printPessoas
-		printPessoas = escolaX.imprimePessoas(new boolean[] {true, false, false, false});
+		printPessoas = escolaX.imprimePessoas(new boolean[] {true, true, true, true});
 		for(int i = 0; i < printPessoas.length ; i++) {
 			if(printPessoas[i] == null) continue;
 			System.out.println(printPessoas[i] + "\n");

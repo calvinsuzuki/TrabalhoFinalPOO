@@ -1,3 +1,12 @@
+FUNCIONARIO,PROFESSOR,senha,8000,Sophia,0.3,4500,0,turma 1,turma 2,,,
+FUNCIONARIO,PROFESSOR,senha,8001,Mendonça,0.3,4500,3,turma 1,turma 2,,,
+FUNCIONARIO,PROFESSOR,senha,8002,Antonio Marcos,0.3,4500,1,turma 1,turma 2,,,
+FUNCIONARIO,ZELADOR,senha,7000,Zilda,0.6,1500,0,auxiliar de limpeza primeiro andar,,,,
+FUNCIONARIO,ZELADOR,senha,7001,Luis,0.6,1500,2,auxiliar de limpeza segundo andar,,,,
+FUNCIONARIO,ZELADOR,senha,7002,Marcos,0.6,1500,0,cantina,,,,
+FUNCIONARIO,DIRETOR,senha,9800,Marcelo,0.9,5000,0,,,,,
+FUNCIONARIO,DIRETOR,senha,9801,Roberto,0.9,5000,0,,,,,
+FUNCIONARIO,DIRETOR,senha,9802,Marinez,0.9,5000,1,,,,,
 ALUNO,senha,8,Maria Campos,0.54,19,0,8,5,5,5.2,5.6,7.2
 ALUNO,senha,41,Clara Caldeira,0.54,19,0,8,5,5,5.2,5.6,7.2
 ALUNO,senha,43,Mirella Ramos,0.54,19,1,8,5,5,5.2,5.6,7.2
@@ -51,6 +60,3 @@ ALUNO,senha,961,Ana Sophia Lopes,0.54,19,0,8,5,5,5.2,5.6,7.2
 ALUNO,senha,973,Luigi Correia,0.54,19,0,8,5,5,5.2,5.6,7.2
 ALUNO,senha,993,Kaique Carvalho,0.54,19,0,8,5,5,5.2,5.6,7.2
 ALUNO,§,321,SemSenha,0.54,19,1,8,5,5,5.2,5.6,7.2
-FUNCIONARIO,PROFESSOR,senha,8000,Maria,0.3,4500,0,turma 1,turma 2,,,
-FUNCIONARIO,ZELADOR,senha,7000,Marcos,0.6,1500,0,cantina,,,,
-FUNCIONARIO,DIRETOR,senha,9999,Y,0.9,5000,1,,,,,
