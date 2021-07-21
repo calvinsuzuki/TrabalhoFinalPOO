@@ -5,6 +5,16 @@ public class Aluno extends Pessoa {
 	private int ocorr;
 	private Double[] notas;
 	
+	/**
+	 * Construtor da classe aluno
+	 * @param register - long - Registro na escola
+	 * @param nome - String - Nome da pessoa
+	 * @param freq - double - Frequencia da pessoa
+	 * @param senha - String - A senha da conta
+	 * @param turma - String - Valor do salario
+	 * @param reclamacoes - int - Quantidade de reclamacoes
+	 * @param turmas - String[] - Turmas que o professor ministra aulas
+	 */
 	Aluno(long register, String nome, double freq, String senha, String turma, int ocorrencias, Double[] notas) {
 		super(register, nome, freq, senha);
 		this.turma = turma;
@@ -16,7 +26,8 @@ public class Aluno extends Pessoa {
 	public String toString() {
 		String str;
 		
-		str = "Nome: " + getNome();
+		str = "Aluno";
+		str += "\nNome: " + getNome();
 		str += "\nNº de Registro: " + getRegister();
 		str += "\nFrequência: " + getFreq();
 		str += "\nTurma: " + turma;			

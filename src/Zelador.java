@@ -1,8 +1,19 @@
 
 public class Zelador extends Funcionario {
 	
+	
 	private String funcao;
 	
+	/**
+	 * Construtor da classe funcionario
+	 * @param register - long - Registro na escola
+	 * @param nome - String - Nome da pessoa
+	 * @param freq - double - Frequencia da pessoa
+	 * @param senha - String - A senha da conta
+	 * @param salario - double - Valor do salario
+	 * @param reclamacoes - int - Quantidade de reclamacoes
+	 * @param funcao - String - Funcao que o zelador empregará na escola
+	 */
 	Zelador(long register, String nome, double freq, String senha, double salario, int reclamacoes, String funcao) {
 		super(register, nome, freq, senha, salario, reclamacoes);
 		this.funcao = funcao;
@@ -11,8 +22,9 @@ public class Zelador extends Funcionario {
 	@Override
 	public String toString() {
 		String str;
-		
-		str = "Nome: " + getNome();
+
+		str = "Zelador";
+		str += "\nNome: " + getNome();
 		str += "\nNº de Registro: " + getRegister();
 		str += "\nFrequencia: " + getFreq();
 		str += "\nSalario: " + getSalario();

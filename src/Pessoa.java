@@ -7,9 +7,10 @@ public class Pessoa {
 	
 	/**
 	 * Construtor da classe pessoa
-	 * @param _register - Numero de registro na escola
-	 * @param _nome - Nome da pessoa
-	 * @param _freq - Frequencia da pessoa
+	 * @param register - long - Numero de registro na escola
+	 * @param nome - String - Nome da pessoa
+	 * @param freq - double - Frequencia da pessoa
+	 * @param senha - String - A senha da conta
 	 */
 	Pessoa(long register, String nome, double freq, String senha) {
 		this.register = register;
@@ -18,14 +19,12 @@ public class Pessoa {
 		this.senha = senha;
 	}
 	
-	/**
-	 * Funcao retorna os dados de pessoa em String
-	 */
 	@Override
 	public String toString() {
 		String str;
 		
-		str = "Nome: " + nome;
+		str = "Pessoa";
+		str += "\nNome: " + getNome();
 		str += "\nNº de Registro: " + register;
 		str += "\nFrequência: " + freq;
 		

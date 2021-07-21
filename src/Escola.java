@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 import exceptions.RegistroUsadoException;
 import exceptions.UsuarioLogadoInvalidoException;
@@ -52,8 +54,7 @@ public class Escola {
 		
 			if(this.buscaPessoa(novaPessoa.getRegister()) != null) {
 				throw new RegistroUsadoException();
-			}
-			
+			}			
 			
 			pessoas.add(novaPessoa);
 			nPessoas++;
@@ -99,18 +100,26 @@ public class Escola {
 	
 	/**
 	 * Função que repassa os dados usados para a impressão de todos na escola
-	 * @param classesRetorno- array de booleans com 4 elementos, equivalendo respectivamente à Aluno, Professor,
-	 * Zelador, Diretor. Passe 'true' para o boolean equivalente para receber string condizentes à classe
+	 * Recebe 'true' para o boolean equivalente para receber string condizentes à classe
+	 * Em um array de booleans tamanho 4, sendo respectivamente à Aluno, Professor, Zelador, Diretor. 
+	 * @param classesRetorno
 	 * @return Retorna um array de strings com os dados básicos de todos os usuários
 	 * */
 	public String[] imprimePessoas(boolean[] classesRetorno) {
 		ArrayList<Pessoa> pessoasRetorno = new ArrayList<Pessoa>();
 		Pessoa[] classesDesejadas = new Pessoa[4];
 		
-		if(classesRetorno[0]) {classesDesejadas[0] = new Aluno(0, null, 0, null, null, 0, null);} else {classesDesejadas[0] = new Pessoa(0, null, 0, null);}
-		if(classesRetorno[1]) {classesDesejadas[1] = new Professor(0, null, 0, null, 0, 0, null);} else {classesDesejadas[1] = new Pessoa(0, null, 0, null);}
-		if(classesRetorno[2]) {classesDesejadas[2] = new Zelador(0, null, 0, null, 0, 0, null);} else {classesDesejadas[2] = new Pessoa(0, null, 0, null);}
-		if(classesRetorno[3]) {classesDesejadas[3] = new Diretor(0, null, 0, null, 0, 0);} else {classesDesejadas[3] = new Pessoa(0, null, 0, null);}
+		if(classesRetorno[0]) classesDesejadas[0] = new Aluno(0, null, 0, null, null, 0, null);
+		else classesDesejadas[0] = new Pessoa(0, null, 0, null);
+		
+		if(classesRetorno[1]) classesDesejadas[1] = new Professor(0, null, 0, null, 0, 0, null);
+		else classesDesejadas[1] = new Pessoa(0, null, 0, null);
+		
+		if(classesRetorno[2]) classesDesejadas[2] = new Zelador(0, null, 0, null, 0, 0, null);
+		else classesDesejadas[2] = new Pessoa(0, null, 0, null);
+		
+		if(classesRetorno[3]) classesDesejadas[3] = new Diretor(0, null, 0, null, 0, 0);
+		else classesDesejadas[3] = new Pessoa(0, null, 0, null);
 		
 		for(int i = 0; i < nPessoas; i++) {
 			for(int j = 0; j < 4; j++) {
@@ -217,5 +226,41 @@ public class Escola {
 			System.out.println(pessoaLogada.toString());
 		}
 		return pessoaLogada;
+	}
+	
+	/**
+	 * Funcao ordena as pessoas da escola por ordem alfabetica
+	 */
+	public void sortAlpha() {
+		
+		// Sorting
+		Collections.sort(pessoas, new Comparator<Pessoa>() {
+		        @Override
+		        public int compare(Pessoa p1, Pessoa p2)
+		        {
+
+		            return  p1.getNome().compareTo(p2.getNome());
+		        }
+		    });
+	}
+	
+	/**
+	 * Funcao ordena as pessoas da escola por ordem alfabetica
+	 */
+	public void sortRegistro() {
+		
+		// Sorting
+		Collections.sort(pessoas, new Comparator<Pessoa>() {
+		        @Override
+		        public int compare(Pessoa p1, Pessoa p2)
+		        {	
+		        	int aux = 0;
+		        	if (p1.getRegister() == p2.getRegister()) aux = 0;
+		        	if (p1.getRegister() > p2.getRegister()) aux = 1;
+		        	if (p1.getRegister() < p2.getRegister()) aux = -1;
+		        	
+		            return aux;
+		        }
+		    });
 	}
 }
