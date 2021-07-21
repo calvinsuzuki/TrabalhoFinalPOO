@@ -207,13 +207,13 @@ public class Escola {
 		if(txtRegistro.matches("-?\\d+")) {
 			pessoaLogada = this.buscaPessoa(Integer.parseInt(txtRegistro));
 			
-			if(pessoaLogada.getSenha().equals("§")) {
-				if (pessoaLogada == null) {
-					System.out.println("Registro e/ou Senha inseridos não é/são válido(s)");
-				} else {
-					System.out.println(pessoaLogada.toString());
-				}
+			if (pessoaLogada == null) {
+				System.out.println("Registro e/ou Senha inseridos não é/são válido(s)");
 				return pessoaLogada;
+			}
+			
+			if(pessoaLogada.getSenha().equals("§")) {
+				pessoaLogada.setSenha(txtSenha);
 			}
 			if(!txtSenha.equals(pessoaLogada.getSenha())) {pessoaLogada = null;}
 		} else {
