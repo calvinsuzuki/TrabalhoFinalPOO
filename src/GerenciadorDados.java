@@ -6,6 +6,9 @@ import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
+import exceptions.RegistroUsadoException;
+import exceptions.UsuarioLogadoInvalidoException;
+
 public class GerenciadorDados {
 	private String row = new String();
 	private Diretor classeParaPermissoes = new Diretor(-1, "GA", 0, "senha", 0, 0);
@@ -21,7 +24,16 @@ public class GerenciadorDados {
 			notas[i-7] = Double.parseDouble(dados[i]);
 		}
 		Aluno novoAluno = new Aluno(Long.parseLong(dados[2]), dados[3], Double.parseDouble(dados[4]), dados[1], dados[5], Integer.parseInt(dados[6]), notas);
-		escola.adicionaPessoa(classeParaPermissoes, novoAluno);
+		
+		try {
+			escola.adicionaPessoa(classeParaPermissoes, novoAluno);
+		} catch (RegistroUsadoException e) {
+			System.out.println(e.getMessage());
+			return;
+		} catch (UsuarioLogadoInvalidoException e) {
+			System.out.println(e.getMessage());
+			return;
+		}
 	}
 	
 	/**
@@ -44,7 +56,16 @@ public class GerenciadorDados {
 		} else if(dados[1].equals("DIRETOR")) {
 			novaPessoa = new Diretor(Long.parseLong(dados[3]), dados[4], Double.parseDouble(dados[5]), dados[2], Double.parseDouble(dados[6]), Integer.parseInt(dados[7]));
 		}
-		escola.adicionaPessoa(classeParaPermissoes, novaPessoa);
+		
+		try {
+			escola.adicionaPessoa(classeParaPermissoes, novaPessoa);
+		}  catch (RegistroUsadoException e) {
+			System.out.println(e.getMessage());
+			return;
+		} catch (UsuarioLogadoInvalidoException e) {
+			System.out.println(e.getMessage());
+			return;
+		}
 	}
 	
 	public void leAdicionaPessoasArquivos(Escola escola, String nomeArquivo) {

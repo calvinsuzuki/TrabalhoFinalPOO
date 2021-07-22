@@ -21,6 +21,10 @@ import java.awt.event.FocusEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+import exceptions.RegistroUsadoException;
+import exceptions.UsuarioLogadoInvalidoException;
+import exceptions.LoginFalhouException;
+
 public class LoginUI extends JFrame {
 	
 	private JPanel contentPane;
@@ -49,9 +53,14 @@ public class LoginUI extends JFrame {
 		ga.leAdicionaPessoasArquivos(escolaX, "src/baseDados.csv");
 		
 		//uso de adicionaPessoa, primeiramente sem permissão, depois com
-		escolaX.adicionaPessoa(alunoZ, alunoZ);
-		escolaX.adicionaPessoa(diretorY, alunoZ);
-		escolaX.adicionaPessoa(diretorY, diretorY);
+		try {
+			escolaX.adicionaPessoa(diretorY, alunoZ);
+			escolaX.adicionaPessoa(diretorY, diretorY);
+		} catch (RegistroUsadoException e) {
+			System.out.println(e.getMessage());
+		} catch (UsuarioLogadoInvalidoException e) {
+			System.out.println(e.getMessage());
+		}
 		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -166,7 +175,7 @@ public class LoginUI extends JFrame {
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				try {
-					/*contaLogada = sistema.checkLogin(txtRegistro.getText(), new String(txtSenha.getPassword()));*/
+					contaLogada = sistema.checkLogin(txtRegistro.getText(), new String(txtSenha.getPassword()));
 					EventQueue.invokeLater(new Runnable() {
 						public void run() {
 							try {
@@ -178,7 +187,7 @@ public class LoginUI extends JFrame {
 						}
 					});
 					dispose();
-				} catch (Exception e) {
+				} catch (LoginFalhouException e) {
 					JOptionPane.showMessageDialog(null, "Registro ou Senha INVÁLIDO!", "ERRO no Login", JOptionPane.ERROR_MESSAGE);
 				}
 			}

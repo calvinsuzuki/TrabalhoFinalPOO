@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -34,6 +35,9 @@ import java.awt.event.FocusEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+import exceptions.RegistroUsadoException;
+import exceptions.UsuarioLogadoInvalidoException;
+
 public class PagPrincipalUI extends JFrame {
 	
 	private JPanel contentPane;
@@ -66,6 +70,7 @@ public class PagPrincipalUI extends JFrame {
 	private ButtonGroup gpOrdenar;
 	
 	private boolean[] quaisMostrar;
+	private boolean registroOuAlpha;
 	private ArrayList<Pessoa> pessoasMarcadas;
 	private int pageNumAtual;
 	private int pageNumWhileInfoPessoa;
@@ -87,9 +92,14 @@ public class PagPrincipalUI extends JFrame {
 		ga.leAdicionaPessoasArquivos(escolaX, "src/baseDados.csv");
 				
 		//uso de adicionaPessoa, primeiramente sem permissão, depois com
-		escolaX.adicionaPessoa(alunoZ, alunoZ);
-		escolaX.adicionaPessoa(diretorY, alunoZ);
-		escolaX.adicionaPessoa(diretorY, diretorY);
+		try {
+			escolaX.adicionaPessoa(diretorY, alunoZ);
+			escolaX.adicionaPessoa(diretorY, diretorY);
+		} catch (RegistroUsadoException e) {
+			System.out.println(e.getMessage());
+		} catch (UsuarioLogadoInvalidoException e) {
+			System.out.println(e.getMessage());
+		}
 		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -179,6 +189,11 @@ public class PagPrincipalUI extends JFrame {
 			public void actionPerformed(ActionEvent evt) {
 				pessoasMarcadas = null;
 				if(txtBusca.getText().isBlank() || txtBusca.getText().equals("Procurar...")) {
+					if(registroOuAlpha) {
+						sistema.sortRegistro();
+					} else {
+						sistema.sortAlpha();
+					}
 					refreshListPessoas(sistema, contaLogada, quaisMostrar);
 					return;
 				}
@@ -192,7 +207,11 @@ public class PagPrincipalUI extends JFrame {
 				} catch (Exception e) {
 					pessoasMarcadas = sistema.buscaPessoa(txtBusca.getText());
 				}
-				
+				if(registroOuAlpha) {
+					sistema.sortRegistro(pessoasMarcadas);
+				} else {
+					sistema.sortAlpha(pessoasMarcadas);
+				}
 				refreshListPessoas(sistema, pessoasMarcadas, contaLogada, quaisMostrar);
 			}
 		});
@@ -224,7 +243,8 @@ public class PagPrincipalUI extends JFrame {
 				chckbxmntmMostrarProfessores.setSelected(true);
 				chckbxmntmMostrarZeladores.setSelected(true);
 				chckbxmntmMostrarDiretores.setSelected(true);
-				/*sistema.sortRegistro();*/
+				registroOuAlpha = true;
+				sistema.sortRegistro();
 				rdbtnmntmOrdenarRegistro.setSelected(true);
 				rdbtnmntmOrdenarAlfabetico.setSelected(false);
 				rdbtnmntmOrdenarRegistro.setEnabled(false);
@@ -232,7 +252,7 @@ public class PagPrincipalUI extends JFrame {
 				if(pessoasMarcadas == null) {
 					refreshListPessoas(sistema, contaLogada, quaisMostrar);
 				} else {
-					/*sistema.sortRegistro(pessoasMarcadas);*/
+					sistema.sortRegistro(pessoasMarcadas);
 					refreshListPessoas(sistema, pessoasMarcadas, contaLogada, quaisMostrar);
 				}
 			}
@@ -362,11 +382,12 @@ public class PagPrincipalUI extends JFrame {
 		rdbtnmntmOrdenarRegistro.setEnabled(false);
 		rdbtnmntmOrdenarRegistro.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				/*sistema.sortRegistro();*/
+				registroOuAlpha = true;
+				sistema.sortRegistro();
 				if(pessoasMarcadas == null) {
 					refreshListPessoas(sistema, contaLogada, quaisMostrar);
 				} else {
-					/*sistema.sortRegistro(pessoasMarcadas);*/
+					sistema.sortRegistro(pessoasMarcadas);
 					refreshListPessoas(sistema, pessoasMarcadas, contaLogada, quaisMostrar);
 				}
 				rdbtnmntmOrdenarRegistro.setEnabled(false);
@@ -389,11 +410,12 @@ public class PagPrincipalUI extends JFrame {
 		rdbtnmntmOrdenarAlfabetico.setEnabled(true);
 		rdbtnmntmOrdenarAlfabetico.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				/*sistema.sortAlfabetico();*/
+				registroOuAlpha = false;
+				sistema.sortAlpha();
 				if(pessoasMarcadas == null) {
 					refreshListPessoas(sistema, contaLogada, quaisMostrar);
 				} else {
-					/*sistema.sortAlfabetico(pessoasMarcadas);*/
+					sistema.sortAlpha(pessoasMarcadas);
 					refreshListPessoas(sistema, pessoasMarcadas, contaLogada, quaisMostrar);
 				}
 				rdbtnmntmOrdenarRegistro.setEnabled(true);
@@ -421,7 +443,8 @@ public class PagPrincipalUI extends JFrame {
 		titlePane.add(mnbrFiltros);
 		
 		quaisMostrar = new boolean[] {true, true, true, true};
-		/*sistema.sortRegistro();*/
+		registroOuAlpha = true;
+		sistema.sortRegistro();
 		pessoasMarcadas = null;
 		cardsPane = new JPanel();
 		cardsPane.setForeground(new Color(0, 0, 0));

@@ -1,6 +1,7 @@
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -18,6 +19,9 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import exceptions.RegistroUsadoException;
+import exceptions.UsuarioLogadoInvalidoException;
 
 public class AddPessoaUI extends JFrame {
     
@@ -74,9 +78,15 @@ public class AddPessoaUI extends JFrame {
 		ga.leAdicionaPessoasArquivos(escolaX, "src/baseDados.csv");
 				
 		//uso de adicionaPessoa, primeiramente sem permissão, depois com
-		escolaX.adicionaPessoa(alunoZ, alunoZ);
-		escolaX.adicionaPessoa(diretorY, alunoZ);
-		escolaX.adicionaPessoa(diretorY, diretorY);
+		try {
+			escolaX.adicionaPessoa(diretorY, alunoZ);
+			escolaX.adicionaPessoa(diretorY, diretorY);
+		} catch (RegistroUsadoException e) {
+			System.out.println(e.getMessage());
+		} catch (UsuarioLogadoInvalidoException e) {
+			System.out.println(e.getMessage());
+		}
+		
 		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -348,7 +358,13 @@ public class AddPessoaUI extends JFrame {
 					notas[1] = Double.parseDouble(split[1]);
 					notas[2] = Double.parseDouble(split[2]);
 					Pessoa alunx = new Aluno(Long.parseLong(txtRegister.getText()), txtName.getText(), Float.parseFloat(txtFreq.getText()), "senha", txtTurmaAluno.getText(), Integer.parseInt(txtOcorrencias.getText()), notas);
-					escola.adicionaPessoa(contaLogada, alunx);
+					try {
+						escola.adicionaPessoa(contaLogada, alunx);
+					} catch (RegistroUsadoException e) {
+						JOptionPane.showMessageDialog(null, "Registro já existe!", "ERRO", JOptionPane.ERROR_MESSAGE);
+					} catch (UsuarioLogadoInvalidoException e) {
+						JOptionPane.showMessageDialog(null, "Você não tem permissão para adicionar uma pessoa!", "ACESSO NEGADO", JOptionPane.ERROR_MESSAGE);
+					}
 				}
 				if (professor.isSelected()){
 					String[] split = txtTurmaProf.getText().split(",");
@@ -357,15 +373,33 @@ public class AddPessoaUI extends JFrame {
 					turmas[1] = split[1];
 					turmas[2] = split[2];
 					Pessoa professxr = new Professor(Long.parseLong(txtRegister.getText()), txtName.getText(), Float.parseFloat(txtFreq.getText()), "senha", Double.parseDouble(txtSalario.getText()), Integer.parseInt(txtReclamacoes.getText()), turmas);
-					escola.adicionaPessoa(contaLogada, professxr);
+					try {
+						escola.adicionaPessoa(contaLogada, professxr);
+					} catch (RegistroUsadoException e) {
+						JOptionPane.showMessageDialog(null, "Registro já existe!", "ERRO", JOptionPane.ERROR_MESSAGE);
+					} catch (UsuarioLogadoInvalidoException e) {
+						JOptionPane.showMessageDialog(null, "Você não tem permissão para adicionar uma pessoa!", "ACESSO NEGADO", JOptionPane.ERROR_MESSAGE);
+					}
 				}
 				if (zelador.isSelected()){
 					Pessoa zeladxr = new Zelador(Long.parseLong(txtRegister.getText()), txtName.getText(), Float.parseFloat(txtFreq.getText()), "senha", Double.parseDouble(txtSalario.getText()), Integer.parseInt(txtReclamacoes.getText()), txtFuncao.getText());
-					escola.adicionaPessoa(contaLogada, zeladxr);
+					try {
+						escola.adicionaPessoa(contaLogada, zeladxr);
+					} catch (RegistroUsadoException e) {
+						JOptionPane.showMessageDialog(null, "Registro já existe!", "ERRO", JOptionPane.ERROR_MESSAGE);
+					} catch (UsuarioLogadoInvalidoException e) {
+						JOptionPane.showMessageDialog(null, "Você não tem permissão para adicionar uma pessoa!", "ACESSO NEGADO", JOptionPane.ERROR_MESSAGE);
+					}
 				}
 				if (diretor.isSelected()){
 					Pessoa diretxr = new Diretor(Long.parseLong(txtRegister.getText()), txtName.getText(), Float.parseFloat(txtFreq.getText()), "senha", Double.parseDouble(txtSalario.getText()), Integer.parseInt(txtReclamacoes.getText()));
-					escola.adicionaPessoa(contaLogada, diretxr);
+					try {
+						escola.adicionaPessoa(contaLogada, diretxr);
+					} catch (RegistroUsadoException e) {
+						JOptionPane.showMessageDialog(null, "Registro já existe!", "ERRO", JOptionPane.ERROR_MESSAGE);
+					} catch (UsuarioLogadoInvalidoException e) {
+						JOptionPane.showMessageDialog(null, "Você não tem permissão para adicionar uma pessoa!", "ACESSO NEGADO", JOptionPane.ERROR_MESSAGE);
+					}
 				}
 				
 			}

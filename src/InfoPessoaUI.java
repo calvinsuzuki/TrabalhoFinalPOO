@@ -1,6 +1,6 @@
-import java.util.ArrayList;
 import java.util.Dictionary;
 import java.util.Hashtable;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
@@ -9,26 +9,22 @@ import javax.swing.JLabel;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.JSlider;
-import javax.swing.JTextField;
 import javax.swing.JButton;
-import javax.swing.ImageIcon;
-import java.awt.Image;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Dimension;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.MatteBorder;
 import java.awt.EventQueue;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
 import java.awt.event.WindowStateListener;
 import java.awt.event.WindowEvent;
+
+import exceptions.RegistroUsadoException;
+import exceptions.UsuarioLogadoInvalidoException;
 
 public class InfoPessoaUI extends JFrame {
 
@@ -92,9 +88,15 @@ public class InfoPessoaUI extends JFrame {
 		ga.leAdicionaPessoasArquivos(escolaX, "src/baseDados.csv");
 				
 		//uso de adicionaPessoa, primeiramente sem permissão, depois com
-		escolaX.adicionaPessoa(alunoZ, alunoZ);
-		escolaX.adicionaPessoa(diretorY, alunoZ);
-		escolaX.adicionaPessoa(diretorY, diretorY);
+		try {
+			escolaX.adicionaPessoa(diretorY, alunoZ);
+			escolaX.adicionaPessoa(diretorY, diretorY);
+		} catch (RegistroUsadoException e) {
+			System.out.println(e.getMessage());
+		} catch (UsuarioLogadoInvalidoException e) {
+			System.out.println(e.getMessage());
+		}
+		
 		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -396,6 +398,7 @@ public class InfoPessoaUI extends JFrame {
 				aluno.setNotas(new Double[] {(double)spnCienciasProva1.getValue(), (double)spnCienciasProva2.getValue(), (double)spnMatematicaProva1.getValue(), (double)spnMatematicaProva2.getValue(), (double)spnPortuguesProva1.getValue(), (double)spnPortuguesProva2.getValue()});
 				aluno.setOcorr((int)spnOcorrencias.getValue());
 				JOptionPane.showMessageDialog(null, "Informações do Aluno atualizadas", "Modificações SALVAS", JOptionPane.INFORMATION_MESSAGE);
+				paginaPrincipal.infoPessoaFinished(sistema, contaLogada);
 				dispose();
 			}
 		});
@@ -408,10 +411,14 @@ public class InfoPessoaUI extends JFrame {
 			public void actionPerformed(ActionEvent evt) {
 				int certeza = JOptionPane.showConfirmDialog(null, "Tem certeza de que deseja remover o Aluno?", "Confirme a ação", JOptionPane.YES_NO_OPTION);
 				if(certeza == JOptionPane.YES_OPTION) {
-					sistema.removePessoa(contaLogada, aluno.getRegister());
-					JOptionPane.showMessageDialog(null, "Aluno removido do Sistema", "Remoção realizada com SUCESSO", JOptionPane.INFORMATION_MESSAGE);
-					paginaPrincipal.infoPessoaFinished(sistema, contaLogada);
-					dispose();
+					try {
+						sistema.removePessoa(contaLogada, aluno.getRegister());
+						JOptionPane.showMessageDialog(null, "Aluno removido do Sistema", "Remoção realizada com SUCESSO", JOptionPane.INFORMATION_MESSAGE);
+						paginaPrincipal.infoPessoaFinished(sistema, contaLogada);
+						dispose();
+					} catch (UsuarioLogadoInvalidoException e) {
+						JOptionPane.showMessageDialog(null, "Você não tem permissão para remover esse Aluno", "ACESSO NEGADO", JOptionPane.ERROR_MESSAGE);
+					}
 				}
 			}
 		});
@@ -595,10 +602,14 @@ public class InfoPessoaUI extends JFrame {
 			public void actionPerformed(ActionEvent evt) {
 				int certeza = JOptionPane.showConfirmDialog(null, "Tem certeza de que deseja remover o Professor?", "Confirme a ação", JOptionPane.YES_NO_OPTION);
 				if(certeza == JOptionPane.YES_OPTION) {
-					sistema.removePessoa(contaLogada, professor.getRegister());
-					JOptionPane.showMessageDialog(null, "Professor removido do Sistema", "Remoção realizada com SUCESSO", JOptionPane.INFORMATION_MESSAGE);
-					paginaPrincipal.infoPessoaFinished(sistema, contaLogada);
-					dispose();
+					try {
+						sistema.removePessoa(contaLogada, professor.getRegister());
+						JOptionPane.showMessageDialog(null, "Professor removido do Sistema", "Remoção realizada com SUCESSO", JOptionPane.INFORMATION_MESSAGE);
+						paginaPrincipal.infoPessoaFinished(sistema, contaLogada);
+						dispose();
+					} catch (UsuarioLogadoInvalidoException e) {
+						JOptionPane.showMessageDialog(null, "Você não tem permissão para remover esse Professor", "ACESSO NEGADO", JOptionPane.ERROR_MESSAGE);
+					}
 				}
 			}
 		});
@@ -753,10 +764,14 @@ public class InfoPessoaUI extends JFrame {
 			public void actionPerformed(ActionEvent evt) {
 				int certeza = JOptionPane.showConfirmDialog(null, "Tem certeza de que deseja remover o Zelador?", "Confirme a ação", JOptionPane.YES_NO_OPTION);
 				if(certeza == JOptionPane.YES_OPTION) {
-					sistema.removePessoa(contaLogada, zelador.getRegister());
-					JOptionPane.showMessageDialog(null, "Zelador removido do Sistema", "Remoção realizada com SUCESSO", JOptionPane.INFORMATION_MESSAGE);
-					paginaPrincipal.infoPessoaFinished(sistema, contaLogada);
-					dispose();
+					try {
+						sistema.removePessoa(contaLogada, zelador.getRegister());
+						JOptionPane.showMessageDialog(null, "Zelador removido do Sistema", "Remoção realizada com SUCESSO", JOptionPane.INFORMATION_MESSAGE);
+						paginaPrincipal.infoPessoaFinished(sistema, contaLogada);
+						dispose();
+					} catch (UsuarioLogadoInvalidoException e) {
+						JOptionPane.showMessageDialog(null, "Você não tem permissão para remover esse Zelador", "ACESSO NEGADO", JOptionPane.ERROR_MESSAGE);
+					}
 				}
 			}
 		});
@@ -902,10 +917,14 @@ public class InfoPessoaUI extends JFrame {
 			public void actionPerformed(ActionEvent evt) {
 				int certeza = JOptionPane.showConfirmDialog(null, "Tem certeza de que deseja remover o Diretor?", "Confirme a ação", JOptionPane.YES_NO_OPTION);
 				if(certeza == JOptionPane.YES_OPTION) {
-					sistema.removePessoa(contaLogada, diretor.getRegister());
-					JOptionPane.showMessageDialog(null, "Diretor removido do Sistema", "Remoção realizada com SUCESSO", JOptionPane.INFORMATION_MESSAGE);
-					paginaPrincipal.infoPessoaFinished(sistema, contaLogada);
-					dispose();
+					try {
+						sistema.removePessoa(contaLogada, diretor.getRegister());
+						JOptionPane.showMessageDialog(null, "Diretor removido do Sistema", "Remoção realizada com SUCESSO", JOptionPane.INFORMATION_MESSAGE);
+						paginaPrincipal.infoPessoaFinished(sistema, contaLogada);
+						dispose();
+					} catch (UsuarioLogadoInvalidoException e) {
+						JOptionPane.showMessageDialog(null, "Você não tem permissão para remover esse Diretor", "ACESSO NEGADO", JOptionPane.ERROR_MESSAGE);
+					}
 				}
 			}
 		});

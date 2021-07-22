@@ -4,6 +4,7 @@ import java.util.Comparator;
 
 import exceptions.RegistroUsadoException;
 import exceptions.UsuarioLogadoInvalidoException;
+import exceptions.LoginFalhouException;
 
 public class Escola {
 	private int nPessoas = 0;
@@ -46,25 +47,17 @@ public class Escola {
 	 * @param pessoaLogada - Para poder adicionar alguém, pessoaLogada deve ser Diretor
 	 * @param novaPessoa - pode ser de qualquer subclasse, vai adicionar para o sistema da escola
 	 * */
-	public void adicionaPessoa(Pessoa pessoaLogada, Pessoa novaPessoa) {
-		try {
-			if(!(pessoaLogada.getClass().equals(Diretor.class))) {
-				throw new UsuarioLogadoInvalidoException();
-			}
-		
-			if(this.buscaPessoa(novaPessoa.getRegister()) != null) {
-				throw new RegistroUsadoException();
-			}			
-			
-			pessoas.add(novaPessoa);
-			nPessoas++;
-		}  catch (RegistroUsadoException e) {
-			System.out.println(e.getMessage());
-			return;
-		} catch (UsuarioLogadoInvalidoException e) {
-			System.out.println(e.getMessage());
-			return;
+	public void adicionaPessoa(Pessoa pessoaLogada, Pessoa novaPessoa) throws UsuarioLogadoInvalidoException, RegistroUsadoException {
+		if(!(pessoaLogada.getClass().equals(Diretor.class))) {
+			throw new UsuarioLogadoInvalidoException();
 		}
+		
+		if(this.buscaPessoa(novaPessoa.getRegister()) != null) {
+			throw new RegistroUsadoException();
+		}			
+			
+		pessoas.add(novaPessoa);
+		nPessoas++;
 	}
 	
 	/**
@@ -74,28 +67,23 @@ public class Escola {
 	 * obtido pelo usuário, ou feita uma busca pelo nome usando outra função e depois passada o registro
 	 * aqui
 	 * */
-	public void removePessoa(Pessoa pessoaLogada, long registroPessoaRemovida) {
+	public void removePessoa(Pessoa pessoaLogada, long registroPessoaRemovida) throws UsuarioLogadoInvalidoException {
 		int index = -1;
-		try {
-			for(int i = 0; i < nPessoas; i++) {
-				if(pessoas.get(i).getRegister() == registroPessoaRemovida) {
-					index = i;
-					break;
-				}
+		for(int i = 0; i < nPessoas; i++) {
+			if(pessoas.get(i).getRegister() == registroPessoaRemovida) {
+				index = i;
+				break;
 			}
-			if(index == -1) {
-				return;
-			}
-			if(!(pessoaLogada.getClass().equals(Diretor.class))) {
-				throw new UsuarioLogadoInvalidoException();
-			}
-
-			pessoas.remove(index);
-			nPessoas--;
-		}  catch (UsuarioLogadoInvalidoException e) {
-			System.out.println(e.getMessage());
+		}
+		if(index == -1) {
 			return;
 		}
+		if(!(pessoaLogada.getClass().equals(Diretor.class))) {
+			throw new UsuarioLogadoInvalidoException();
+		}
+
+		pessoas.remove(index);
+		nPessoas--;
 	}
 	
 	/**
@@ -200,31 +188,26 @@ public class Escola {
 	 * @param txtSenha - É a senha do usuário que está tentando logar
 	 * @return - A pessoa logada ou null, caso tenha algum dado errado no login
 	 * */
-	public Pessoa checkLogin(String txtRegistro, String txtSenha) {
+	public Pessoa checkLogin(String txtRegistro, String txtSenha) throws LoginFalhouException {
 		Pessoa pessoaLogada = null;
 		
-		
 		if(txtRegistro.matches("-?\\d+")) {
-			pessoaLogada = this.buscaPessoa(Integer.parseInt(txtRegistro));
+			pessoaLogada = this.buscaPessoa(Long.parseLong(txtRegistro));
 			
 			if (pessoaLogada == null) {
-				System.out.println("Registro e/ou Senha inseridos não é/são válido(s)");
-				return pessoaLogada;
+				throw new LoginFalhouException();
 			}
-			
 			if(pessoaLogada.getSenha().equals("§")) {
 				pessoaLogada.setSenha(txtSenha);
 			}
-			if(!txtSenha.equals(pessoaLogada.getSenha())) {pessoaLogada = null;}
+			if(!txtSenha.equals(pessoaLogada.getSenha())) {
+				throw new LoginFalhouException();
+			}
+			
 		} else {
-			pessoaLogada = null;
+			throw new LoginFalhouException();
 		}
 		
-		if (pessoaLogada == null) {
-			System.out.println("Registro e/ou Senha inseridos não é/são válido(s)");
-		} else {
-			System.out.println(pessoaLogada.toString());
-		}
 		return pessoaLogada;
 	}
 	
@@ -262,10 +245,84 @@ public class Escola {
 	}
 	
 	/**
-	 * Funcao ordena as pessoas da escola por ordem alfabetica
+	 * Funcao ordena as pessoas passadas como parâmetro por ordem alfabetica
+	 * Respeitando a ordem ALUNO > PROFESSOR > ZELADOR > DIRETOR
+	 * @param pessoas - é o ArrayList de Pessoa que deve ser ordenado
+	 */
+	public void sortAlpha(ArrayList<Pessoa> pessoas) {
+		if(pessoas.size() == 0) {return;}
+		
+		// Sorting
+		Collections.sort(pessoas, new Comparator<Pessoa>() {
+		        @Override
+		        public int compare(Pessoa p1, Pessoa p2)
+		        {
+		        	int[] classe = {-1, -1};
+		        	Pessoa[] aux = {p1, p2};
+		        	
+		        	for (int i = 0; i < 2; i++) {
+		        		if(aux[i].getClass().toString().equals("class Aluno"))
+		        			classe[i] = 0;
+				        if(aux[i].getClass().toString().equals("class Professor"))
+				        	classe[i] = 1;
+				        if(aux[i].getClass().toString().equals("class Zelador"))
+				        	classe[i] = 2;
+				        if(aux[i].getClass().toString().equals("class Diretor"))
+				        	classe[i] = 3;
+		        	}
+		        	
+		        	if( classe[0] > classe[1] ) return 1;
+		        	if( classe[0] < classe[1] ) return -1;
+		        	
+		            return  p1.getNome().compareTo(p2.getNome());
+		        }
+		    });
+	}
+	
+	/**
+	 * Funcao ordena as pessoas da escola por ordem de registro
 	 * Respeitando a ordem ALUNO > PROFESSOR > ZELADOR > DIRETOR
 	 */
 	public void sortRegistro() {
+		
+		// Sorting
+		Collections.sort(pessoas, new Comparator<Pessoa>() {
+		        @Override
+		        public int compare(Pessoa p1, Pessoa p2)
+		        {	
+		        	int[] classe = {-1, -1};
+		        	Pessoa[] aux = {p1, p2};
+		        	
+		        	for (int i = 0; i < 2; i++) {
+		        		if(aux[i].getClass().toString().equals("class Aluno"))
+		        			classe[i] = 0;
+				        if(aux[i].getClass().toString().equals("class Professor"))
+				        	classe[i] = 1;
+				        if(aux[i].getClass().toString().equals("class Zelador"))
+				        	classe[i] = 2;
+				        if(aux[i].getClass().toString().equals("class Diretor"))
+				        	classe[i] = 3;
+		        	}
+		        	
+		        	if( classe[0] > classe[1] ) return 1;		        	
+		        	if( classe[0] < classe[1] ) return -1;
+		        	
+		        	if (p1.getRegister() == p2.getRegister()) return 0;
+		        	if (p1.getRegister() > p2.getRegister()) return 1;
+		        	if (p1.getRegister() < p2.getRegister()) return -1;
+		        	
+		            return 0;
+		        }
+		    });
+	}
+	
+	/**
+	 * Funcao ordena as pessoas passadas como parâmetro por ordem de registro
+	 * Respeitando a ordem ALUNO > PROFESSOR > ZELADOR > DIRETOR
+	 * @param pessoas - é o ArrayList de Pessoa que deve ser ordenado
+	 */
+	public void sortRegistro(ArrayList<Pessoa> pessoas) {
+		if(pessoas.size() == 0) {return;}
 		
 		// Sorting
 		Collections.sort(pessoas, new Comparator<Pessoa>() {
