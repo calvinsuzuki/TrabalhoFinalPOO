@@ -31,10 +31,8 @@ public class AddPessoaUI extends JFrame {
     private JLabel lblRegister;
     private JPanel titlePane;
     private JLabel lblName;
-    private JLabel lblFreq;
     private JTextField txtRegister;
     private JTextField txtName;
-    private JTextField txtFreq;
 	private JLabel lblFunc, lblFunc2;
 	private JRadioButton aluno;
 	private JRadioButton professor;
@@ -42,16 +40,10 @@ public class AddPessoaUI extends JFrame {
 	private JRadioButton diretor;
 
 	private JLabel turmaAluno;
-	private JLabel notas;
-	private JLabel ocorrencias;
 	private JTextField txtTurmaAluno;
-	private JTextField txtNotas;
-	private JTextField txtOcorrencias;
 
 	private JLabel lblSalario;
-	private JLabel lblReclamacoes;
 	private JTextField txtSalario;
-	private JTextField txtReclamacoes;
 
 	private JLabel lblFuncao;
 	private JTextField txtFuncao;
@@ -74,10 +66,10 @@ public class AddPessoaUI extends JFrame {
 		Aluno alunoZ = new Aluno(123, "Z", (float) 54/100, "123", "019", ocorrencias, notas );
 		GerenciadorDados ga = new GerenciadorDados();
 		
-		//leitura do banco de dados FAZER ISSO NA INICIALIZAÇÃO DO PROGRAMA
+		//leitura do banco de dados FAZER ISSO NA INICIALIZAï¿½ï¿½O DO PROGRAMA
 		ga.leAdicionaPessoasArquivos(escolaX, "src/baseDados.csv");
 				
-		//uso de adicionaPessoa, primeiramente sem permissão, depois com
+		//uso de adicionaPessoa, primeiramente sem permissï¿½o, depois com
 		try {
 			escolaX.adicionaPessoa(diretorY, alunoZ);
 			escolaX.adicionaPessoa(diretorY, diretorY);
@@ -91,7 +83,7 @@ public class AddPessoaUI extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AddPessoaUI frame = new AddPessoaUI(escolaX, diretorY);
+					AddPessoaUI frame = new AddPessoaUI(escolaX, diretorY, new PagPrincipalUI(escolaX, diretorY));
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -104,7 +96,7 @@ public class AddPessoaUI extends JFrame {
     /**
 	 * Create the frame.
 	 */
-    public AddPessoaUI(Escola escola, Pessoa contaLogada){
+    public AddPessoaUI(Escola escola, Pessoa contaLogada, PagPrincipalUI paginaPrincipal){
         setBackground(Color.WHITE);
         setResizable(false);
         setType(Type.UTILITY);
@@ -116,7 +108,7 @@ public class AddPessoaUI extends JFrame {
 		contentPane.setForeground(new Color(0, 0, 0));
 		contentPane.setBackground(new Color(240, 230, 140));
 		contentPane.setBorder(new EmptyBorder(0, 0, 0, 0));
-		contentPane.setLayout(new GridLayout(10, 2));
+		contentPane.setLayout(new GridLayout(8, 2));
 		setContentPane(contentPane);
 
         titlePane = new JPanel();
@@ -179,25 +171,6 @@ public class AddPessoaUI extends JFrame {
 
 
 
-        lblFreq = new JLabel("FrequÃªncia:");
-		lblFreq.setBounds(61, 236, 262, 48);
-		lblFreq.setForeground(new Color(0, 0, 0));
-
-        txtFreq = new JTextField();
-		txtFreq.setBounds(333, 239, 340, 38);
-		txtFreq.setFont(new Font("Arial", Font.BOLD, 20));
-		txtFreq.setBackground(new Color(211, 211, 211));
-		txtFreq.setForeground(new Color(105, 105, 105));
-		txtFreq.setText("Insira a frequÃªncia");
-        txtFreq.addMouseListener(new MouseAdapter() {
-	        public void mouseClicked(MouseEvent evt) {
-	            if(txtFreq.getText().equals("Insira a frequÃªncia")) {
-	            	txtFreq.setText("");
-	                repaint();
-	                revalidate();
-	            }           
-	        }
-	    });
 
 
 		turmaAluno = new JLabel("Turma do Aluno:");
@@ -221,46 +194,8 @@ public class AddPessoaUI extends JFrame {
 		});
 
 
-		notas = new JLabel("Notas do Aluno:");
-		notas.setBounds(61, 236, 262, 48);
-		notas.setForeground(new Color(0, 0, 0));
-
-		txtNotas = new JTextField();
-		txtNotas.setBounds(333, 239, 340, 38);
-		txtNotas.setFont(new Font("Arial", Font.BOLD, 20));
-		txtNotas.setBackground(new Color(211, 211, 211));
-		txtNotas.setForeground(new Color(105, 105, 105));
-		txtNotas.setText("Insira as notas (x.xx,y.yy,z.zz)");
-		txtNotas.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent evt) {
-				if(txtNotas.getText().equals("Insira as notas (x.xx,y.yy,z.zz)")) {
-					txtNotas.setText("");
-					repaint();
-					revalidate();
-				}           
-			}
-		});
 
 
-		ocorrencias = new JLabel("N. OcorrÃªncias:");
-		ocorrencias.setBounds(61, 236, 262, 48);
-		ocorrencias.setForeground(new Color(0, 0, 0));
-
-		txtOcorrencias = new JTextField();
-		txtOcorrencias.setBounds(333, 239, 340, 38);
-		txtOcorrencias.setFont(new Font("Arial", Font.BOLD, 20));
-		txtOcorrencias.setBackground(new Color(211, 211, 211));
-		txtOcorrencias.setForeground(new Color(105, 105, 105));
-		txtOcorrencias.setText("NÃºmero de ocorrÃªncias");
-		txtOcorrencias.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent evt) {
-				if(txtOcorrencias.getText().equals("NÃºmero de ocorrÃªncias")) {
-					txtOcorrencias.setText("");
-					repaint();
-					revalidate();
-				}           
-			}
-		});
 
 
 		lblSalario = new JLabel("SalÃ¡rio:");
@@ -284,25 +219,6 @@ public class AddPessoaUI extends JFrame {
 		});
 
 
-		lblReclamacoes = new JLabel("N. ReclamaÃ§Ãµes:");
-		lblReclamacoes.setBounds(61, 236, 262, 48);
-		lblReclamacoes.setForeground(new Color(0, 0, 0));
-
-		txtReclamacoes = new JTextField();
-		txtReclamacoes.setBounds(333, 239, 340, 38);
-		txtReclamacoes.setFont(new Font("Arial", Font.BOLD, 20));
-		txtReclamacoes.setBackground(new Color(211, 211, 211));
-		txtReclamacoes.setForeground(new Color(105, 105, 105));
-		txtReclamacoes.setText("NÃºmero de ReclamaÃ§Ãµes");
-		txtReclamacoes.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent evt) {
-				if(txtReclamacoes.getText().equals("NÃºmero de ReclamaÃ§Ãµes")) {
-					txtReclamacoes.setText("");
-					repaint();
-					revalidate();
-				}           
-			}
-		});
 
 		lblTurmaProf = new JLabel("Turmas:");
 		lblTurmaProf.setBounds(61, 236, 262, 48);
@@ -313,10 +229,10 @@ public class AddPessoaUI extends JFrame {
 		txtTurmaProf.setFont(new Font("Arial", Font.BOLD, 20));
 		txtTurmaProf.setBackground(new Color(211, 211, 211));
 		txtTurmaProf.setForeground(new Color(105, 105, 105));
-		txtTurmaProf.setText("Insira as turmas (xx,yy,zz)");
+		txtTurmaProf.setText("turmaXX,turmaYY");
 		txtTurmaProf.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent evt) {
-				if(txtTurmaProf.getText().equals("Insira as turmas (xx,yy,zz)")) {
+				if(txtTurmaProf.getText().equals("turmaXX,turmaYY")) {
 					txtTurmaProf.setText("");
 					repaint();
 					revalidate();
@@ -352,53 +268,60 @@ public class AddPessoaUI extends JFrame {
 			public void actionPerformed(ActionEvent evt) {
 				
 				if (aluno.isSelected()){
-					String[] split = txtNotas.getText().split(",");
 					Double[] notas = new Double[3];
-					notas[0] = Double.parseDouble(split[0]);
-					notas[1] = Double.parseDouble(split[1]);
-					notas[2] = Double.parseDouble(split[2]);
-					Pessoa alunx = new Aluno(Long.parseLong(txtRegister.getText()), txtName.getText(), Float.parseFloat(txtFreq.getText()), "senha", txtTurmaAluno.getText(), Integer.parseInt(txtOcorrencias.getText()), notas);
+					Pessoa alunx = new Aluno(Long.parseLong(txtRegister.getText()), txtName.getText(), 0, "ï¿½", txtTurmaAluno.getText(), 0, notas);
 					try {
 						escola.adicionaPessoa(contaLogada, alunx);
+						JOptionPane.showMessageDialog(null, "Aluno adicionado ao sistema!", "OperaÃ§Ã£o ConcluÃ­da", JOptionPane.INFORMATION_MESSAGE);
+						paginaPrincipal.addPessoaFinished(escola, contaLogada);
+						dispose();
 					} catch (RegistroUsadoException e) {
-						JOptionPane.showMessageDialog(null, "Registro já existe!", "ERRO", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Registro jï¿½ existe!", "ERRO", JOptionPane.ERROR_MESSAGE);
 					} catch (UsuarioLogadoInvalidoException e) {
-						JOptionPane.showMessageDialog(null, "Você não tem permissão para adicionar uma pessoa!", "ACESSO NEGADO", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Vocï¿½ nï¿½o tem permissï¿½o para adicionar uma pessoa!", "ACESSO NEGADO", JOptionPane.ERROR_MESSAGE);
 					}
 				}
 				if (professor.isSelected()){
 					String[] split = txtTurmaProf.getText().split(",");
-					String[] turmas = new String[3];
+					String[] turmas = new String[2];
 					turmas[0] = split[0];
 					turmas[1] = split[1];
-					turmas[2] = split[2];
-					Pessoa professxr = new Professor(Long.parseLong(txtRegister.getText()), txtName.getText(), Float.parseFloat(txtFreq.getText()), "senha", Double.parseDouble(txtSalario.getText()), Integer.parseInt(txtReclamacoes.getText()), turmas);
+					Pessoa professxr = new Professor(Long.parseLong(txtRegister.getText()), txtName.getText(), 0, "ï¿½", Double.parseDouble(txtSalario.getText()), 0, turmas);
 					try {
 						escola.adicionaPessoa(contaLogada, professxr);
+						JOptionPane.showMessageDialog(null, "Professor adicionado ao sistema!", "OperaÃ§Ã£o ConcluÃ­da", JOptionPane.INFORMATION_MESSAGE);
+						paginaPrincipal.addPessoaFinished(escola, contaLogada);
+						dispose();
 					} catch (RegistroUsadoException e) {
-						JOptionPane.showMessageDialog(null, "Registro já existe!", "ERRO", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Registro jï¿½ existe!", "ERRO", JOptionPane.ERROR_MESSAGE);
 					} catch (UsuarioLogadoInvalidoException e) {
-						JOptionPane.showMessageDialog(null, "Você não tem permissão para adicionar uma pessoa!", "ACESSO NEGADO", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Vocï¿½ nï¿½o tem permissï¿½o para adicionar uma pessoa!", "ACESSO NEGADO", JOptionPane.ERROR_MESSAGE);
 					}
 				}
 				if (zelador.isSelected()){
-					Pessoa zeladxr = new Zelador(Long.parseLong(txtRegister.getText()), txtName.getText(), Float.parseFloat(txtFreq.getText()), "senha", Double.parseDouble(txtSalario.getText()), Integer.parseInt(txtReclamacoes.getText()), txtFuncao.getText());
+					Pessoa zeladxr = new Zelador(Long.parseLong(txtRegister.getText()), txtName.getText(), 0, "ï¿½", Double.parseDouble(txtSalario.getText()), 0, txtFuncao.getText());
 					try {
 						escola.adicionaPessoa(contaLogada, zeladxr);
+						JOptionPane.showMessageDialog(null, "Zelador adicionado ao sistema!", "OperaÃ§Ã£o ConcluÃ­da", JOptionPane.INFORMATION_MESSAGE);
+						paginaPrincipal.addPessoaFinished(escola, contaLogada);
+						dispose();
 					} catch (RegistroUsadoException e) {
-						JOptionPane.showMessageDialog(null, "Registro já existe!", "ERRO", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Registro jï¿½ existe!", "ERRO", JOptionPane.ERROR_MESSAGE);
 					} catch (UsuarioLogadoInvalidoException e) {
-						JOptionPane.showMessageDialog(null, "Você não tem permissão para adicionar uma pessoa!", "ACESSO NEGADO", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Vocï¿½ nï¿½o tem permissï¿½o para adicionar uma pessoa!", "ACESSO NEGADO", JOptionPane.ERROR_MESSAGE);
 					}
 				}
 				if (diretor.isSelected()){
-					Pessoa diretxr = new Diretor(Long.parseLong(txtRegister.getText()), txtName.getText(), Float.parseFloat(txtFreq.getText()), "senha", Double.parseDouble(txtSalario.getText()), Integer.parseInt(txtReclamacoes.getText()));
+					Pessoa diretxr = new Diretor(Long.parseLong(txtRegister.getText()), txtName.getText(), 0, "ï¿½", Double.parseDouble(txtSalario.getText()), 0);
 					try {
 						escola.adicionaPessoa(contaLogada, diretxr);
+						JOptionPane.showMessageDialog(null, "Diretor adicionado ao sistema!", "OperaÃ§Ã£o ConcluÃ­da", JOptionPane.INFORMATION_MESSAGE);
+						paginaPrincipal.addPessoaFinished(escola, contaLogada);
+						dispose();
 					} catch (RegistroUsadoException e) {
-						JOptionPane.showMessageDialog(null, "Registro já existe!", "ERRO", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Registro jï¿½ existe!", "ERRO", JOptionPane.ERROR_MESSAGE);
 					} catch (UsuarioLogadoInvalidoException e) {
-						JOptionPane.showMessageDialog(null, "Você não tem permissão para adicionar uma pessoa!", "ACESSO NEGADO", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Vocï¿½ nï¿½o tem permissï¿½o para adicionar uma pessoa!", "ACESSO NEGADO", JOptionPane.ERROR_MESSAGE);
 					}
 				}
 				
@@ -442,8 +365,6 @@ public class AddPessoaUI extends JFrame {
 		contentPane.add(txtRegister);
         contentPane.add(lblName);
 		contentPane.add(txtName);
-        contentPane.add(lblFreq);
-		contentPane.add(txtFreq);
 
 
     }
@@ -459,10 +380,6 @@ public class AddPessoaUI extends JFrame {
 				
 				contentPane.add(turmaAluno);
 				contentPane.add(txtTurmaAluno);
-				contentPane.add(notas);
-				contentPane.add(txtNotas);
-				contentPane.add(ocorrencias);
-				contentPane.add(txtOcorrencias);
 				contentPane.add(addButton);
 
 			}
@@ -471,8 +388,6 @@ public class AddPessoaUI extends JFrame {
 				
 				contentPane.add(lblSalario);
 				contentPane.add(txtSalario);
-				contentPane.add(lblReclamacoes);
-				contentPane.add(txtReclamacoes);
 				contentPane.add(lblTurmaProf);
 				contentPane.add(txtTurmaProf);
 				contentPane.add(addButton);
@@ -483,8 +398,6 @@ public class AddPessoaUI extends JFrame {
 				
 				contentPane.add(lblSalario);
 				contentPane.add(txtSalario);
-				contentPane.add(lblReclamacoes);
-				contentPane.add(txtReclamacoes);
 				contentPane.add(lblFuncao);
 				contentPane.add(txtFuncao);
 				contentPane.add(addButton);
@@ -495,8 +408,6 @@ public class AddPessoaUI extends JFrame {
 			
 				contentPane.add(lblSalario);
 				contentPane.add(txtSalario);
-				contentPane.add(lblReclamacoes);
-				contentPane.add(txtReclamacoes);
 				contentPane.add(addButton);
 
 			}
