@@ -269,6 +269,9 @@ public class AddPessoaUI extends JFrame {
 				
 				if (aluno.isSelected()){
 					Double[] notas = new Double[6];
+					for (int i = 0; i < 6; i++) {
+						notas[i] = 0.0;
+					}
 					Pessoa alunx = new Aluno(Long.parseLong(txtRegister.getText()), txtName.getText(), 0, "�", txtTurmaAluno.getText(), 0, notas);
 					try {
 						escola.adicionaPessoa(contaLogada, alunx);
