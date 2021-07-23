@@ -66,10 +66,10 @@ public class AddPessoaUI extends JFrame {
 		Aluno alunoZ = new Aluno(123, "Z", (float) 54/100, "123", "019", ocorrencias, notas );
 		GerenciadorDados ga = new GerenciadorDados();
 		
-		//leitura do banco de dados FAZER ISSO NA INICIALIZAï¿½ï¿½O DO PROGRAMA
+		//leitura do banco de dados FAZER ISSO NA INICIALIZAÇÃO DO PROGRAMA
 		ga.leAdicionaPessoasArquivos(escolaX, "src/baseDados.csv");
 				
-		//uso de adicionaPessoa, primeiramente sem permissï¿½o, depois com
+		//uso de adicionaPessoa, primeiramente sem permissão, depois com
 		try {
 			escolaX.adicionaPessoa(diretorY, alunoZ);
 			escolaX.adicionaPessoa(diretorY, diretorY);
