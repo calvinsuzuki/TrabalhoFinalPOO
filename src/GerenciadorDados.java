@@ -99,12 +99,10 @@ public class GerenciadorDados {
 	 * @param escritorcsv - o fileWriter que está apontando para o arquivo csv
 	 * */
 	private void escreveAlunosArquivo(Aluno aluno, FileWriter escritorcsv) throws IOException {
-		DecimalFormat df = new DecimalFormat();
-		df.setMaximumFractionDigits(2);
 		Double[] notas = aluno.getNotas();
 		
 		escritorcsv.append("ALUNO"+ ',' + aluno.getSenha() + ',' +String.valueOf(aluno.getRegister()) + ',' + aluno.getNome() + ',');
-		escritorcsv.append(String.valueOf(df.format(aluno.getFreq())) + ',' + aluno.getTurma() + ',' + aluno.getOcorr());
+		escritorcsv.append(String.valueOf(aluno.getFreq()) + ',' + aluno.getTurma() + ',' + aluno.getOcorr());
 		for(int i = 0; i < 6; i++) {
 			escritorcsv.append(',' + String.valueOf(notas[i]));
 		}
@@ -117,12 +115,10 @@ public class GerenciadorDados {
 	 * @param escritorcsv - o fileWriter que está apontando para o arquivo csv
 	 * */
 	private void escreveProfessoresArquivo(Professor professor, FileWriter escritorcsv) throws IOException {
-		DecimalFormat df = new DecimalFormat();
-		df.setMaximumFractionDigits(2);
 		String[] turmas = professor.getTurmas();
 		
 		escritorcsv.append("PROFESSOR"+ ',' + professor.getSenha() + ',' +String.valueOf(professor.getRegister()) + ',' + professor.getNome() + ',');
-		escritorcsv.append(String.valueOf(df.format(professor.getFreq())) + ',' + professor.getSalario() + ',' + professor.getReclam());
+		escritorcsv.append(String.valueOf(professor.getFreq()) + ',' + professor.getSalario() + ',' + professor.getReclam());
 		for(int i = 0; i < turmas.length; i++) {
 			escritorcsv.append(',' + turmas[i]);
 		}
@@ -135,10 +131,8 @@ public class GerenciadorDados {
 	 * @param escritorcsv - o fileWriter que está apontando para o arquivo csv
 	 * */
 	private void escreveZeladoresArquivo(Zelador zelador, FileWriter escritorcsv) throws IOException {
-		DecimalFormat df = new DecimalFormat();
-		df.setMaximumFractionDigits(2);
 		escritorcsv.append("ZELADOR"+ ',' + zelador.getSenha() + ',' +String.valueOf(zelador.getRegister()) + ',' + zelador.getNome() + ',');
-		escritorcsv.append(String.valueOf(df.format(zelador.getFreq())) + ',' + zelador.getSalario() + ',' + zelador.getReclam() + ',' + zelador.getFuncao() + '\n');
+		escritorcsv.append(String.valueOf(zelador.getFreq()) + ',' + zelador.getSalario() + ',' + zelador.getReclam() + ',' + zelador.getFuncao() + '\n');
 	}
 	
 	/**
@@ -147,10 +141,8 @@ public class GerenciadorDados {
 	 * @param escritorcsv - o fileWriter que está apontando para o arquivo csv
 	 * */
 	private void escreveDiretoresArquivo(Diretor diretor, FileWriter escritorcsv) throws IOException {
-		DecimalFormat df = new DecimalFormat();
-		df.setMaximumFractionDigits(2);
 		escritorcsv.append("DIRETOR"+ ',' + diretor.getSenha() + ',' +String.valueOf(diretor.getRegister()) + ',' + diretor.getNome() + ',');
-		escritorcsv.append(String.valueOf(df.format(diretor.getFreq())) + ',' + diretor.getSalario() + ',' + diretor.getReclam() + '\n');
+		escritorcsv.append(String.valueOf(diretor.getFreq()) + ',' + diretor.getSalario() + ',' + diretor.getReclam() + '\n');
 	}
 	
 	/**

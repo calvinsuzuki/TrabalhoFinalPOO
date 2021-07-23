@@ -398,11 +398,12 @@ public class InfoPessoaUI extends JFrame {
 				aluno.setFreq((double)sldFrequencia.getValue()/100f);
 				aluno.setNotas(new Double[] {(double)spnCienciasProva1.getValue(), (double)spnCienciasProva2.getValue(), (double)spnMatematicaProva1.getValue(), (double)spnMatematicaProva2.getValue(), (double)spnPortuguesProva1.getValue(), (double)spnPortuguesProva2.getValue()});
 				aluno.setOcorr((int)spnOcorrencias.getValue());
-				JOptionPane.showMessageDialog(null, "Informações do Aluno atualizadas", "Modificações SALVAS", JOptionPane.INFORMATION_MESSAGE);
-				paginaPrincipal.infoPessoaFinished(sistema, contaLogada);
 				
 				GerenciadorDados ga = new GerenciadorDados();
 				ga.escrevePessoasArquivo(sistema, "src/baseDados.csv");
+				
+				JOptionPane.showMessageDialog(null, "Informações do Aluno atualizadas", "Modificações SALVAS", JOptionPane.INFORMATION_MESSAGE);
+				paginaPrincipal.infoPessoaFinished(sistema, contaLogada);
 				
 				dispose();
 			}
