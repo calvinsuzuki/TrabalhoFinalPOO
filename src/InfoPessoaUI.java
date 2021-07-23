@@ -34,6 +34,7 @@ public class InfoPessoaUI extends JFrame {
 	private JLabel lblNome;
 	private JLabel lblRegistro;
 	private JLabel lblTurma;
+	private JLabel lblAviso;
 	private JLabel lblSalario;
 	private JLabel lblTurmas;
 	private JLabel lblFuncao;
@@ -101,7 +102,7 @@ public class InfoPessoaUI extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					InfoPessoaUI frame = new InfoPessoaUI(escolaX, professorW, diretorY, new PagPrincipalUI(escolaX, diretorY));
+					InfoPessoaUI frame = new InfoPessoaUI(escolaX, alunoZ, diretorY, new PagPrincipalUI(escolaX, diretorY));
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -399,6 +400,10 @@ public class InfoPessoaUI extends JFrame {
 				aluno.setOcorr((int)spnOcorrencias.getValue());
 				JOptionPane.showMessageDialog(null, "Informações do Aluno atualizadas", "Modificações SALVAS", JOptionPane.INFORMATION_MESSAGE);
 				paginaPrincipal.infoPessoaFinished(sistema, contaLogada);
+				
+				GerenciadorDados ga = new GerenciadorDados();
+				ga.escrevePessoasArquivo(sistema, "src/baseDados.csv");
+				
 				dispose();
 			}
 		});
@@ -590,6 +595,7 @@ public class InfoPessoaUI extends JFrame {
 				professor.setFreq((double)sldFrequencia.getValue()/100f);
 				professor.setReclam((int)spnReclamacoes.getValue());
 				JOptionPane.showMessageDialog(null, "Informações do Professor atualizadas", "Modificações SALVAS", JOptionPane.INFORMATION_MESSAGE);
+				paginaPrincipal.infoPessoaFinished(sistema, contaLogada);
 				dispose();
 			}
 		});
@@ -624,6 +630,10 @@ public class InfoPessoaUI extends JFrame {
 		
 		contentPane.add(titlePane);
 		contentPane.add(infoPane);
+		
+		if(ehAPessoa) {
+			
+		}
 	}
 	
 	public void InfoZeladorUI(Escola sistema, Zelador zelador, Pessoa contaLogada, PagPrincipalUI paginaPrincipal) {
@@ -752,6 +762,7 @@ public class InfoPessoaUI extends JFrame {
 				zelador.setFreq((double)sldFrequencia.getValue()/100f);
 				zelador.setReclam((int)spnReclamacoes.getValue());
 				JOptionPane.showMessageDialog(null, "Informações do Zelador atualizadas", "Modificações SALVAS", JOptionPane.INFORMATION_MESSAGE);
+				paginaPrincipal.infoPessoaFinished(sistema, contaLogada);
 				dispose();
 			}
 		});
@@ -905,6 +916,7 @@ public class InfoPessoaUI extends JFrame {
 				diretor.setFreq((double)sldFrequencia.getValue()/100f);
 				diretor.setReclam((int)spnReclamacoes.getValue());
 				JOptionPane.showMessageDialog(null, "Informações do Diretor atualizadas", "Modificações SALVAS", JOptionPane.INFORMATION_MESSAGE);
+				paginaPrincipal.infoPessoaFinished(sistema, contaLogada);
 				dispose();
 			}
 		});
@@ -939,5 +951,9 @@ public class InfoPessoaUI extends JFrame {
 		
 		contentPane.add(titlePane);
 		contentPane.add(infoPane);
+	}
+	
+	private boolean checkAviso(Aluno aluno) {
+		return (((10-mediaGeral)+aluno.getOcorr())/aluno.getFreq() > 10);
 	}
 }
