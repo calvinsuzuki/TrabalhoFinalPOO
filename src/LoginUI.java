@@ -88,7 +88,7 @@ public class LoginUI extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setForeground(new Color(0, 0, 0));
 		contentPane.setBackground(new Color(240, 230, 140));
-		contentPane.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(218, 165, 32)));
+		contentPane.setBorder(new MatteBorder(4, 4, 4, 4, (Color) new Color(218, 165, 32)));
 		contentPane.setLayout(null);
 		setContentPane(contentPane);
 		
