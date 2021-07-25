@@ -584,7 +584,7 @@ public class PagPrincipalUI extends JFrame {
 			previousNextPanes[i].setBackground(new Color(240, 230, 140));
 			previousNextPanes[i].setBorder(new EmptyBorder(0, 0, 0, 0));
 			previousNextPanes[i].setPreferredSize(new Dimension(1310, 200));
-			previousNextPanes[i].setLayout(new GridLayout(3, 2, 810, 20));
+			previousNextPanes[i].setLayout(new GridLayout(3, 2, 800, 20));
 			
 			if(numPaginas > 1) {
 				if(i == 0) {
