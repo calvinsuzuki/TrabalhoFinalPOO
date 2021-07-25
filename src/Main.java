@@ -12,7 +12,7 @@ public class Main {
 	public static void main(String[] args) {
 		Escola escola = new Escola();
 		GerenciadorDados ga = new GerenciadorDados();
-		ga.leAdicionaPessoasArquivos(escola, "src/baseDados.csv");
+		ga.leAdicionaPessoasArquivos(escola, "src/baseDadosRandom.csv");
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {

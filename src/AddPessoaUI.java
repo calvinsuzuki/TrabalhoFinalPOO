@@ -163,7 +163,7 @@ public class AddPessoaUI extends JFrame {
 	    });
 		txtRegisterA.addFocusListener(new FocusAdapter() {
 			public void focusLost(FocusEvent evt) {
-				if(txtRegisterA.getText().isBlank()) {
+				if(txtRegisterA.getText().equals("")) {
 					txtRegisterA.setText("Insira o número do Registro");
 					txtRegisterA.repaint();
 	                txtRegisterA.revalidate();
@@ -200,7 +200,7 @@ public class AddPessoaUI extends JFrame {
 	    });
 		txtRegisterP.addFocusListener(new FocusAdapter() {
 			public void focusLost(FocusEvent evt) {
-				if(txtRegisterP.getText().isBlank()) {
+				if(txtRegisterP.getText().equals("")) {
 					txtRegisterP.setText("Insira o número do Registro");
 					txtRegisterP.repaint();
 	                txtRegisterP.revalidate();
@@ -237,7 +237,7 @@ public class AddPessoaUI extends JFrame {
 	    });
 		txtRegisterZ.addFocusListener(new FocusAdapter() {
 			public void focusLost(FocusEvent evt) {
-				if(txtRegisterZ.getText().isBlank()) {
+				if(txtRegisterZ.getText().equals("")) {
 					txtRegisterZ.setText("Insira o número do Registro");
 					txtRegisterZ.repaint();
 	                txtRegisterZ.revalidate();
@@ -274,7 +274,7 @@ public class AddPessoaUI extends JFrame {
 	    });
 		txtRegisterD.addFocusListener(new FocusAdapter() {
 			public void focusLost(FocusEvent evt) {
-				if(txtRegisterD.getText().isBlank()) {
+				if(txtRegisterD.getText().equals("")) {
 					txtRegisterD.setText("Insira o número do Registro");
 					txtRegisterD.repaint();
 	                txtRegisterD.revalidate();
@@ -302,7 +302,7 @@ public class AddPessoaUI extends JFrame {
 	    });
         txtNameA.addFocusListener(new FocusAdapter() {
 			public void focusLost(FocusEvent evt) {
-				if(txtNameA.getText().isBlank()) {
+				if(txtNameA.getText().equals("")) {
 					txtNameA.setText("Insira o nome");
 					txtNameA.repaint();
 	                txtNameA.revalidate();
@@ -330,7 +330,7 @@ public class AddPessoaUI extends JFrame {
 	    });
         txtNameP.addFocusListener(new FocusAdapter() {
 			public void focusLost(FocusEvent evt) {
-				if(txtNameP.getText().isBlank()) {
+				if(txtNameP.getText().equals("")) {
 					txtNameP.setText("Insira o nome");
 					txtNameP.repaint();
 	                txtNameP.revalidate();
@@ -358,7 +358,7 @@ public class AddPessoaUI extends JFrame {
 	    });
         txtNameZ.addFocusListener(new FocusAdapter() {
 			public void focusLost(FocusEvent evt) {
-				if(txtNameZ.getText().isBlank()) {
+				if(txtNameZ.getText().equals("")) {
 					txtNameZ.setText("Insira o nome");
 					txtNameZ.repaint();
 	                txtNameZ.revalidate();
@@ -386,7 +386,7 @@ public class AddPessoaUI extends JFrame {
 	    });
         txtNameD.addFocusListener(new FocusAdapter() {
 			public void focusLost(FocusEvent evt) {
-				if(txtNameD.getText().isBlank()) {
+				if(txtNameD.getText().equals("")) {
 					txtNameD.setText("Insira o nome");
 					txtNameD.repaint();
 	                txtNameD.revalidate();
@@ -414,7 +414,7 @@ public class AddPessoaUI extends JFrame {
 		});
 		txtTurmaAluno.addFocusListener(new FocusAdapter() {
 			public void focusLost(FocusEvent evt) {
-				if(txtTurmaAluno.getText().isBlank()) {
+				if(txtTurmaAluno.getText().equals("")) {
 					txtTurmaAluno.setText("Insira a turma");
 					txtTurmaAluno.repaint();
 					txtTurmaAluno.revalidate();
@@ -451,7 +451,7 @@ public class AddPessoaUI extends JFrame {
 		});
 		txtSalarioP.addFocusListener(new FocusAdapter() {
 			public void focusLost(FocusEvent evt) {
-				if(txtSalarioP.getText().isBlank()) {
+				if(txtSalarioP.getText().equals("")) {
 					txtSalarioP.setText("Insira o salário (R$)");
 					txtSalarioP.repaint();
 	                txtSalarioP.revalidate();
@@ -488,7 +488,7 @@ public class AddPessoaUI extends JFrame {
 		});
 		txtSalarioZ.addFocusListener(new FocusAdapter() {
 			public void focusLost(FocusEvent evt) {
-				if(txtSalarioZ.getText().isBlank()) {
+				if(txtSalarioZ.getText().equals("")) {
 					txtSalarioZ.setText("Insira o salário (R$)");
 					txtSalarioZ.repaint();
 	                txtSalarioZ.revalidate();
@@ -525,7 +525,7 @@ public class AddPessoaUI extends JFrame {
 		});
 		txtSalarioD.addFocusListener(new FocusAdapter() {
 			public void focusLost(FocusEvent evt) {
-				if(txtSalarioD.getText().isBlank()) {
+				if(txtSalarioD.getText().equals("")) {
 					txtSalarioD.setText("Insira o salário (R$)");
 					txtSalarioD.repaint();
 	                txtSalarioD.revalidate();
@@ -553,7 +553,7 @@ public class AddPessoaUI extends JFrame {
 		});
 		txtTurmaProf.addFocusListener(new FocusAdapter() {
 			public void focusLost(FocusEvent evt) {
-				if(txtTurmaProf.getText().isBlank()) {
+				if(txtTurmaProf.getText().equals("")) {
 					txtTurmaProf.setText("turmaXX,turmaYY");
 					txtTurmaProf.repaint();
 	                txtTurmaProf.revalidate();
@@ -581,7 +581,7 @@ public class AddPessoaUI extends JFrame {
 		});
 		txtFuncao.addFocusListener(new FocusAdapter() {
 			public void focusLost(FocusEvent evt) {
-				if(txtFuncao.getText().isBlank()) {
+				if(txtFuncao.getText().equals("")) {
 					txtFuncao.setText("Insira a função");
 					txtFuncao.repaint();
 	                txtFuncao.revalidate();

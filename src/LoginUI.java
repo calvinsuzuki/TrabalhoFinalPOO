@@ -95,7 +95,7 @@ public class LoginUI extends JFrame {
 	    });
 		txtRegistro.addFocusListener(new FocusAdapter() {
 			public void focusLost(FocusEvent evt) {
-				if(txtRegistro.getText().isBlank()) {
+				if(txtRegistro.getText().equals("")) {
 					txtRegistro.setText("Insira o número do Registro");
 					txtRegistro.repaint();
 	                txtRegistro.revalidate();
@@ -132,7 +132,7 @@ public class LoginUI extends JFrame {
 	    });
 		txtSenha.addFocusListener(new FocusAdapter() {
 			public void focusLost(FocusEvent evt) {
-				if((new String(txtSenha.getPassword())).isBlank()) {
+				if((new String(txtSenha.getPassword())).equals("")) {
 					txtSenha.setEchoChar((char)0);
 					txtSenha.setText("Insira a Senha");
 					txtSenha.repaint();

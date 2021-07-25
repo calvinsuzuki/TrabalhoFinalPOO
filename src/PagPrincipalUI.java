@@ -102,7 +102,7 @@ public class PagPrincipalUI extends JFrame {
 		addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent evt) {
 				GerenciadorDados ga = new GerenciadorDados();
-				ga.escrevePessoasArquivo(sistema, "src/baseDados.csv");
+				ga.escrevePessoasArquivo(sistema, "src/baseDadosRandom.csv");
 			}
 		});
 		
@@ -156,7 +156,7 @@ public class PagPrincipalUI extends JFrame {
 	    });
 		txtBusca.addFocusListener(new FocusAdapter() {
 			public void focusLost(FocusEvent evt) {
-				if(txtBusca.getText().isBlank()) {
+				if(txtBusca.getText().equals("")) {
 					txtBusca.setText("Procurar...");
 					txtBusca.repaint();
 	                txtBusca.revalidate();
@@ -170,7 +170,7 @@ public class PagPrincipalUI extends JFrame {
 		btnBusca.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				pessoasMarcadas = null;
-				if(txtBusca.getText().isBlank() || txtBusca.getText().equals("Procurar...")) {
+				if(txtBusca.getText().equals("") || txtBusca.getText().equals("Procurar...")) {
 					if(registroOuAlpha) {
 						sistema.sortRegistro();
 					} else {
