@@ -3,7 +3,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import exceptions.RegistroUsadoException;
@@ -75,6 +74,11 @@ public class GerenciadorDados {
 		}
 	}
 	
+	/**
+	 * Coloca todas as pessoas no arquivo csv dentro da escola
+	 * @param - escola é onde tudo vai ser adicionado
+	 * @param - nomeArquivo é o path do arquivo de dados
+	 * */
 	public void leAdicionaPessoasArquivos(Escola escola, String nomeArquivo) {
 		BufferedReader leitorcsv;
 		try {
