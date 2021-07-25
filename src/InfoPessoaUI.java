@@ -160,7 +160,6 @@ public class InfoPessoaUI extends JFrame {
 					focado = true;
 				}
 				if(focado && (evt.getNewValue() != frame) && (evt.getNewValue() != null) && !(evt.getNewValue() instanceof JDialog)) {
-					System.out.print(evt.getNewValue());
 					frame.dispose();
 				}
 			}
@@ -591,7 +590,6 @@ public class InfoPessoaUI extends JFrame {
 					focado = true;
 				}
 				if(focado && (evt.getNewValue() != frame) && (evt.getNewValue() != null) && !(evt.getNewValue() instanceof JDialog)) {
-					System.out.print(evt.getNewValue());
 					frame.dispose();
 				}
 			}
@@ -621,7 +619,7 @@ public class InfoPessoaUI extends JFrame {
 		lblRegistro.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 26));
 		lblRegistro.setBounds(68, 72, 365, 46);
 		
-		lblSalario = new JLabel("Salário : $" + String.format("%.2f", professor.getSalario()));
+		lblSalario = new JLabel("Salário : R$" + String.format("%.2f", professor.getSalario()));
 		lblSalario.setForeground(new Color(0, 0, 0));
 		lblSalario.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 26));
 		lblSalario.setBounds(465, 72, 273, 46);
@@ -838,7 +836,6 @@ public class InfoPessoaUI extends JFrame {
 					focado = true;
 				}
 				if(focado && (evt.getNewValue() != frame) && (evt.getNewValue() != null) && !(evt.getNewValue() instanceof JDialog)) {
-					System.out.print(evt.getNewValue());
 					frame.dispose();
 				}
 			}
@@ -868,7 +865,7 @@ public class InfoPessoaUI extends JFrame {
 		lblRegistro.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 26));
 		lblRegistro.setBounds(68, 72, 365, 46);
 		
-		lblSalario = new JLabel("Salário : $" + String.format("%.2f", zelador.getSalario()));
+		lblSalario = new JLabel("Salário : R$" + String.format("%.2f", zelador.getSalario()));
 		lblSalario.setForeground(new Color(0, 0, 0));
 		lblSalario.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 26));
 		lblSalario.setBounds(465, 72, 273, 46);
@@ -1074,7 +1071,6 @@ public class InfoPessoaUI extends JFrame {
 					focado = true;
 				}
 				if(focado && (evt.getNewValue() != frame) && (evt.getNewValue() != null) && !(evt.getNewValue() instanceof JDialog)) {
-					System.out.print(evt.getNewValue());
 					frame.dispose();
 				}
 			}
@@ -1104,7 +1100,7 @@ public class InfoPessoaUI extends JFrame {
 		lblRegistro.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 26));
 		lblRegistro.setBounds(68, 72, 365, 46);
 		
-		lblSalario = new JLabel("Salário : $" + String.format("%.2f", diretor.getSalario()));
+		lblSalario = new JLabel("Salário : R$" + String.format("%.2f", diretor.getSalario()));
 		lblSalario.setForeground(new Color(0, 0, 0));
 		lblSalario.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 26));
 		lblSalario.setBounds(465, 72, 273, 46);
