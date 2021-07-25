@@ -40,6 +40,13 @@ import java.awt.event.WindowEvent;
 import exceptions.RegistroUsadoException;
 import exceptions.UsuarioLogadoInvalidoException;
 
+/** 
+ * Implementa a tela principal do programa
+ * @author Alcino Salviano Cavalcanti, 11892963
+ * @author Calvin Suzuki de Camargo, 11232420
+ * @author Gabriel Takeshi Miyake Batistella, 11232198
+ * @author Pedro Henrique Raymundi, 11795634
+ */
 public class PagPrincipalUI extends JFrame {
 	
 	private JPanel contentPane;
@@ -81,42 +88,9 @@ public class PagPrincipalUI extends JFrame {
 	private int scrollValueWhileAddPessoa;
 	
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		Double[] notas = { 8.0, 5.0, 5.0, 5.2, 5.6, 7.2};
-		Escola escolaX = new Escola();
-		Diretor diretorY = new Diretor(9999, "Y", (double) 90/100, "senha", 5000.00, 1);
-		Aluno alunoZ = new Aluno(123, "Z", (double) 54/100, "senha", "019", 0, notas );
-		GerenciadorDados ga = new GerenciadorDados();
-		
-		//leitura do banco de dados FAZER ISSO NA INICIALIZAÇÃO DO PROGRAMA
-		ga.leAdicionaPessoasArquivos(escolaX, "src/baseDados.csv");
-				
-		//uso de adicionaPessoa, primeiramente sem permissão, depois com
-		try {
-			escolaX.adicionaPessoa(diretorY, alunoZ);
-			escolaX.adicionaPessoa(diretorY, diretorY);
-		} catch (RegistroUsadoException e) {
-			System.out.println(e.getMessage());
-		} catch (UsuarioLogadoInvalidoException e) {
-			System.out.println(e.getMessage());
-		}
-		
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					PagPrincipalUI frame = new PagPrincipalUI(escolaX, diretorY);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
+	 * Construtor da classe PagPrincipalUI - Cria o frame
+	 * @param sistema - Escola - objeto escola a que estamos nos referindo
+	 * @param contaLogada - Pessoa - pessoa que está logada
 	 */
 	public PagPrincipalUI(Escola sistema, Pessoa contaLogada) {
 		setBackground(Color.WHITE);
@@ -764,6 +738,11 @@ public class PagPrincipalUI extends JFrame {
 		return false;
 	}
 	
+	/**
+	 * Função a ser chamada no frame addPessoa quando a ação for finalizada, para atualizar a página principal
+	 * @param sistema - Escola - objeto escola a que estamos nos referindo
+	 * @param contaLogada - Pessoa - pessoa que está logada
+	 */
 	public void addPessoaFinished(Escola sistema, Pessoa contaLogada) {
 		if(pessoasMarcadas == null) {
 			refreshListPessoas(sistema, contaLogada, quaisMostrar);
@@ -778,6 +757,11 @@ public class PagPrincipalUI extends JFrame {
 		((JScrollPane)cardsPane.getComponent(pageNumWhileAddPessoa)).getVerticalScrollBar().setValue(scrollValueWhileAddPessoa);
 	}
 	
+	/**
+	 * Função a ser chamada no frame infoPessoa quando a ação for finalizada, para atualizar a página principal
+	 * @param sistema - Escola - objeto escola a que estamos nos referindo
+	 * @param contaLogada - Pessoa - pessoa que está logada
+	 */
 	public void infoPessoaFinished(Escola sistema, Pessoa contaLogada) {
 		if(pessoasMarcadas == null) {
 			refreshListPessoas(sistema, contaLogada, quaisMostrar);

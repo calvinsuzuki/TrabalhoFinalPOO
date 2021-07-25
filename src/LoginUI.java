@@ -25,6 +25,13 @@ import exceptions.RegistroUsadoException;
 import exceptions.UsuarioLogadoInvalidoException;
 import exceptions.LoginFalhouException;
 
+/** 
+ * Implementa a tela de login do programa
+ * @author Alcino Salviano Cavalcanti, 11892963
+ * @author Calvin Suzuki de Camargo, 11232420
+ * @author Gabriel Takeshi Miyake Batistella, 11232198
+ * @author Pedro Henrique Raymundi, 11795634
+ */
 public class LoginUI extends JFrame {
 	
 	private JPanel contentPane;
@@ -39,43 +46,8 @@ public class LoginUI extends JFrame {
 	private Pessoa contaLogada;
 
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		int ocorrencias = 1;
-		Double[] notas = { 8.0, 5.0, 5.0, 5.2, 5.6, 7.2};
-		Escola escolaX = new Escola();
-		Diretor diretorY = new Diretor(9999, "Y", (float) 90/100, "senha", 5000.00, ocorrencias);
-		Aluno alunoZ = new Aluno(123, "Z", (float) 54/100, "senha", "019", ocorrencias, notas );
-		GerenciadorDados ga = new GerenciadorDados();
-		
-		//leitura do banco de dados FAZER ISSO NA INICIALIZAÇÃO DO PROGRAMA
-		ga.leAdicionaPessoasArquivos(escolaX, "src/baseDados.csv");
-		
-		//uso de adicionaPessoa, primeiramente sem permissão, depois com
-		try {
-			escolaX.adicionaPessoa(diretorY, alunoZ);
-			escolaX.adicionaPessoa(diretorY, diretorY);
-		} catch (RegistroUsadoException e) {
-			System.out.println(e.getMessage());
-		} catch (UsuarioLogadoInvalidoException e) {
-			System.out.println(e.getMessage());
-		}
-		
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					LoginUI frame = new LoginUI(escolaX);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
+	 * Construtor da classe LoginUI - Cria o frame
+	 * @param sistema - Escola - objeto escola a que estamos nos referindo
 	 */
 	public LoginUI(Escola sistema) {
 		setBackground(Color.WHITE);

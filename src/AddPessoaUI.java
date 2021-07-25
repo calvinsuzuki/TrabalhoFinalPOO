@@ -33,6 +33,13 @@ import java.beans.VetoableChangeListener;
 import exceptions.RegistroUsadoException;
 import exceptions.UsuarioLogadoInvalidoException;
 
+/** 
+ * Implementa a tela para adicionar uma pessoa
+ * @author Alcino Salviano Cavalcanti, 11892963
+ * @author Calvin Suzuki de Camargo, 11232420
+ * @author Gabriel Takeshi Miyake Batistella, 11232198
+ * @author Pedro Henrique Raymundi, 11795634
+ */
 public class AddPessoaUI extends JFrame {
 
     private JPanel contentPane;
@@ -87,45 +94,11 @@ public class AddPessoaUI extends JFrame {
 	private JButton addButtonZ;
 	private JButton addButtonD;
 
-    /**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		int ocorrencias = 1;
-		Double[] notas = { 8.0, 5.0, 5.0, 5.2, 5.6, 7.2};
-		Escola escolaX = new Escola();
-		Diretor diretorY = new Diretor(9999, "Y", (float) 90/100, "123", 5000.00, ocorrencias);
-		Aluno alunoZ = new Aluno(123, "Z", (float) 54/100, "123", "019", ocorrencias, notas );
-		GerenciadorDados ga = new GerenciadorDados();
-		
-		//leitura do banco de dados FAZER ISSO NA INICIALIZAÇÃO DO PROGRAMA
-		ga.leAdicionaPessoasArquivos(escolaX, "src/baseDados.csv");
-				
-		//uso de adicionaPessoa, primeiramente sem permissão, depois com
-		try {
-			escolaX.adicionaPessoa(diretorY, alunoZ);
-			escolaX.adicionaPessoa(diretorY, diretorY);
-		} catch (RegistroUsadoException e) {
-			System.out.println(e.getMessage());
-		} catch (UsuarioLogadoInvalidoException e) {
-			System.out.println(e.getMessage());
-		}
-		
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					AddPessoaUI frame = new AddPessoaUI(escolaX, diretorY, new PagPrincipalUI(escolaX, diretorY));
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-
-    /**
-	 * Create the frame.
+	/**
+	 * Construtor da classe AddPessoaUI - Cria o frame
+	 * @param escola - Escola - objeto escola a que estamos nos referindo
+	 * @param contaLogada - Pessoa - pessoa que está logada
+	 * @param paginaPrincipal - PagPrincipalUI - frame que chamou o construtor
 	 */
     public AddPessoaUI(Escola escola, Pessoa contaLogada, PagPrincipalUI paginaPrincipal){
     	JFrame frame = this;
@@ -146,7 +119,6 @@ public class AddPessoaUI extends JFrame {
 				}
 			}
 		});
-        
 
         contentPane = new JPanel();
 		contentPane.setForeground(new Color(0, 0, 0));

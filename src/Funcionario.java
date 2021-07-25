@@ -1,4 +1,10 @@
-
+/** 
+ * Implementa a classe Funcionario
+ * @author Alcino Salviano Cavalcanti, 11892963
+ * @author Calvin Suzuki de Camargo, 11232420
+ * @author Gabriel Takeshi Miyake Batistella, 11232198
+ * @author Pedro Henrique Raymundi, 11795634
+ */
 public class Funcionario extends Pessoa {
 	
 	private Double salario;

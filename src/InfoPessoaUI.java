@@ -38,6 +38,13 @@ import java.beans.VetoableChangeListener;
 import exceptions.RegistroUsadoException;
 import exceptions.UsuarioLogadoInvalidoException;
 
+/** 
+ * Implementa a tela de informações adicionais de uma pessoa
+ * @author Alcino Salviano Cavalcanti, 11892963
+ * @author Calvin Suzuki de Camargo, 11232420
+ * @author Gabriel Takeshi Miyake Batistella, 11232198
+ * @author Pedro Henrique Raymundi, 11795634
+ */
 public class InfoPessoaUI extends JFrame {
 
 	private JPanel contentPane;
@@ -85,48 +92,13 @@ public class InfoPessoaUI extends JFrame {
 	private double mediaMatematica;
 	private double mediaPortugues;
 	private double mediaGeral;
-	
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		int ocorrencias = 1;
-		Double[] notas = { 8.0, 5.0, 5.0, 5.2, 5.6, 7.2};
-		Escola escolaX = new Escola();
-		Diretor diretorY = new Diretor(9999, "Y", (double) 90/100, "senha", 5000.00, ocorrencias);
-		Professor professorW = new Professor(010101, "W", (double) 0, "senha", 1000, ocorrencias, new String[] {"A", "B", "C"});
-		Zelador zeladorZ = new Zelador(121212, "Z", (double) 0, "senha", 102.45, ocorrencias, "sei la po");
-		Aluno alunoZ = new Aluno(123, "Z", (double) 0.7, "senha", "019", ocorrencias, notas );
-		GerenciadorDados ga = new GerenciadorDados();
-		
-		//leitura do banco de dados FAZER ISSO NA INICIALIZAÇÃO DO PROGRAMA
-		ga.leAdicionaPessoasArquivos(escolaX, "src/baseDados.csv");
-				
-		//uso de adicionaPessoa, primeiramente sem permissão, depois com
-		try {
-			escolaX.adicionaPessoa(diretorY, alunoZ);
-			escolaX.adicionaPessoa(diretorY, diretorY);
-		} catch (RegistroUsadoException e) {
-			System.out.println(e.getMessage());
-		} catch (UsuarioLogadoInvalidoException e) {
-			System.out.println(e.getMessage());
-		}
-		
-		
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					InfoPessoaUI frame = new InfoPessoaUI(escolaX, alunoZ, diretorY, new PagPrincipalUI(escolaX, diretorY));
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
-	 * Create the frame.
+	 * Construtor da classe InfoPessoaUI - Cria o frame para a classe correta de pessoa
+	 * @param sistema - Escola - objeto escola a que estamos nos referindo
+	 * @param pessoa - Pessoa - pessoa cujas informações serão vistas
+	 * @param contaLogada - Pessoa - pessoa que está logada
+	 * @param paginaPrincipal - PagPrincipalUI - frame que chamou o construtor
 	 */
 	public InfoPessoaUI(Escola sistema, Pessoa pessoa, Pessoa contaLogada, PagPrincipalUI paginaPrincipal) {
 		if(pessoa instanceof Aluno) {
@@ -140,7 +112,7 @@ public class InfoPessoaUI extends JFrame {
 		}
 	}
 	
-	public void InfoAlunoUI(Escola sistema, Aluno aluno, Pessoa contaLogada, PagPrincipalUI paginaPrincipal) {
+	private void InfoAlunoUI(Escola sistema, Aluno aluno, Pessoa contaLogada, PagPrincipalUI paginaPrincipal) {
 		JFrame frame = this;
 		ehAPessoa = contaLogada.toString().equals(aluno.toString());
 		setBackground(Color.WHITE);
@@ -570,7 +542,7 @@ public class InfoPessoaUI extends JFrame {
 		contentPane.add(infoPane);
 	}
 	
-	public void InfoProfessorUI(Escola sistema, Professor professor, Pessoa contaLogada, PagPrincipalUI paginaPrincipal) {
+	private void InfoProfessorUI(Escola sistema, Professor professor, Pessoa contaLogada, PagPrincipalUI paginaPrincipal) {
 		JFrame frame = this;
 		ehAPessoa = contaLogada.toString().equals(professor.toString());
 		setBackground(Color.WHITE);
@@ -816,7 +788,7 @@ public class InfoPessoaUI extends JFrame {
 		contentPane.add(infoPane);
 	}
 	
-	public void InfoZeladorUI(Escola sistema, Zelador zelador, Pessoa contaLogada, PagPrincipalUI paginaPrincipal) {
+	private void InfoZeladorUI(Escola sistema, Zelador zelador, Pessoa contaLogada, PagPrincipalUI paginaPrincipal) {
 		JFrame frame = this;
 		ehAPessoa = contaLogada.toString().equals(zelador.toString());
 		setBackground(Color.WHITE);
@@ -1051,7 +1023,7 @@ public class InfoPessoaUI extends JFrame {
 		contentPane.add(infoPane);
 	}
 	
-	public void InfoDiretorUI(Escola sistema, Diretor diretor, Pessoa contaLogada, PagPrincipalUI paginaPrincipal) {
+	private void InfoDiretorUI(Escola sistema, Diretor diretor, Pessoa contaLogada, PagPrincipalUI paginaPrincipal) {
 		JFrame frame = this;
 		ehAPessoa = contaLogada.toString().equals(diretor.toString());
 		setBackground(Color.WHITE);

@@ -9,6 +9,13 @@ import java.util.ArrayList;
 import exceptions.RegistroUsadoException;
 import exceptions.UsuarioLogadoInvalidoException;
 
+/** 
+ * Implementa a classe para gerenciar os dados salvos no arquivo
+ * @author Alcino Salviano Cavalcanti, 11892963
+ * @author Calvin Suzuki de Camargo, 11232420
+ * @author Gabriel Takeshi Miyake Batistella, 11232198
+ * @author Pedro Henrique Raymundi, 11795634
+ */
 public class GerenciadorDados {
 	private String row = new String();
 	private Diretor classeParaPermissoes = new Diretor(-1, "GA", 0, "senha", 0, 0);
