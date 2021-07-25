@@ -24,6 +24,9 @@ public class Zelador extends Funcionario {
 		this.funcao = funcao;
 	}
 	
+	/**
+	 * @return string com todas as características do zelador
+	 */
 	@Override
 	public String toString() {
 		String str;
@@ -39,12 +42,18 @@ public class Zelador extends Funcionario {
 		return str;
 	}
 	
-	void setFuncao(String funcao) {
-		this.funcao = funcao;
+	/**
+	 * @return função
+	 */
+	public String getFuncao() {
+		return funcao;
 	}
 	
-	String getFuncao() {
-		return funcao;
+	/**
+	 * @param nova função
+	 */
+	public void setFuncao(String funcao) {
+		this.funcao = funcao;
 	}
 
 }

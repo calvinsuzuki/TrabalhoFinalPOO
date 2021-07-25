@@ -25,6 +25,9 @@ public class Funcionario extends Pessoa {
 		this.reclamacoes = reclamacoes;
 	}
 	
+	/**
+	 * @return string com todas as características do funcionario
+	 */
 	@Override
 	public String toString() {
 		String str;
@@ -39,19 +42,31 @@ public class Funcionario extends Pessoa {
 		return str;
 	}
 	
+	/**
+	 * @return salario
+	 */
 	public Double getSalario() {
 		return salario;
 	}
 	
+	/**
+	 * @return número de reclamações
+	 */
 	public int getReclam() {
 		return reclamacoes;
 	}
 	
-	void setSalario(double salario) {
+	/**
+	 * @param novo salario
+	 */
+	public void setSalario(double salario) {
 		this.salario = salario;
 	}
 	
-	void setReclam(int reclamacoes) {
+	/**
+	 * @param novo número de reclamações
+	 */
+	public void setReclam(int reclamacoes) {
 		this.reclamacoes = reclamacoes;
 	}
 

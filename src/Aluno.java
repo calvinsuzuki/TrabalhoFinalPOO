@@ -28,6 +28,9 @@ public class Aluno extends Pessoa {
 		this.notas = notas;
 	}
 	
+	/**
+	 * @return string com todas as características do aluno
+	 */
 	@Override
 	public String toString() {
 		String str;
@@ -45,29 +48,46 @@ public class Aluno extends Pessoa {
 		return str;
 	}
 	
+	/**
+	 * @return turma
+	 */
 	public String getTurma() {
 		return turma;
 	}
 	
+	/**
+	 * @return número de ocorrências
+	 */
 	public int getOcorr() {
 		return ocorr;
 	}
 	
+	/**
+	 * @return lista com todas as notas do aluno
+	 */
 	public Double[] getNotas() {
 		return notas;
 	}
 	
-	void setTurma(String turma) {
+	/**
+	 * @param nova turma
+	 */
+	public void setTurma(String turma) {
 		this.turma = turma;
 	}
 	
-	void setOcorr(int ocorr) {
+	/**
+	 * @param novo número de ocorrências
+	 */
+	public void setOcorr(int ocorr) {
 		this.ocorr = ocorr;
 	}
 	
-	void setNotas(Double[] notas) {
+	/**
+	 * @param nova lista com todas as notas do aluno
+	 */
+	public void setNotas(Double[] notas) {
 		this.notas = notas;
 	}
 	
-
 }

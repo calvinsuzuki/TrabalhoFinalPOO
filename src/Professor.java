@@ -24,6 +24,9 @@ public class Professor extends Funcionario {
 		this.turmas = turmas;
 	}
 	
+	/**
+	 * @return string com todas as características do professor
+	 */
 	@Override
 	public String toString() {
 		String str;
@@ -41,12 +44,18 @@ public class Professor extends Funcionario {
 		return str;
 	}
 	
-	void setTurmas(String[] turmas) {
-		this.turmas = turmas;
+	/**
+	 * @return lista com todas as turmas do professor
+	 */
+	public String[] getTurmas() {
+		return turmas;
 	}
 	
-	String[] getTurmas() {
-		return turmas;
+	/**
+	 * @param nova lista com todas as turmas do professor
+	 */
+	public void setTurmas(String[] turmas) {
+		this.turmas = turmas;
 	}
 		
 }

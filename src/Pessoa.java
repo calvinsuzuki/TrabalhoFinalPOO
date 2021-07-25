@@ -25,6 +25,9 @@ public class Pessoa {
 		this.senha = senha;
 	}
 	
+	/**
+	 * @return string com todas as características da pessoa
+	 */
 	@Override
 	public String toString() {
 		String str;
@@ -37,40 +40,64 @@ public class Pessoa {
 		return str;
 	}
 	
+	/**
+	 * @return senha
+	 */
 	public String getSenha() {
 		return senha;
 	}
 	
+	/**
+	 * @return registro
+	 */
 	public long getRegister() {
 		return register;
 	}
 	
+	/**
+	 * @return nome
+	 */
 	public String getNome() {
 		return nome;
 	}
 	
+	/**
+	 * @return frequencia
+	 */
 	public double getFreq() {
 		return freq;
 	}
 	
+	/**
+	 * @param novo registro
+	 */
 	public void setRegister(long _register) {
 		register = _register;
 		return;
 	}
 	
+	/**
+	 * @param novo nome
+	 */
 	public void setNome(String _nome) {
 		nome = _nome;
 		return;
 	}
 	
+	/**
+	 * @param nova frequencia
+	 */
 	public void setFreq(double _freq) {
 		freq = _freq;
 		return;
 	}
 	
+	/**
+	 * @param nova senha
+	 */
 	public void setSenha(String senha) {
 		this.senha = senha;
 		return;
 	}
-
+	
 }

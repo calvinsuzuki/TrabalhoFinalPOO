@@ -20,6 +20,9 @@ public class Diretor extends Funcionario {
 		super(register, nome, freq, senha, salario, reclamacoes);
 	}
 	
+	/**
+	 * @return string com todas as características do diretor
+	 */
 	@Override
 	public String toString() {
 		String str;
