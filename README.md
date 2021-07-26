@@ -1,8 +1,58 @@
 # TrabalhoFinalPOO
 
-## Proposta inicial
+## Instalação
 
-Elaborar um programa que possa auxiliar a escolas e colégios, e todos os seus membros, a garantir uma administração mais eficiente. O  _software_  tem a intenção de promover o acesso a informações como horários, ocorrências, e facilitar a administração da escola no controle do quadro de funcionários e alunos bem como também os auxilie a acessarem suas informações.
+Tenha a última versão do *Java* instalada em seu computador. Acesse o *link* abaixo e instale o *Java*: 
+
+```
+https://www.java.com/
+```
+
+Finalmente, abra o arquivo executável *School_Manager.jar* ou faça o comando na pasta do programa :
+
+```
+java -jar School_Manager.jar
+```
+
+## Execução
+
+### Login
+
+A primeira tela do *software* é a tela de *login*. Temos algumas contas exemplares:
+
+Diretor Marcelo: Registro: ``9800`` e Senha: ``senha`` 
+
+Professor Antonio Marcos: Registro: ``7002`` e Senha: ``senha`` 
+
+Zelador Marcos: Registro: ``9800`` e Senha: ``senha`` 
+
+Aluno Enzo Gonçalves: Registro: ``804`` e Senha: ``senha`` 
+
+### Página Principal
+
+A página principal vai carregar a lista de todas as pessoas presentes na escola, somente aqueles as contas privilegiadas podem verificar os dados de determinadas pessoas.
+
+![alt text](https://i.imgur.com/LzvmkPE.png)
+
+Caso você não respeite essa hierarquia de acessos, o seguinte erro acontece:
+
+![alt text](https://i.imgur.com/OCbn6Bh.png)
+
+O botão abaixo fica na parte superior esquerda da página, com ele você visualiza as informações da sua conta no sistema:
+
+![alt text](https://i.imgur.com/m4IFDE7.png)
+
+Na parte superior direita fica as opções de pesquisa com um botão que habilita os filtros e uma caixa de entrada de textos para pesquisa:
+
+![alt text](https://i.imgur.com/mywpZmf.png)
+
+No final da rolagem de cada página estão os botões de navegação, utilize-os para trocar de página:
+
+![alt text](https://i.imgur.com/Xgki788.png)
+
+Ao chegar no final de toda a lista de pessoas, e se você tiver privilégios de Diretor, você pode adicionar uma pessoa clicando no botão:
+
+![alt text](https://i.imgur.com/r5vkhE6.png)
 
 ## Projeto
 
