@@ -69,7 +69,7 @@ public class Pessoa {
 	}
 	
 	/**
-	 * @param novo registro
+	 * @param _register - novo registro
 	 */
 	public void setRegister(long _register) {
 		register = _register;
@@ -77,7 +77,7 @@ public class Pessoa {
 	}
 	
 	/**
-	 * @param novo nome
+	 * @param _nome - novo nome
 	 */
 	public void setNome(String _nome) {
 		nome = _nome;
@@ -85,7 +85,7 @@ public class Pessoa {
 	}
 	
 	/**
-	 * @param nova frequencia
+	 * @param _freq - nova frequencia
 	 */
 	public void setFreq(double _freq) {
 		freq = _freq;
@@ -93,7 +93,7 @@ public class Pessoa {
 	}
 	
 	/**
-	 * @param nova senha
+	 * @param senha - nova senha
 	 */
 	public void setSenha(String senha) {
 		this.senha = senha;

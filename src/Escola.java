@@ -25,7 +25,7 @@ public class Escola {
 	}
 
 	/**
-	 * @param classesRetorno- array de booleans com 4 elementos, equivalendo respectivamente à Aluno, Professor,
+	 * @param classesRetorno - array de booleans com 4 elementos, equivalendo respectivamente à Aluno, Professor,
 	 * Zelador, Diretor. Passe 'true' para o boolean equivalente para receber Pessoas condizentes à classe
 	 * @return Arraylist de pessoas na escola
 	 * */
@@ -53,6 +53,8 @@ public class Escola {
 	 * Função para adicionar, ordenadamente por registro, uma pessoa na escola.
 	 * @param pessoaLogada - Para poder adicionar alguém, pessoaLogada deve ser Diretor
 	 * @param novaPessoa - pode ser de qualquer subclasse, vai adicionar para o sistema da escola
+	 * @throws UsuarioLogadoInvalidoException - usuario logado invalido
+	 * @throws RegistroUsadoException - registro já usado
 	 * */
 	public void adicionaPessoa(Pessoa pessoaLogada, Pessoa novaPessoa) throws UsuarioLogadoInvalidoException, RegistroUsadoException {
 		if(!(pessoaLogada.getClass().equals(Diretor.class))) {
@@ -71,8 +73,8 @@ public class Escola {
 	 * Remove uma pessoa da escola com base em seu registro.
 	 * @param pessoaLogada - Para poder remover alguém, pessoaLogada deve ser diretor
 	 * @param registroPessoaRemovida - é o registro da pessoa que o método remove, pode ser
-	 * obtido pelo usuário, ou feita uma busca pelo nome usando outra função e depois passada o registro
-	 * aqui
+	 * obtido pelo usuário, ou feita uma busca pelo nome usando outra função e depois passada o registro aqui
+	 * @throws UsuarioLogadoInvalidoException - usuario logado invalido
 	 * */
 	public void removePessoa(Pessoa pessoaLogada, long registroPessoaRemovida) throws UsuarioLogadoInvalidoException {
 		int index = -1;
@@ -97,7 +99,7 @@ public class Escola {
 	 * Função que repassa os dados usados para a impressão de todos na escola
 	 * Recebe 'true' para o boolean equivalente para receber string condizentes à classe
 	 * Em um array de booleans tamanho 4, sendo respectivamente à Aluno, Professor, Zelador, Diretor. 
-	 * @param classesRetorno
+	 * @param classesRetorno - array de boolean que indica quais classes devem ser retornadas
 	 * @return Retorna um array de strings com os dados básicos de todos os usuários
 	 * */
 	public String[] imprimePessoas(boolean[] classesRetorno) {
@@ -176,6 +178,7 @@ public class Escola {
 	 * ou apenas as informações básicas
 	 * @param pessoaLogada - Diretor consegue todas as informações de todas as pessoas, as demais classes
 	 * só conseguem todas as informações de classes iguais a ela (ex: Zelador consegue Zelador)
+	 * @param pessoaRequerida - pessoa cujas informações queremos ver
 	 * @return Uma string com as informações
 	 * */
 	public String infoPessoa(Pessoa pessoaLogada, Pessoa pessoaRequerida) {
@@ -193,6 +196,7 @@ public class Escola {
 	 * @param txtRegistro - É uma string correspondente ao registro do usuário que
 	 * está tentando logar
 	 * @param txtSenha - É a senha do usuário que está tentando logar
+	 * @throws LoginFalhouException - login falhou
 	 * @return - A pessoa logada ou null, caso tenha algum dado errado no login
 	 * */
 	public Pessoa checkLogin(String txtRegistro, String txtSenha) throws LoginFalhouException {

@@ -57,14 +57,14 @@ public class Funcionario extends Pessoa {
 	}
 	
 	/**
-	 * @param novo salario
+	 * @param salario - novo salario
 	 */
 	public void setSalario(double salario) {
 		this.salario = salario;
 	}
 	
 	/**
-	 * @param novo número de reclamações
+	 * @param reclamacoes - novo número de reclamações
 	 */
 	public void setReclam(int reclamacoes) {
 		this.reclamacoes = reclamacoes;

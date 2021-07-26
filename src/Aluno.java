@@ -70,21 +70,21 @@ public class Aluno extends Pessoa {
 	}
 	
 	/**
-	 * @param nova turma
+	 * @param turma - nova turma
 	 */
 	public void setTurma(String turma) {
 		this.turma = turma;
 	}
 	
 	/**
-	 * @param novo número de ocorrências
+	 * @param ocorr - novo número de ocorrências
 	 */
 	public void setOcorr(int ocorr) {
 		this.ocorr = ocorr;
 	}
 	
 	/**
-	 * @param nova lista com todas as notas do aluno
+	 * @param notas - nova lista com todas as notas do aluno
 	 */
 	public void setNotas(Double[] notas) {
 		this.notas = notas;

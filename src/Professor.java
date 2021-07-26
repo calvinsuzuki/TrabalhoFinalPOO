@@ -52,7 +52,7 @@ public class Professor extends Funcionario {
 	}
 	
 	/**
-	 * @param nova lista com todas as turmas do professor
+	 * @param turmas - nova lista com todas as turmas do professor
 	 */
 	public void setTurmas(String[] turmas) {
 		this.turmas = turmas;

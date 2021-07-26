@@ -50,7 +50,7 @@ public class Zelador extends Funcionario {
 	}
 	
 	/**
-	 * @param nova função
+	 * @param funcao - nova função
 	 */
 	public void setFuncao(String funcao) {
 		this.funcao = funcao;
