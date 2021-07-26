@@ -76,8 +76,8 @@ public class GerenciadorDados {
 	
 	/**
 	 * Coloca todas as pessoas no arquivo csv dentro da escola
-	 * @param - escola é onde tudo vai ser adicionado
-	 * @param - nomeArquivo é o path do arquivo de dados
+	 * @param escola - escola é onde tudo vai ser adicionado
+	 * @param nomeArquivo - nomeArquivo é o path do arquivo de dados
 	 * */
 	public void leAdicionaPessoasArquivos(Escola escola, String nomeArquivo) {
 		BufferedReader leitorcsv;
