@@ -28,6 +28,8 @@ Zelador Marcos: Registro: ``9800`` e Senha: ``senha``
 
 Aluno Enzo Gonçalves: Registro: ``804`` e Senha: ``senha`` 
 
+Outros exemplos estão no arquivo ``baseDadosRandom.csv``, nele são registrados informações de todas as contas no sistema. Novas contas são gravadas neste mesmo arquivo.
+
 ### Página Principal
 
 A página principal vai carregar a lista de todas as pessoas presentes na escola, somente aqueles as contas privilegiadas podem verificar os dados de determinadas pessoas.
@@ -53,6 +55,27 @@ No final da rolagem de cada página estão os botões de navegação, utilize-os para
 Ao chegar no final de toda a lista de pessoas, e se você tiver privilégios de Diretor, você pode adicionar uma pessoa clicando no botão:
 
 ![alt text](https://i.imgur.com/r5vkhE6.png)
+
+
+### Painel de Informações 
+
+O Painel de Informações é exibido quando clicado em uma pessoa da lista. Observe o seu uso abaixo: 
+
+#### Aluno
+
+![alt text](https://i.imgur.com/bnCMevt.gif)
+
+#### Professor
+
+![alt text](https://i.imgur.com/lFzB3oF.gif)
+
+#### Zelador
+
+![alt text](https://i.imgur.com/l7KNaKM.gif)
+
+#### Diretor
+
+![alt text](https://i.imgur.com/C6Re3jO.gif)
 
 ## Projeto
 
