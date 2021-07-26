@@ -22,9 +22,9 @@ A primeira tela do *software* é a tela de *login*. Temos algumas contas exemplar
 
 Diretor Marcelo: Registro: ``9800`` e Senha: ``senha`` 
 
-Professor Antonio Marcos: Registro: ``7002`` e Senha: ``senha`` 
+Professor Antonio Marcos: Registro: ``8002`` e Senha: ``senha`` 
 
-Zelador Marcos: Registro: ``9800`` e Senha: ``senha`` 
+Zelador Marcos: Registro: ``7002`` e Senha: ``senha`` 
 
 Aluno Enzo Gonçalves: Registro: ``804`` e Senha: ``senha`` 
 
