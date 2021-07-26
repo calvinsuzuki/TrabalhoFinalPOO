@@ -23,7 +23,6 @@ import java.awt.ComponentOrientation;
 import java.awt.FlowLayout;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.MatteBorder;
-import java.awt.EventQueue;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionListener;

@@ -37,9 +37,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-import exceptions.RegistroUsadoException;
-import exceptions.UsuarioLogadoInvalidoException;
-
 /** 
  * Implementa a tela principal do programa
  * @author Alcino Salviano Cavalcanti, 11892963

@@ -21,8 +21,6 @@ import java.awt.event.FocusEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-import exceptions.RegistroUsadoException;
-import exceptions.UsuarioLogadoInvalidoException;
 import exceptions.LoginFalhouException;
 
 /** 
