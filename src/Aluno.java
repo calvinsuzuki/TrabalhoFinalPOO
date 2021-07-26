@@ -17,9 +17,7 @@ public class Aluno extends Pessoa {
 	 * @param nome - String - Nome da pessoa
 	 * @param freq - double - Frequencia da pessoa
 	 * @param senha - String - A senha da conta
-	 * @param turma - String - Valor do salario
-	 * @param reclamacoes - int - Quantidade de reclamacoes
-	 * @param turmas - String[] - Turmas que o professor ministra aulas
+	 * @param turma - String - Turma que o aluno pertence
 	 */
 	Aluno(long register, String nome, double freq, String senha, String turma, int ocorrencias, Double[] notas) {
 		super(register, nome, freq, senha);
