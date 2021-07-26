@@ -23,7 +23,6 @@ ALUNO,senha,392,Arthur da Rosa,0.97,F,0,4.8,3.7,8.5,9.4,9.2,6.2
 ALUNO,senha,410,Lorenzo Novaes,0.97,C,0,6.6,4.5,3.2,3.7,4.1,9.8
 ALUNO,senha,414,Benício Porto,0.83,E,3,10.0,2.9,7.4,0.7,9.5,9.0
 ALUNO,senha,422,João Miguel das Neves,0.86,D,2,7.3,5.5,3.3,4.7,8.7,8.5
-ALUNO,senha,431,Luiz Felipe Ferreira,0.88,E,4,6.6,3.6,6.5,7.2,9.3,5.3
 ALUNO,senha,452,Gabriel Novaes,0.42,C,0,7.7,7.4,7.7,2.9,6.5,7.5
 ALUNO,senha,460,Melissa Pinto,0.63,D,0,6.1,9.6,8.2,6.9,7.4,8.6
 ALUNO,senha,470,Levi da Paz,0.95,B,1,9.2,9.4,3.0,8.6,2.4,8.1
@@ -49,12 +48,14 @@ ALUNO,senha,880,Ana Júlia da Rocha,0.67,A,2,5.8,6.2,8.1,5.1,5.2,7.7
 ALUNO,senha,961,Ana Sophia Lopes,0.57,E,2,5.3,8.6,7.7,5.9,5.5,8.1
 ALUNO,senha,973,Luigi Correia,0.62,E,0,6.6,5.1,5.0,5.5,9.2,6.6
 ALUNO,senha,993,Kaique Carvalho,0.8,E,1,2.1,6.7,8.5,9.4,3.6,5.6
-FUNCIONARIO,PROFESSOR,senha,8000,Sophia,0.3,4500.0,0,turma 1,turma 2
-FUNCIONARIO,PROFESSOR,senha,8001,Mendonça,0.3,4500.0,3,turma 1,turma 2
-FUNCIONARIO,PROFESSOR,senha,8002,Antonio Marcos,0.3,4500.0,1,turma 1,turma 2
-FUNCIONARIO,ZELADOR,senha,7000,Zilda,0.6,1500.0,0,auxiliar de limpeza primeiro andar
-FUNCIONARIO,ZELADOR,senha,7001,Luis,0.6,1500.0,2,auxiliar de limpeza segundo andar
-FUNCIONARIO,ZELADOR,senha,7002,Marcos,0.6,1500.0,0,cantina
+ALUNO,§,897923,Jonathan Joestar,0.0,B,0,0.0,0.0,0.0,0.0,0.0,0.0
+FUNCIONARIO,PROFESSOR,senha,8000,Sophia,0.9,4500.0,0,turma 1,turma 2
+FUNCIONARIO,PROFESSOR,senha,8001,Mendonça,0.9,4500.0,3,turma 1,turma 2
+FUNCIONARIO,PROFESSOR,senha,8002,Antonio Marcos,0.9,4500.0,1,turma 1,turma 2
+FUNCIONARIO,PROFESSOR,§,77777,Tio da Matematica,0.0,666.0,0,A, B
+FUNCIONARIO,ZELADOR,senha,7000,Zilda,0.9,1500.0,0,auxiliar de limpeza primeiro andar
+FUNCIONARIO,ZELADOR,senha,7001,Luis,0.9,1500.0,2,auxiliar de limpeza segundo andar
+FUNCIONARIO,ZELADOR,senha,7002,Marcos,0.9,1500.0,0,cantina
 FUNCIONARIO,DIRETOR,senha,9800,Marcelo,0.9,5000.0,0
 FUNCIONARIO,DIRETOR,senha,9801,Roberto,0.9,5000.0,0
 FUNCIONARIO,DIRETOR,senha,9802,Marinez,0.9,5000.0,1
