@@ -1,59 +1,60 @@
 ALUNO,senha,8,Maria Campos,0.97,A,0,9.2,6.4,9.3,3.6,4.5,6.6
 ALUNO,senha,41,Clara Caldeira,0.9,B,1,4.4,8.2,9.9,8.4,6.7,9.1
-ALUNO,senha,43,Mirella Ramos,0.89,B,1,3.0,7.7,9.0,6.7,6.9,8.4
+ALUNO,senha,43,Mirella Ramos,0.89,B,1,3,7.7,9,6.7,6.9,8.4
 ALUNO,senha,56,Raquel da Rosa,0.69,C,4,5.8,9.8,6.7,8.4,7.2,3.1
-ALUNO,senha,74,Enzo Gabriel Carvalho,0.92,E,4,8.2,10.0,8.4,4.1,8.1,2.4
-ALUNO,senha,78,Lívia Azevedo,0.82,A,0,9.6,2.8,9.1,7.6,5.8,10.0
-ALUNO,senha,84,Cauê das Neves,0.72,B,3,8.5,8.1,9.6,6.2,9.1,8.0
+ALUNO,senha,74,Enzo Gabriel Carvalho,0.92,E,4,8.2,10,8.4,4.1,8.1,2.4
+ALUNO,senha,78,Lívia Azevedo,0.82,A,0,9.6,2.8,9.1,7.6,5.8,10
+ALUNO,senha,84,Cauê das Neves,0.72,B,3,8.5,8.1,9.6,6.2,9.1,8
 ALUNO,senha,95,Maria Julia da Paz,0.47,E,5,6.4,7.6,7.8,7.1,2.3,8.2
-ALUNO,senha,110,Cauã da Paz,0.98,C,2,3.1,6.2,5.0,4.5,4.6,5.2
-ALUNO,senha,112,Kevin Aragão,0.94,F,0,3.7,4.2,6.9,10.0,7.2,3.2
-ALUNO,senha,124,Maria Clara Nogueira,0.62,A,2,5.7,8.0,4.7,8.6,5.9,7.4
+ALUNO,senha,110,Cauã da Paz,0.98,C,2,3.1,6.2,5,4.5,4.6,5.2
+ALUNO,senha,112,Kevin Aragão,0.94,F,0,3.7,4.2,6.9,10,7.2,3.2
+ALUNO,senha,124,Maria Clara Nogueira,0.62,A,2,5.7,8,4.7,8.6,5.9,7.4
 ALUNO,senha,153,Evelyn da Cunha,0.96,A,2,5.8,3.5,7.1,7.5,8.3,7.5
 ALUNO,senha,177,Ana Laura Pires,0.59,A,4,9.7,9.2,9.3,4.6,6.7,6.7
-ALUNO,senha,193,Alice da Rosa,0.83,B,3,8.3,8.7,3.3,6.0,3.8,3.3
-ALUNO,senha,199,Luiz Felipe Melo,0.78,F,0,0.9,8.7,4.2,1.9,9.9,1.0
+ALUNO,senha,193,Alice da Rosa,0.83,B,3,8.3,8.7,3.3,6,3.8,3.3
+ALUNO,senha,199,Luiz Felipe Melo,0.78,F,0,0.9,8.7,4.2,1.9,9.9,1
 ALUNO,senha,226,Kamilly Alves,0.85,C,1,4.7,0.6,5.2,7.2,6.8,3.4
 ALUNO,senha,258,Valentina da Luz,0.71,B,5,5.3,8.4,7.9,7.7,3.9,5.9
-ALUNO,senha,267,Letícia Cavalcanti,0.99,D,1,9.7,9.5,9.7,9.4,0.8,10.0
-ALUNO,senha,302,Cauã Duarte,0.85,E,0,5.5,7.3,5.8,6.3,9.0,9.7
+ALUNO,senha,267,Letícia Cavalcanti,0.99,D,1,9.7,9.5,9.7,9.4,0.8,10
+ALUNO,senha,302,Cauã Duarte,0.85,E,0,5.5,7.3,5.8,6.3,9,9.7
 ALUNO,§,321,SemSenha,0.85,F,0,9.3,9.3,6.1,9.9,1.7,7.7
 ALUNO,senha,338,Danilo Caldeira,0.68,D,0,7.7,7.8,7.7,6.3,4.7,7.7
 ALUNO,senha,392,Arthur da Rosa,0.97,F,0,4.8,3.7,8.5,9.4,9.2,6.2
 ALUNO,senha,410,Lorenzo Novaes,0.97,C,0,6.6,4.5,3.2,3.7,4.1,9.8
-ALUNO,senha,414,Benício Porto,0.83,E,3,10.0,2.9,7.4,0.7,9.5,9.0
+ALUNO,senha,414,Benício Porto,0.83,E,3,10,2.9,7.4,0.7,9.5,9
 ALUNO,senha,422,João Miguel das Neves,0.86,D,2,7.3,5.5,3.3,4.7,8.7,8.5
 ALUNO,senha,431,Luiz Felipe Ferreira,0.88,E,4,6.6,3.6,6.5,7.2,9.3,5.3
+ALUNO,senha,452,Gabriel Novaes,0.42,C,0,7.7,7.4,7.7,2.9,6.5,7.5
 ALUNO,senha,460,Melissa Pinto,0.63,D,0,6.1,9.6,8.2,6.9,7.4,8.6
-ALUNO,senha,470,Levi da Paz,0.95,B,1,9.2,9.4,3.0,8.6,2.4,8.1
-ALUNO,senha,497,Enzo da Cruz,0.91,F,2,5.5,8.0,4.8,6.0,4.7,5.4
-ALUNO,senha,558,Luna Pereira,0.78,D,3,4.0,7.1,5.4,4.2,4.8,7.6
-ALUNO,senha,584,Danilo Viana,0.96,C,0,6.5,3.3,2.9,9.4,9.3,6.0
-ALUNO,senha,585,Gabriela Melo,0.77,A,3,5.0,8.5,9.4,1.6,9.9,6.4
+ALUNO,senha,470,Levi da Paz,0.95,B,1,9.2,9.4,3,8.6,2.4,8.1
+ALUNO,senha,497,Enzo da Cruz,0.91,F,2,5.5,8,4.8,6,4.7,5.4
+ALUNO,senha,558,Luna Pereira,0.78,D,3,4,7.1,5.4,4.2,4.8,7.6
+ALUNO,senha,584,Danilo Viana,0.96,C,0,6.5,3.3,2.9,9.4,9.3,6
+ALUNO,senha,585,Gabriela Melo,0.77,A,3,5,8.5,9.4,1.6,9.9,6.4
 ALUNO,senha,599,Laura Cardoso,0.71,B,0,3.6,6.8,7.8,8.9,4.3,3.5
-ALUNO,senha,604,Murilo da Mata,0.91,F,4,6.5,5.6,3.1,7.2,2.0,6.3
-ALUNO,senha,636,Mirella Sales,0.91,C,2,7.6,6.7,9.3,7.2,9.0,7.6
-ALUNO,senha,650,Enzo Gabriel da Cunha,0.47,F,4,1.7,8.0,5.5,8.4,9.8,3.6
-ALUNO,senha,655,Bruna da Rosa,0.93,A,2,7.2,4.7,9.0,7.6,2.9,7.6
+ALUNO,senha,604,Murilo da Mata,0.91,F,4,6.5,5.6,3.1,7.2,2,6.3
+ALUNO,senha,636,Mirella Sales,0.91,C,2,7.6,6.7,9.3,7.2,9,7.6
+ALUNO,senha,650,Enzo Gabriel da Cunha,0.47,F,4,1.7,8,5.5,8.4,9.8,3.6
+ALUNO,senha,655,Bruna da Rosa,0.93,A,2,7.2,4.7,9,7.6,2.9,7.6
 ALUNO,senha,682,Davi Silveira,0.82,B,2,8.9,3.9,7.5,6.1,6.7,7.5
 ALUNO,senha,696,Clarice Castro,0.4,C,1,6.6,8.8,8.9,2.4,6.8,9.4
-ALUNO,senha,757,Rafael da Luz,0.99,D,0,9.1,6.1,9.7,1.3,2.4,5.0
+ALUNO,senha,757,Rafael da Luz,0.99,D,0,9.1,6.1,9.7,1.3,2.4,5
 ALUNO,senha,765,Mirella Viana,0.98,E,1,0.8,6.3,2.8,7.3,6.9,1.5
 ALUNO,senha,770,Marcela Duarte,0.76,F,0,6.9,4.7,7.9,9.3,7.6,8.3
 ALUNO,senha,798,Lívia da Mata,0.99,D,4,7.8,7.7,5.5,8.7,7.6,7.3
-ALUNO,senha,804,Enzo Gonçalves,0.93,F,0,8.1,4.7,9.0,2.6,6.9,5.8
+ALUNO,senha,804,Enzo Gonçalves,0.93,F,0,8.1,4.7,9,2.6,6.9,5.8
 ALUNO,senha,876,Pietra Costela,0.97,D,1,7.9,1.1,6.9,3.4,5.6,9.9
-ALUNO,senha,879,Danilo Azevedo,0.99,A,0,8.0,8.2,9.7,6.3,4.4,5.7
+ALUNO,senha,879,Danilo Azevedo,0.99,A,0,8,8.2,9.7,6.3,4.4,5.7
 ALUNO,senha,880,Ana Júlia da Rocha,0.67,A,2,5.8,6.2,8.1,5.1,5.2,7.7
 ALUNO,senha,961,Ana Sophia Lopes,0.57,E,2,5.3,8.6,7.7,5.9,5.5,8.1
-ALUNO,senha,973,Luigi Correia,0.62,E,0,6.6,5.1,5.0,5.5,9.2,6.6
+ALUNO,senha,973,Luigi Correia,0.62,E,0,6.6,5.1,5,5.5,9.2,6.6
 ALUNO,senha,993,Kaique Carvalho,0.8,E,1,2.1,6.7,8.5,9.4,3.6,5.6
-FUNCIONARIO,PROFESSOR,senha,8000,Sophia,0.9,4500.0,0,turma 1,turma 2
-FUNCIONARIO,PROFESSOR,senha,8001,Mendonça,0.9,4500.0,3,turma 1,turma 2
-FUNCIONARIO,PROFESSOR,senha,8002,Antonio Marcos,0.9,4500.0,1,turma 1,turma 2
-FUNCIONARIO,ZELADOR,senha,7000,Zilda,0.9,1500.0,0,auxiliar de limpeza primeiro andar
-FUNCIONARIO,ZELADOR,senha,7001,Luis,0.9,1500.0,2,auxiliar de limpeza segundo andar
-FUNCIONARIO,ZELADOR,senha,7002,Marcos,0.9,1500.0,0,cantina
-FUNCIONARIO,DIRETOR,senha,9800,Marcelo,0.9,5000.0,0
-FUNCIONARIO,DIRETOR,senha,9801,Roberto,0.9,5000.0,0
-FUNCIONARIO,DIRETOR,senha,9802,Marinez,0.9,5000.0,1
+FUNCIONARIO,PROFESSOR,senha,8000,Sophia,0.9,4500,0,turma 1,turma 2,,,
+FUNCIONARIO,PROFESSOR,senha,8001,Mendonça,0.9,4500,3,turma 1,turma 2,,,
+FUNCIONARIO,PROFESSOR,senha,8002,Antonio Marcos,0.9,4500,1,turma 1,turma 2,,,
+FUNCIONARIO,ZELADOR,senha,7000,Zilda,0.9,1500,0,auxiliar de limpeza primeiro andar,,,,
+FUNCIONARIO,ZELADOR,senha,7001,Luis,0.9,1500,2,auxiliar de limpeza segundo andar,,,,
+FUNCIONARIO,ZELADOR,senha,7002,Marcos,0.9,1500,0,cantina,,,,
+FUNCIONARIO,DIRETOR,senha,9800,Marcelo,0.9,5000,0,,,,,
+FUNCIONARIO,DIRETOR,senha,9801,Roberto,0.9,5000,0,,,,,
+FUNCIONARIO,DIRETOR,senha,9802,Marinez,0.9,5000,1,,,,,

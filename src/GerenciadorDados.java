@@ -108,6 +108,7 @@ public class GerenciadorDados {
 	 * Esse método escreve os dados de um aluno em um csv com a formatação correta
 	 * @param aluno - aluno que será escrito
 	 * @param escritorcsv - o fileWriter que está apontando para o arquivo csv
+	 * @throws IOException - exceção de input e output
 	 * */
 	private void escreveAlunosArquivo(Aluno aluno, FileWriter escritorcsv) throws IOException {
 		Double[] notas = aluno.getNotas();
@@ -124,6 +125,7 @@ public class GerenciadorDados {
 	 * Esse método escreve os dados de um professor em um csv com a formatação correta
 	 * @param professor - professor que será escrito
 	 * @param escritorcsv - o fileWriter que está apontando para o arquivo csv
+	 * @throws IOException - exceção de input e output
 	 * */
 	private void escreveProfessoresArquivo(Professor professor, FileWriter escritorcsv) throws IOException {
 		String[] turmas = professor.getTurmas();
@@ -140,6 +142,7 @@ public class GerenciadorDados {
 	 * Esse método escreve os dados de um zelador em um csv com a formatação correta
 	 * @param zelador - zelador que será escrito
 	 * @param escritorcsv - o fileWriter que está apontando para o arquivo csv
+	 * @throws IOException - exceção de input e output
 	 * */
 	private void escreveZeladoresArquivo(Zelador zelador, FileWriter escritorcsv) throws IOException {
 		escritorcsv.append("ZELADOR"+ ',' + zelador.getSenha() + ',' +String.valueOf(zelador.getRegister()) + ',' + zelador.getNome() + ',');
@@ -150,6 +153,7 @@ public class GerenciadorDados {
 	 * Esse método escreve os dados de um diretor em um csv com a formatação correta
 	 * @param diretor - diretor que será escrito
 	 * @param escritorcsv - o fileWriter que está apontando para o arquivo csv
+	 * @throws IOException - exceção de input e output
 	 * */
 	private void escreveDiretoresArquivo(Diretor diretor, FileWriter escritorcsv) throws IOException {
 		escritorcsv.append("DIRETOR"+ ',' + diretor.getSenha() + ',' +String.valueOf(diretor.getRegister()) + ',' + diretor.getNome() + ',');
