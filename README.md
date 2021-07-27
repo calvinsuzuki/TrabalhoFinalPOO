@@ -92,3 +92,7 @@ A opção é liberada quando você está utilizando uma conta diretor. Vá na ultima p
 ### Divisão de tarefas
 
 ![alt text](https://i.imgur.com/a6NPdkz.png)
+
+### Vídeo no youtube mostrando o funcionamento
+
+https://youtu.be/gfxhjuaZFb8
