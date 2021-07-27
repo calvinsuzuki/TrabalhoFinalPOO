@@ -77,6 +77,12 @@ O Painel de Informações é exibido quando clicado em uma pessoa da lista. Observe
 
 ![alt text](https://i.imgur.com/C6Re3jO.gif)
 
+### Adicionar Pessoa
+
+A opção é liberada quando você está utilizando uma conta diretor. Vá na ultima página da lista de pessoas e lá uma opção de adicionar pessoa aparecerá.
+
+![alt text](https://i.imgur.com/WJ6EIjQ.gif)
+
 ## Projeto
 
 ### Planejamento de hierarquia orientada à objetos
